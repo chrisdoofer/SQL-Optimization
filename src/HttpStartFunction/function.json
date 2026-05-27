@@ -12,6 +12,11 @@
       "type": "http",
       "direction": "out",
       "name": "Response"
+    },
+    {
+      "name": "starter",
+      "type": "durableClient",
+      "direction": "in"
     }
   ]
 }

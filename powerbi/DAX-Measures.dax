@@ -1,0 +1,123 @@
+// DAX Measures for SQL Edition Optimisation Power BI Report
+// Add these to your data model after connecting to Log Analytics
+
+// === SUMMARY MEASURES ===
+
+Total Instances = DISTINCTCOUNT(SQLEditionData[InstanceName])
+
+Total Databases = COUNTROWS(SQLEditionData)
+
+Enterprise Instances =
+CALCULATE(
+    DISTINCTCOUNT(SQLEditionData[InstanceName]),
+    CONTAINSSTRING(SQLEditionData[Edition], "Enterprise")
+)
+
+Standard Instances =
+CALCULATE(
+    DISTINCTCOUNT(SQLEditionData[InstanceName]),
+    CONTAINSSTRING(SQLEditionData[Edition], "Standard")
+)
+
+// === ELIGIBILITY MEASURES ===
+
+Eligible for Downgrade =
+CALCULATE(
+    DISTINCTCOUNT(SQLEditionData[InstanceName]),
+    SQLEditionData[DowngradeEligibility] = "Eligible",
+    CONTAINSSTRING(SQLEditionData[Edition], "Enterprise")
+)
+
+Blocked from Downgrade =
+CALCULATE(
+    DISTINCTCOUNT(SQLEditionData[InstanceName]),
+    SQLEditionData[DowngradeEligibility] = "Blocked"
+)
+
+Review Required =
+CALCULATE(
+    DISTINCTCOUNT(SQLEditionData[InstanceName]),
+    SQLEditionData[DowngradeEligibility] = "ReviewRequired"
+)
+
+Eligibility Rate =
+DIVIDE([Eligible for Downgrade], [Enterprise Instances], 0)
+
+// === COST MEASURES (SQL Server 2022 Pricing) ===
+// Enterprise: $15,123 per 2-core pack ($7,561.50/core)
+// Standard:   $3,945 per 2-core pack ($1,972.50/core)
+// Saving per core = $7,561.50 - $1,972.50 = $5,589.00
+
+Enterprise Cost Per Core = 7561.50
+
+Standard Cost Per Core = 1972.50
+
+Saving Per Core = [Enterprise Cost Per Core] - [Standard Cost Per Core]
+
+Total Eligible Cores =
+CALCULATE(
+    SUM(SQLEditionData[VisibleCPUs]),
+    SQLEditionData[DowngradeEligibility] = "Eligible",
+    CONTAINSSTRING(SQLEditionData[Edition], "Enterprise")
+)
+
+// Cores must be licensed in 2-core packs, minimum 4 cores per instance
+Licensed Core Packs (Eligible) =
+VAR EligibleCores = [Total Eligible Cores]
+VAR RoundedUp = CEILING(EligibleCores, 2)
+RETURN RoundedUp
+
+Estimated Annual Saving (License Only) =
+[Total Eligible Cores] * [Saving Per Core]
+
+Estimated Annual Saving with SA =
+// Software Assurance is ~25% of license cost annually
+VAR LicenseSaving = [Total Eligible Cores] * [Saving Per Core]
+VAR SASavingPerCore = ([Enterprise Cost Per Core] * 0.25) - ([Standard Cost Per Core] * 0.25)
+VAR TotalSASaving = [Total Eligible Cores] * SASavingPerCore
+RETURN LicenseSaving + TotalSASaving
+
+Current Enterprise License Cost =
+CALCULATE(
+    SUMX(
+        VALUES(SQLEditionData[InstanceName]),
+        VAR Cores = CALCULATE(MAX(SQLEditionData[VisibleCPUs]))
+        VAR LicensedCores = MAX(Cores, 4)
+        RETURN LicensedCores * 7561.50
+    ),
+    CONTAINSSTRING(SQLEditionData[Edition], "Enterprise")
+)
+
+Projected Standard License Cost (Eligible Only) =
+CALCULATE(
+    SUMX(
+        VALUES(SQLEditionData[InstanceName]),
+        VAR Cores = CALCULATE(MAX(SQLEditionData[VisibleCPUs]))
+        VAR LicensedCores = MAX(Cores, 4)
+        RETURN LicensedCores * 1972.50
+    ),
+    SQLEditionData[DowngradeEligibility] = "Eligible",
+    CONTAINSSTRING(SQLEditionData[Edition], "Enterprise")
+)
+
+// === FEATURE ANALYSIS ===
+
+Databases Using Compression =
+CALCULATE(
+    COUNTROWS(SQLEditionData),
+    CONTAINSSTRING(SQLEditionData[EnterpriseFeatures], "DataCompression")
+)
+
+Databases Using Partitioning =
+CALCULATE(
+    COUNTROWS(SQLEditionData),
+    CONTAINSSTRING(SQLEditionData[EnterpriseFeatures], "TablePartitioning")
+)
+
+Most Common Blocking Feature =
+VAR FeatureTable =
+    ADDCOLUMNS(
+        VALUES(SQLEditionData[EnterpriseFeatures]),
+        "Count", CALCULATE(COUNTROWS(SQLEditionData))
+    )
+RETURN MAXX(TOPN(1, FeatureTable, [Count]), SQLEditionData[EnterpriseFeatures])

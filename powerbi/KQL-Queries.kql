@@ -1,0 +1,92 @@
+// KQL Queries for Power BI DirectQuery to Log Analytics
+// These can be used in Power BI's "Azure Data Explorer" or "Log Analytics" connector
+
+// ============================================================
+// QUERY 1: Main Dataset - All edition optimisation results
+// ============================================================
+SQLEditionOptimisation_CL
+| where TimeGenerated > ago(30d)
+| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
+| project
+    TimeGenerated,
+    MachineName,
+    InstanceName,
+    Edition,
+    ProductVersion,
+    ProductLevel,
+    VisibleCPUs = toint(VisibleCPUs),
+    DatabaseName,
+    CompatibilityLevel = toint(CompatibilityLevel),
+    EnterpriseFeatures,
+    FeatureCount = toint(FeatureCount),
+    HasBlockingFeatures = tobool(HasBlockingFeatures),
+    DowngradeEligibility,
+    ResourceGroup,
+    SubscriptionId,
+    Location
+
+// ============================================================
+// QUERY 2: Instance-Level Summary (for Instance overview page)
+// ============================================================
+SQLEditionOptimisation_CL
+| where TimeGenerated > ago(30d)
+| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
+| summarize
+    Databases = dcount(DatabaseName),
+    TotalCores = max(toint(VisibleCPUs)),
+    BlockedDatabases = dcountif(DatabaseName, DowngradeEligibility == "Blocked"),
+    EligibleDatabases = dcountif(DatabaseName, DowngradeEligibility == "Eligible"),
+    ReviewDatabases = dcountif(DatabaseName, DowngradeEligibility == "ReviewRequired"),
+    AllFeatures = make_set(EnterpriseFeatures),
+    LastScan = max(TimeGenerated)
+  by InstanceName, Edition, ProductVersion, MachineName, Location, ResourceGroup, SubscriptionId
+| extend InstanceEligibility = iff(BlockedDatabases == 0, "Eligible", "Blocked")
+| extend CoresForLicensing = max_of(TotalCores, 4)
+
+// ============================================================
+// QUERY 3: Cost Savings Projection
+// ============================================================
+let EnterpriseCostPerCore = 7561.50;
+let StandardCostPerCore = 1972.50;
+let SavingPerCore = EnterpriseCostPerCore - StandardCostPerCore;
+SQLEditionOptimisation_CL
+| where TimeGenerated > ago(30d)
+| where Edition has "Enterprise"
+| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
+| summarize
+    BlockedDatabases = dcountif(DatabaseName, DowngradeEligibility == "Blocked"),
+    Cores = max(toint(VisibleCPUs))
+  by InstanceName, MachineName
+| extend
+    InstanceEligible = (BlockedDatabases == 0),
+    LicensedCores = max_of(Cores, 4)
+| extend
+    CurrentCost = LicensedCores * EnterpriseCostPerCore,
+    ProjectedCost = iff(InstanceEligible, LicensedCores * StandardCostPerCore, LicensedCores * EnterpriseCostPerCore),
+    PotentialSaving = iff(InstanceEligible, LicensedCores * SavingPerCore, 0.0)
+| project InstanceName, MachineName, Cores, LicensedCores, InstanceEligible, CurrentCost, ProjectedCost, PotentialSaving
+| order by PotentialSaving desc
+
+// ============================================================
+// QUERY 4: Feature Usage Heatmap
+// ============================================================
+SQLEditionOptimisation_CL
+| where TimeGenerated > ago(30d)
+| where EnterpriseFeatures != ""
+| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
+| mv-expand Feature = split(EnterpriseFeatures, ";")
+| summarize InstanceCount = dcount(InstanceName), DatabaseCount = dcount(DatabaseName) by tostring(Feature)
+| order by InstanceCount desc
+
+// ============================================================
+// QUERY 5: Scan History / Trend
+// ============================================================
+SQLEditionOptimisation_CL
+| summarize
+    MachinesScanned = dcount(MachineName),
+    InstancesScanned = dcount(InstanceName),
+    Eligible = dcountif(InstanceName, DowngradeEligibility == "Eligible"),
+    Blocked = dcountif(InstanceName, DowngradeEligibility == "Blocked"),
+    Errors = dcountif(InstanceName, DowngradeEligibility == "Error")
+  by bin(TimeGenerated, 1d)
+| order by TimeGenerated asc

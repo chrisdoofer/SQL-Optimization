@@ -38,15 +38,18 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   }
 }
 
-// App Service Plan (Consumption)
+// App Service Plan (Elastic Premium for Durable Functions at scale)
 resource hostingPlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   name: hostingPlanName
   location: location
   sku: {
-    name: 'Y1'
-    tier: 'Dynamic'
+    name: 'EP1'
+    tier: 'ElasticPremium'
+    family: 'EP'
   }
-  properties: {}
+  properties: {
+    maximumElasticWorkerCount: 20
+  }
 }
 
 // Application Insights
