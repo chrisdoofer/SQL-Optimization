@@ -1,5 +1,6 @@
-// Bicep template for deploying the SQL Optimization Azure Function and supporting resources
-// Deploy with: az deployment group create -g <rg-name> -f main.bicep -p functionAppName=<name>
+// Bicep template for deploying the SQL Edition Optimisation solution
+// Single deployment creates: Function App, custom table, DCE, DCR, and all dependencies
+// Deploy with: az deployment group create -g <rg-name> -f main.bicep -p functionAppName=<name> logAnalyticsWorkspaceId=<id>
 
 @description('Name of the Function App')
 param functionAppName string
@@ -7,17 +8,11 @@ param functionAppName string
 @description('Azure region for all resources')
 param location string = resourceGroup().location
 
-@description('Log Analytics Workspace ID for Application Insights')
+@description('Full resource ID of the existing Log Analytics Workspace')
 param logAnalyticsWorkspaceId string
 
-@description('Data Collection Endpoint URI')
-param dceEndpoint string
-
-@description('Data Collection Rule Immutable ID')
-param dcrImmutableId string
-
 @description('Custom log stream name')
-param logStreamName string = 'Custom-SQLOptimization_CL'
+param logStreamName string = 'Custom-SQLEditionOptimisation_CL'
 
 @description('Resource Graph query to discover Arc machines')
 param resourceGraphQuery string = 'resources | where type == \'microsoft.hybridcompute/machines\' | where properties.status == \'Connected\' | project id, name, resourceGroup, subscriptionId, location, tags'
@@ -25,6 +20,9 @@ param resourceGraphQuery string = 'resources | where type == \'microsoft.hybridc
 var storageAccountName = toLower('st${take(replace(functionAppName, '-', ''), 20)}')
 var appInsightsName = '${functionAppName}-ai'
 var hostingPlanName = '${functionAppName}-plan'
+var dceName = '${functionAppName}-dce'
+var dcrName = '${functionAppName}-dcr'
+var customTableName = 'SQLEditionOptimisation_CL'
 
 // Storage Account
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
@@ -63,6 +61,106 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
+// Reference the existing Log Analytics Workspace
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' existing = {
+  name: last(split(logAnalyticsWorkspaceId, '/'))
+}
+
+// Custom Table in Log Analytics
+resource customTable 'Microsoft.OperationalInsights/workspaces/tables@2022-10-01' = {
+  parent: logAnalyticsWorkspace
+  name: customTableName
+  properties: {
+    schema: {
+      name: customTableName
+      columns: [
+        { name: 'TimeGenerated', type: 'dateTime' }
+        { name: 'MachineName', type: 'string' }
+        { name: 'InstanceName', type: 'string' }
+        { name: 'Edition', type: 'string' }
+        { name: 'ProductVersion', type: 'string' }
+        { name: 'ProductLevel', type: 'string' }
+        { name: 'VisibleCPUs', type: 'int' }
+        { name: 'DatabaseName', type: 'string' }
+        { name: 'CompatibilityLevel', type: 'int' }
+        { name: 'EnterpriseFeatures', type: 'string' }
+        { name: 'FeatureCount', type: 'int' }
+        { name: 'HasBlockingFeatures', type: 'boolean' }
+        { name: 'DowngradeEligibility', type: 'string' }
+        { name: 'ResourceGroup', type: 'string' }
+        { name: 'SubscriptionId', type: 'string' }
+        { name: 'Location', type: 'string' }
+      ]
+    }
+    retentionInDays: 90
+  }
+}
+
+// Data Collection Endpoint
+resource dataCollectionEndpoint 'Microsoft.Insights/dataCollectionEndpoints@2022-06-01' = {
+  name: dceName
+  location: location
+  properties: {
+    networkAcls: {
+      publicNetworkAccess: 'Enabled'
+    }
+  }
+}
+
+// Data Collection Rule
+resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
+  name: dcrName
+  location: location
+  dependsOn: [
+    customTable
+  ]
+  properties: {
+    dataCollectionEndpointId: dataCollectionEndpoint.id
+    streamDeclarations: {
+      '${logStreamName}': {
+        columns: [
+          { name: 'TimeGenerated', type: 'datetime' }
+          { name: 'MachineName', type: 'string' }
+          { name: 'InstanceName', type: 'string' }
+          { name: 'Edition', type: 'string' }
+          { name: 'ProductVersion', type: 'string' }
+          { name: 'ProductLevel', type: 'string' }
+          { name: 'VisibleCPUs', type: 'int' }
+          { name: 'DatabaseName', type: 'string' }
+          { name: 'CompatibilityLevel', type: 'int' }
+          { name: 'EnterpriseFeatures', type: 'string' }
+          { name: 'FeatureCount', type: 'int' }
+          { name: 'HasBlockingFeatures', type: 'string' }
+          { name: 'DowngradeEligibility', type: 'string' }
+          { name: 'ResourceGroup', type: 'string' }
+          { name: 'SubscriptionId', type: 'string' }
+          { name: 'Location', type: 'string' }
+        ]
+      }
+    }
+    destinations: {
+      logAnalytics: [
+        {
+          workspaceResourceId: logAnalyticsWorkspaceId
+          name: 'logAnalyticsDestination'
+        }
+      ]
+    }
+    dataFlows: [
+      {
+        streams: [
+          logStreamName
+        ]
+        destinations: [
+          'logAnalyticsDestination'
+        ]
+        transformKql: 'source'
+        outputStream: 'Custom-${customTableName}'
+      }
+    ]
+  }
+}
+
 // Function App
 resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
   name: functionAppName
@@ -85,8 +183,8 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
         { name: 'FUNCTIONS_WORKER_RUNTIME_VERSION'; value: '7.4' }
         { name: 'APPINSIGHTS_INSTRUMENTATIONKEY'; value: appInsights.properties.InstrumentationKey }
         { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'; value: appInsights.properties.ConnectionString }
-        { name: 'DCE_ENDPOINT'; value: dceEndpoint }
-        { name: 'DCR_IMMUTABLE_ID'; value: dcrImmutableId }
+        { name: 'DCE_ENDPOINT'; value: dataCollectionEndpoint.properties.logsIngestion.endpoint }
+        { name: 'DCR_IMMUTABLE_ID'; value: dataCollectionRule.properties.immutableId }
         { name: 'LOG_STREAM_NAME'; value: logStreamName }
         { name: 'RESOURCE_GRAPH_QUERY'; value: resourceGraphQuery }
       ]
@@ -98,3 +196,7 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
 output functionAppName string = functionApp.name
 output functionAppPrincipalId string = functionApp.identity.principalId
 output functionAppDefaultHostName string = functionApp.properties.defaultHostName
+output dceEndpoint string = dataCollectionEndpoint.properties.logsIngestion.endpoint
+output dcrImmutableId string = dataCollectionRule.properties.immutableId
+output dcrResourceId string = dataCollectionRule.id
+output customTableName string = customTable.name

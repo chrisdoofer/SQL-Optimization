@@ -85,7 +85,9 @@ A scalable Azure Functions (PowerShell) solution that identifies SQL Server Ente
 
 ### Step 1: Deploy Infrastructure (Bicep)
 
-This creates the Function App, Storage Account, and Application Insights. It requires an existing Log Analytics Workspace (the workspace receives the optimisation data and backs App Insights).
+A single deployment creates everything: Function App, custom Log Analytics table, Data Collection Endpoint, Data Collection Rule, and wires them together automatically.
+
+**Only prerequisite:** an existing Log Analytics Workspace.
 
 ```bash
 az login
@@ -97,85 +99,19 @@ az deployment group create \
   --template-file infrastructure/main.bicep \
   --parameters \
     functionAppName="func-sqleditionopt" \
-    logAnalyticsWorkspaceId="/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.OperationalInsights/workspaces/<workspace>" \
-    dceEndpoint="https://<your-dce>.uksouth-1.ingest.monitor.azure.com" \
-    dcrImmutableId="dcr-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    logAnalyticsWorkspaceId="/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.OperationalInsights/workspaces/<workspace>"
 ```
 
-> **Note:** You'll update `dceEndpoint` and `dcrImmutableId` after Step 3. Deploy initially with placeholder values, then update the Function App settings after creating the DCE/DCR.
+This creates:
+- Storage Account
+- Elastic Premium App Service Plan (EP1)
+- Application Insights
+- Custom table `SQLEditionOptimisation_CL` in your workspace
+- Data Collection Endpoint (DCE)
+- Data Collection Rule (DCR) linked to the table
+- Function App with all settings pre-configured (DCE/DCR values wired automatically)
 
-### Step 2: Create the Log Analytics Custom Table
-
-In your existing Log Analytics workspace, create the custom table (`SQLEditionOptimisation_CL`):
-
-```json
-{
-  "properties": {
-    "schema": {
-      "name": "SQLEditionOptimisation_CL",
-      "columns": [
-        { "name": "TimeGenerated", "type": "datetime" },
-        { "name": "MachineName", "type": "string" },
-        { "name": "InstanceName", "type": "string" },
-        { "name": "Edition", "type": "string" },
-        { "name": "ProductVersion", "type": "string" },
-        { "name": "ProductLevel", "type": "string" },
-        { "name": "VisibleCPUs", "type": "int" },
-        { "name": "DatabaseName", "type": "string" },
-        { "name": "CompatibilityLevel", "type": "int" },
-        { "name": "EnterpriseFeatures", "type": "string" },
-        { "name": "FeatureCount", "type": "int" },
-        { "name": "HasBlockingFeatures", "type": "boolean" },
-        { "name": "DowngradeEligibility", "type": "string" },
-        { "name": "ResourceGroup", "type": "string" },
-        { "name": "SubscriptionId", "type": "string" },
-        { "name": "Location", "type": "string" }
-      ]
-    }
-  }
-}
-```
-
-### Step 3: Create Data Collection Endpoint & Rule
-
-These resources depend on the workspace and custom table existing first:
-
-```bash
-# Create DCE
-az monitor data-collection endpoint create \
-  --name "dce-sqleditionopt" \
-  --resource-group rg-sqleditionopt \
-  --location uksouth \
-  --public-network-access "Enabled"
-
-# Create DCR (referencing the workspace and custom table)
-az monitor data-collection rule create \
-  --name "dcr-sqleditionopt" \
-  --resource-group rg-sqleditionopt \
-  --location uksouth \
-  --rule-file dcr-definition.json
-```
-
-Then update the Function App settings with the actual DCE/DCR values:
-
-```bash
-DCE_URI=$(az monitor data-collection endpoint show \
-  --name "dce-sqleditionopt" \
-  --resource-group rg-sqleditionopt \
-  --query logsIngestion.endpoint -o tsv)
-
-DCR_ID=$(az monitor data-collection rule show \
-  --name "dcr-sqleditionopt" \
-  --resource-group rg-sqleditionopt \
-  --query immutableId -o tsv)
-
-az functionapp config appsettings set \
-  --name func-sqleditionopt \
-  --resource-group rg-sqleditionopt \
-  --settings "DCE_ENDPOINT=$DCE_URI" "DCR_IMMUTABLE_ID=$DCR_ID"
-```
-
-### Step 4: Assign RBAC Roles
+### Step 2: Assign RBAC Roles
 
 | Role | Scope | Purpose |
 |------|-------|---------|
@@ -202,10 +138,10 @@ az role assignment create \
 az role assignment create \
   --assignee "$PRINCIPAL_ID" \
   --role "Monitoring Metrics Publisher" \
-  --scope "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Insights/dataCollectionRules/dcr-sqleditionopt"
+  --scope "$(az monitor data-collection rule show --name func-sqleditionopt-dcr --resource-group rg-sqleditionopt --query id -o tsv)"
 ```
 
-### Step 5: Deploy Function Code
+### Step 3: Deploy Function Code
 
 ```bash
 cd src
