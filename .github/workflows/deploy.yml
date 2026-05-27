@@ -1,0 +1,107 @@
+name: Deploy SQL Edition Optimisation
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'src/**'
+      - 'infrastructure/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+    inputs:
+      deploy_infrastructure:
+        description: 'Deploy infrastructure (Bicep)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AZURE_FUNCTIONAPP_NAME: 'func-sqleditionopt'
+  AZURE_RESOURCE_GROUP: 'rg-sqleditionopt'
+  AZURE_LOCATION: 'uksouth'
+  FUNCTION_APP_PATH: './src'
+
+jobs:
+  deploy-infrastructure:
+    name: Deploy Infrastructure
+    runs-on: ubuntu-latest
+    if: github.event.inputs.deploy_infrastructure == 'true' || contains(github.event.head_commit.modified, 'infrastructure/')
+    outputs:
+      functionAppName: ${{ steps.bicep.outputs.functionAppName }}
+      principalId: ${{ steps.bicep.outputs.functionAppPrincipalId }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Bicep
+        id: bicep
+        uses: azure/arm-deploy@v2
+        with:
+          resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
+          template: ./infrastructure/main.bicep
+          parameters: >
+            functionAppName=${{ env.AZURE_FUNCTIONAPP_NAME }}
+            logAnalyticsWorkspaceId=${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
+          failOnStdErr: false
+
+      - name: Assign RBAC - Reader
+        run: |
+          PRINCIPAL_ID="${{ steps.bicep.outputs.functionAppPrincipalId }}"
+          az role assignment create \
+            --assignee "$PRINCIPAL_ID" \
+            --role "Reader" \
+            --scope "/subscriptions/${{ secrets.TARGET_SUBSCRIPTION_ID }}" \
+            --condition-version 2.0 2>/dev/null || true
+
+      - name: Assign RBAC - Arc Run Command
+        run: |
+          PRINCIPAL_ID="${{ steps.bicep.outputs.functionAppPrincipalId }}"
+          az role assignment create \
+            --assignee "$PRINCIPAL_ID" \
+            --role "Azure Connected Machine Resource Administrator" \
+            --scope "/subscriptions/${{ secrets.TARGET_SUBSCRIPTION_ID }}" \
+            --condition-version 2.0 2>/dev/null || true
+
+      - name: Assign RBAC - Monitoring Metrics Publisher
+        run: |
+          PRINCIPAL_ID="${{ steps.bicep.outputs.functionAppPrincipalId }}"
+          DCR_ID="${{ steps.bicep.outputs.dcrResourceId }}"
+          az role assignment create \
+            --assignee "$PRINCIPAL_ID" \
+            --role "Monitoring Metrics Publisher" \
+            --scope "$DCR_ID" \
+            --condition-version 2.0 2>/dev/null || true
+
+  deploy-function:
+    name: Deploy Function Code
+    runs-on: ubuntu-latest
+    needs: [deploy-infrastructure]
+    if: always() && (needs.deploy-infrastructure.result == 'success' || needs.deploy-infrastructure.result == 'skipped')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Function App
+        uses: azure/functions-action@v2
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: ${{ env.FUNCTION_APP_PATH }}

@@ -143,6 +143,47 @@ az role assignment create \
 
 ### Step 3: Deploy Function Code
 
+**Option A: Automated via GitHub Actions (recommended)**
+
+Push to `master` and the workflow deploys automatically. First-time setup:
+
+1. Create a federated identity credential for GitHub Actions:
+
+```bash
+# Create an App Registration for GitHub Actions
+APP_ID=$(az ad app create --display-name "github-sqleditionopt-deploy" --query appId -o tsv)
+az ad sp create --id "$APP_ID"
+
+# Add federated credential for your repo
+az ad app federated-credential create --id "$APP_ID" --parameters '{
+  "name": "github-deploy",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "subject": "repo:chrisdoofer/SQL-Optimization:ref:refs/heads/master",
+  "audiences": ["api://AzureADTokenExchange"]
+}'
+
+# Grant Contributor on the resource group
+SP_ID=$(az ad sp show --id "$APP_ID" --query id -o tsv)
+az role assignment create --assignee "$SP_ID" --role "Contributor" --scope "/subscriptions/<sub>/resourceGroups/rg-sqleditionopt"
+
+# Grant User Access Administrator (for RBAC assignments)
+az role assignment create --assignee "$SP_ID" --role "User Access Administrator" --scope "/subscriptions/<target-subscription-id>"
+```
+
+2. Add repository secrets (`Settings → Secrets and variables → Actions`):
+
+| Secret | Value |
+|--------|-------|
+| `AZURE_CLIENT_ID` | App Registration Application (client) ID |
+| `AZURE_TENANT_ID` | Your Entra tenant ID |
+| `AZURE_SUBSCRIPTION_ID` | Subscription hosting the Function App |
+| `LOG_ANALYTICS_WORKSPACE_ID` | Full resource ID of your workspace |
+| `TARGET_SUBSCRIPTION_ID` | Subscription(s) containing Arc machines |
+
+3. Push any change to `src/` or `infrastructure/` — deployment runs automatically.
+
+**Option B: Manual CLI deployment**
+
 ```bash
 cd src
 func azure functionapp publish func-sqleditionopt
