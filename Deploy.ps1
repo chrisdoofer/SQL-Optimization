@@ -5,10 +5,15 @@
 
 .DESCRIPTION
     This script deploys the entire solution end-to-end:
-    1. Creates or validates the resource group
+    1. Creates or validates the resource group (in the dedicated deployment subscription)
     2. Deploys all infrastructure via Bicep (Function App, custom table, DCE, DCR)
-    3. Assigns RBAC roles to the Function App's Managed Identity
+    3. Assigns RBAC roles at Management Group scope (covers all child subscriptions)
     4. Deploys the Function App code
+
+    RBAC at Management Group level means:
+    - No need to list individual subscriptions
+    - Automatically covers future subscriptions added to the management group
+    - The Function App discovers Arc machines across ALL child subscriptions via Resource Graph
 
     No CI/CD platform required. Works from any machine with Azure CLI and
     Azure Functions Core Tools installed.
@@ -22,29 +27,49 @@
 .PARAMETER FunctionAppName
     Globally unique name for the Function App.
 
+.PARAMETER DeploymentSubscriptionId
+    Subscription ID where the Function App infrastructure is deployed.
+    This should be a dedicated subscription for the tooling.
+
 .PARAMETER LogAnalyticsWorkspaceId
     Full resource ID of an existing Log Analytics Workspace.
 
-.PARAMETER TargetSubscriptionIds
-    One or more subscription IDs containing the Arc-enabled machines to scan.
+.PARAMETER ManagementGroupId
+    Management Group ID to assign RBAC roles on. The Function App's Managed Identity
+    will receive Reader and Arc Run Command roles at this scope, giving it access to
+    all Arc-enabled servers in any child subscription.
+    If not specified, defaults to the Tenant Root Management Group.
 
 .EXAMPLE
+    # Deploy with RBAC at a specific management group
     .\Deploy.ps1 `
+        -DeploymentSubscriptionId "xxxx-xxxx-xxxx" `
         -ResourceGroupName "rg-sqleditionopt" `
         -FunctionAppName "func-sqleditionopt-contoso" `
         -LogAnalyticsWorkspaceId "/subscriptions/xxxx/resourceGroups/rg-monitoring/providers/Microsoft.OperationalInsights/workspaces/law-contoso" `
-        -TargetSubscriptionIds @("subscription-id-1", "subscription-id-2")
+        -ManagementGroupId "mg-production"
+
+.EXAMPLE
+    # Deploy with RBAC at Tenant Root (scans entire tenant)
+    .\Deploy.ps1 `
+        -DeploymentSubscriptionId "xxxx-xxxx-xxxx" `
+        -ResourceGroupName "rg-sqleditionopt" `
+        -FunctionAppName "func-sqleditionopt-contoso" `
+        -LogAnalyticsWorkspaceId "/subscriptions/xxxx/resourceGroups/rg-monitoring/providers/Microsoft.OperationalInsights/workspaces/law-contoso"
 
 .NOTES
     Prerequisites:
     - Azure CLI (az) v2.50+ installed and logged in
     - Azure Functions Core Tools (func) v4.x installed
-    - Contributor role on the target resource group
-    - User Access Administrator (or Owner) on target subscriptions for RBAC
+    - Contributor on the deployment subscription/resource group
+    - User Access Administrator (or Owner) at the Management Group scope for RBAC
 #>
 
 [CmdletBinding()]
 param(
+    [Parameter(Mandatory)]
+    [string]$DeploymentSubscriptionId,
+
     [Parameter(Mandatory)]
     [string]$ResourceGroupName,
 
@@ -57,8 +82,8 @@ param(
     [Parameter(Mandatory)]
     [string]$LogAnalyticsWorkspaceId,
 
-    [Parameter(Mandatory)]
-    [string[]]$TargetSubscriptionIds
+    [Parameter()]
+    [string]$ManagementGroupId
 )
 
 $ErrorActionPreference = 'Stop'
@@ -109,6 +134,23 @@ Test-FuncCoreToolsInstalled
 Write-Success "Azure Functions Core Tools found"
 
 Test-AzLoggedIn
+
+# Set the deployment subscription context
+Write-Info "Setting subscription context to: $DeploymentSubscriptionId"
+az account set --subscription $DeploymentSubscriptionId --output none
+if ($LASTEXITCODE -ne 0) { throw "Failed to set subscription context. Check the DeploymentSubscriptionId." }
+Write-Success "Subscription context set"
+
+# Resolve Management Group
+if (-not $ManagementGroupId) {
+    Write-Info "No ManagementGroupId specified — resolving Tenant Root Management Group..."
+    $tenantId = (az account show --query tenantId -o tsv)
+    $ManagementGroupId = $tenantId
+    Write-Info "Using Tenant Root Management Group: $ManagementGroupId"
+}
+
+$mgScope = "/providers/Microsoft.Management/managementGroups/$ManagementGroupId"
+Write-Success "RBAC scope: $mgScope"
 
 # Validate workspace exists
 Write-Info "Validating Log Analytics Workspace..."
@@ -166,31 +208,33 @@ Write-Success "DCR: $dcrResourceId"
 #endregion
 
 #region Step 3: RBAC Assignments
-Write-Step "Step 3/4: RBAC Role Assignments"
+Write-Step "Step 3/4: RBAC Role Assignments (Management Group scope)"
 
-foreach ($subId in $TargetSubscriptionIds) {
-    Write-Info "Assigning roles on subscription: $subId"
+Write-Info "Assigning roles at: $mgScope"
+Write-Info "This gives the Function App access to ALL Arc machines in child subscriptions"
 
-    # Reader (for Resource Graph)
-    az role assignment create `
-        --assignee-object-id $principalId `
-        --assignee-principal-type ServicePrincipal `
-        --role "Reader" `
-        --scope "/subscriptions/$subId" `
-        --output none 2>$null
-    Write-Success "  Reader assigned"
+# Reader (for Resource Graph across all child subscriptions)
+Write-Info "Assigning Reader..."
+az role assignment create `
+    --assignee-object-id $principalId `
+    --assignee-principal-type ServicePrincipal `
+    --role "Reader" `
+    --scope $mgScope `
+    --output none 2>$null
+Write-Success "Reader assigned at Management Group scope"
 
-    # Arc Run Command
-    az role assignment create `
-        --assignee-object-id $principalId `
-        --assignee-principal-type ServicePrincipal `
-        --role "Azure Connected Machine Resource Administrator" `
-        --scope "/subscriptions/$subId" `
-        --output none 2>$null
-    Write-Success "  Connected Machine Resource Administrator assigned"
-}
+# Arc Run Command (execute commands on any Arc machine in scope)
+Write-Info "Assigning Azure Connected Machine Resource Administrator..."
+az role assignment create `
+    --assignee-object-id $principalId `
+    --assignee-principal-type ServicePrincipal `
+    --role "Azure Connected Machine Resource Administrator" `
+    --scope $mgScope `
+    --output none 2>$null
+Write-Success "Connected Machine Resource Administrator assigned at Management Group scope"
 
-# Monitoring Metrics Publisher on DCR
+# Monitoring Metrics Publisher on DCR (scoped to DCR only — least privilege)
+Write-Info "Assigning Monitoring Metrics Publisher on DCR..."
 az role assignment create `
     --assignee-object-id $principalId `
     --assignee-principal-type ServicePrincipal `
@@ -227,10 +271,15 @@ try {
 Write-Step "Deployment Complete!"
 
 Write-Host ""
-Write-Host "  Resource Group:    $ResourceGroupName" -ForegroundColor White
-Write-Host "  Function App:      $FunctionAppName" -ForegroundColor White
-Write-Host "  Location:          $Location" -ForegroundColor White
-Write-Host "  Target Subs:       $($TargetSubscriptionIds -join ', ')" -ForegroundColor White
+Write-Host "  Resource Group:      $ResourceGroupName" -ForegroundColor White
+Write-Host "  Function App:        $FunctionAppName" -ForegroundColor White
+Write-Host "  Location:            $Location" -ForegroundColor White
+Write-Host "  Deployment Sub:      $DeploymentSubscriptionId" -ForegroundColor White
+Write-Host "  Management Group:    $ManagementGroupId" -ForegroundColor White
+Write-Host "  RBAC Scope:          $mgScope" -ForegroundColor White
+Write-Host ""
+Write-Host "  The Function App can now discover and scan Arc-enabled SQL Servers" -ForegroundColor Green
+Write-Host "  across ALL subscriptions under: $ManagementGroupId" -ForegroundColor Green
 Write-Host ""
 Write-Host "  Next steps:" -ForegroundColor Yellow
 Write-Host "    1. Ensure 'SqlServer' module is installed on target machines" -ForegroundColor Yellow

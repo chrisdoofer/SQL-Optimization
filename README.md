@@ -99,21 +99,28 @@ git clone https://github.com/chrisdoofer/SQL-Optimization.git
 cd SQL-Optimization
 
 .\Deploy.ps1 `
+    -DeploymentSubscriptionId "<dedicated-tooling-subscription-id>" `
     -ResourceGroupName "rg-sqleditionopt" `
     -Location "uksouth" `
     -FunctionAppName "func-sqleditionopt-<yourorg>" `
     -LogAnalyticsWorkspaceId "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.OperationalInsights/workspaces/<workspace>" `
-    -TargetSubscriptionIds @("<subscription-id-1>", "<subscription-id-2>")
+    -ManagementGroupId "mg-production"
 ```
 
 **That's it.** The script:
 1. ✅ Validates prerequisites (Azure CLI, func tools, login state, workspace)
-2. ✅ Creates the resource group (if needed)
+2. ✅ Creates the resource group in the dedicated deployment subscription
 3. ✅ Deploys all infrastructure via Bicep (Function App, custom table, DCE, DCR)
-4. ✅ Assigns all RBAC roles to the Managed Identity
+4. ✅ Assigns RBAC at **Management Group** level (one assignment covers all child subscriptions)
 5. ✅ Deploys the function code
 
-No CI/CD platform, no secrets to configure, no runners to provision.
+**Why Management Group scope?**
+- No need to list individual subscriptions — one RBAC assignment covers the entire hierarchy
+- Automatically includes future subscriptions added under the management group
+- Resource Graph queries all accessible subscriptions by default (no subscription list in code)
+- The Function App deploys into its own dedicated subscription, isolated from workloads
+
+> **Tip:** Omit `-ManagementGroupId` to default to the **Tenant Root Management Group** (scans entire tenant).
 
 ### Manual Step-by-Step (Alternative)
 
@@ -134,13 +141,13 @@ az deployment group create \
     logAnalyticsWorkspaceId="/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.OperationalInsights/workspaces/<workspace>"
 ```
 
-#### Step 2: Assign RBAC Roles
+#### Step 2: Assign RBAC Roles (Management Group scope)
 
 | Role | Scope | Purpose |
 |------|-------|---------|
-| **Reader** | Target subscription(s) | Resource Graph queries |
-| **Azure Connected Machine Resource Administrator** | Target subscription(s) | Execute Run Commands |
-| **Monitoring Metrics Publisher** | Data Collection Rule | Logs Ingestion API |
+| **Reader** | Management Group | Resource Graph queries across all child subscriptions |
+| **Azure Connected Machine Resource Administrator** | Management Group | Execute Run Commands on any Arc machine |
+| **Monitoring Metrics Publisher** | Data Collection Rule | Logs Ingestion API (least privilege) |
 
 ```bash
 PRINCIPAL_ID=$(az functionapp identity show \
@@ -148,15 +155,16 @@ PRINCIPAL_ID=$(az functionapp identity show \
   --resource-group rg-sqleditionopt \
   --query principalId -o tsv)
 
+# Single assignment covers ALL child subscriptions
 az role assignment create \
   --assignee "$PRINCIPAL_ID" \
   --role "Reader" \
-  --scope "/subscriptions/<target-subscription-id>"
+  --scope "/providers/Microsoft.Management/managementGroups/<mg-id>"
 
 az role assignment create \
   --assignee "$PRINCIPAL_ID" \
   --role "Azure Connected Machine Resource Administrator" \
-  --scope "/subscriptions/<target-subscription-id>"
+  --scope "/providers/Microsoft.Management/managementGroups/<mg-id>"
 
 az role assignment create \
   --assignee "$PRINCIPAL_ID" \
