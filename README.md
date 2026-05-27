@@ -83,15 +83,47 @@ A scalable Azure Functions (PowerShell) solution that identifies SQL Server Ente
 
 ## Deployment
 
-### Step 1: Deploy Infrastructure (Bicep)
+### Prerequisites
 
-A single deployment creates everything: Function App, custom Log Analytics table, Data Collection Endpoint, Data Collection Rule, and wires them together automatically.
+- [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) v2.50+ (`az login` completed)
+- [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) v4.x
+- An existing **Log Analytics Workspace** (any region)
+- **Contributor** on the resource group + **User Access Administrator** on target subscriptions
 
-**Only prerequisite:** an existing Log Analytics Workspace.
+### One-Command Deployment (Recommended)
+
+Clone the repo and run the deployment script — it handles everything:
+
+```powershell
+git clone https://github.com/chrisdoofer/SQL-Optimization.git
+cd SQL-Optimization
+
+.\Deploy.ps1 `
+    -ResourceGroupName "rg-sqleditionopt" `
+    -Location "uksouth" `
+    -FunctionAppName "func-sqleditionopt-<yourorg>" `
+    -LogAnalyticsWorkspaceId "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.OperationalInsights/workspaces/<workspace>" `
+    -TargetSubscriptionIds @("<subscription-id-1>", "<subscription-id-2>")
+```
+
+**That's it.** The script:
+1. ✅ Validates prerequisites (Azure CLI, func tools, login state, workspace)
+2. ✅ Creates the resource group (if needed)
+3. ✅ Deploys all infrastructure via Bicep (Function App, custom table, DCE, DCR)
+4. ✅ Assigns all RBAC roles to the Managed Identity
+5. ✅ Deploys the function code
+
+No CI/CD platform, no secrets to configure, no runners to provision.
+
+### Manual Step-by-Step (Alternative)
+
+<details>
+<summary>Click to expand manual deployment steps</summary>
+
+#### Step 1: Deploy Infrastructure (Bicep)
 
 ```bash
 az login
-
 az group create --name rg-sqleditionopt --location uksouth
 
 az deployment group create \
@@ -102,16 +134,7 @@ az deployment group create \
     logAnalyticsWorkspaceId="/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.OperationalInsights/workspaces/<workspace>"
 ```
 
-This creates:
-- Storage Account
-- Elastic Premium App Service Plan (EP1)
-- Application Insights
-- Custom table `SQLEditionOptimisation_CL` in your workspace
-- Data Collection Endpoint (DCE)
-- Data Collection Rule (DCR) linked to the table
-- Function App with all settings pre-configured (DCE/DCR values wired automatically)
-
-### Step 2: Assign RBAC Roles
+#### Step 2: Assign RBAC Roles
 
 | Role | Scope | Purpose |
 |------|-------|---------|
@@ -141,53 +164,18 @@ az role assignment create \
   --scope "$(az monitor data-collection rule show --name func-sqleditionopt-dcr --resource-group rg-sqleditionopt --query id -o tsv)"
 ```
 
-### Step 3: Deploy Function Code
-
-**Option A: Automated via GitHub Actions (recommended)**
-
-Push to `master` and the workflow deploys automatically. First-time setup:
-
-1. Create a federated identity credential for GitHub Actions:
-
-```bash
-# Create an App Registration for GitHub Actions
-APP_ID=$(az ad app create --display-name "github-sqleditionopt-deploy" --query appId -o tsv)
-az ad sp create --id "$APP_ID"
-
-# Add federated credential for your repo
-az ad app federated-credential create --id "$APP_ID" --parameters '{
-  "name": "github-deploy",
-  "issuer": "https://token.actions.githubusercontent.com",
-  "subject": "repo:chrisdoofer/SQL-Optimization:ref:refs/heads/master",
-  "audiences": ["api://AzureADTokenExchange"]
-}'
-
-# Grant Contributor on the resource group
-SP_ID=$(az ad sp show --id "$APP_ID" --query id -o tsv)
-az role assignment create --assignee "$SP_ID" --role "Contributor" --scope "/subscriptions/<sub>/resourceGroups/rg-sqleditionopt"
-
-# Grant User Access Administrator (for RBAC assignments)
-az role assignment create --assignee "$SP_ID" --role "User Access Administrator" --scope "/subscriptions/<target-subscription-id>"
-```
-
-2. Add repository secrets (`Settings → Secrets and variables → Actions`):
-
-| Secret | Value |
-|--------|-------|
-| `AZURE_CLIENT_ID` | App Registration Application (client) ID |
-| `AZURE_TENANT_ID` | Your Entra tenant ID |
-| `AZURE_SUBSCRIPTION_ID` | Subscription hosting the Function App |
-| `LOG_ANALYTICS_WORKSPACE_ID` | Full resource ID of your workspace |
-| `TARGET_SUBSCRIPTION_ID` | Subscription(s) containing Arc machines |
-
-3. Push any change to `src/` or `infrastructure/` — deployment runs automatically.
-
-**Option B: Manual CLI deployment**
+#### Step 3: Deploy Function Code
 
 ```bash
 cd src
 func azure functionapp publish func-sqleditionopt
 ```
+
+</details>
+
+### CI/CD (Optional)
+
+A GitHub Actions workflow is included at `.github/workflows/deploy.yml` for teams that want push-to-deploy automation. This is **optional** — the solution works without it. See the workflow file for required secrets and OIDC setup.
 
 ---
 
@@ -296,9 +284,10 @@ Source: [Microsoft SQL Server 2022 Pricing](https://www.microsoft.com/en-us/sql-
 
 ```
 SQL-Optimization/
++-- Deploy.ps1                         # ONE-COMMAND DEPLOYMENT (clone, run, done)
 +-- infrastructure/
-|   +-- main.bicep                    # Function App (Elastic Premium), Storage, App Insights
-|   +-- role-assignments.bicep        # RBAC for Managed Identity
+|   +-- main.bicep                    # All infra: Function App, table, DCE, DCR
+|   +-- role-assignments.bicep        # RBAC reference (used by Deploy.ps1)
 +-- src/
 |   +-- host.json                     # Durable Functions config (concurrency settings)
 |   +-- local.settings.json           # Local dev settings
@@ -317,6 +306,7 @@ SQL-Optimization/
 |   +-- KQL-Queries.kql              # Ready-to-use KQL for Power BI connector
 |   +-- DAX-Measures.dax             # DAX measures (cost model, eligibility)
 |   +-- Generate-PowerBITemplate.ps1  # Helper to generate template definition
++-- .github/workflows/deploy.yml      # Optional: CI/CD for GitHub Actions users
 +-- README.md
 ```
 
