@@ -83,9 +83,30 @@ A scalable Azure Functions (PowerShell) solution that identifies SQL Server Ente
 
 ## Deployment
 
-### Step 1: Create the Log Analytics Custom Table
+### Step 1: Deploy Infrastructure (Bicep)
 
-Create a custom table (`SQLEditionOptimisation_CL`) with this schema:
+This creates the Function App, Storage Account, and Application Insights. It requires an existing Log Analytics Workspace (the workspace receives the optimisation data and backs App Insights).
+
+```bash
+az login
+
+az group create --name rg-sqleditionopt --location uksouth
+
+az deployment group create \
+  --resource-group rg-sqleditionopt \
+  --template-file infrastructure/main.bicep \
+  --parameters \
+    functionAppName="func-sqleditionopt" \
+    logAnalyticsWorkspaceId="/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.OperationalInsights/workspaces/<workspace>" \
+    dceEndpoint="https://<your-dce>.uksouth-1.ingest.monitor.azure.com" \
+    dcrImmutableId="dcr-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+> **Note:** You'll update `dceEndpoint` and `dcrImmutableId` after Step 3. Deploy initially with placeholder values, then update the Function App settings after creating the DCE/DCR.
+
+### Step 2: Create the Log Analytics Custom Table
+
+In your existing Log Analytics workspace, create the custom table (`SQLEditionOptimisation_CL`):
 
 ```json
 {
@@ -115,37 +136,43 @@ Create a custom table (`SQLEditionOptimisation_CL`) with this schema:
 }
 ```
 
-### Step 2: Create Data Collection Endpoint & Rule
+### Step 3: Create Data Collection Endpoint & Rule
+
+These resources depend on the workspace and custom table existing first:
 
 ```bash
+# Create DCE
 az monitor data-collection endpoint create \
   --name "dce-sqleditionopt" \
-  --resource-group "<your-rg>" \
-  --location "<region>" \
+  --resource-group rg-sqleditionopt \
+  --location uksouth \
   --public-network-access "Enabled"
 
+# Create DCR (referencing the workspace and custom table)
 az monitor data-collection rule create \
   --name "dcr-sqleditionopt" \
-  --resource-group "<your-rg>" \
-  --location "<region>" \
+  --resource-group rg-sqleditionopt \
+  --location uksouth \
   --rule-file dcr-definition.json
 ```
 
-### Step 3: Deploy Infrastructure (Bicep)
+Then update the Function App settings with the actual DCE/DCR values:
 
 ```bash
-az login
-
-az group create --name rg-sqleditionopt --location uksouth
-
-az deployment group create \
+DCE_URI=$(az monitor data-collection endpoint show \
+  --name "dce-sqleditionopt" \
   --resource-group rg-sqleditionopt \
-  --template-file infrastructure/main.bicep \
-  --parameters \
-    functionAppName="func-sqleditionopt" \
-    logAnalyticsWorkspaceId="/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.OperationalInsights/workspaces/<workspace>" \
-    dceEndpoint="https://<your-dce>.uksouth-1.ingest.monitor.azure.com" \
-    dcrImmutableId="dcr-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  --query logsIngestion.endpoint -o tsv)
+
+DCR_ID=$(az monitor data-collection rule show \
+  --name "dcr-sqleditionopt" \
+  --resource-group rg-sqleditionopt \
+  --query immutableId -o tsv)
+
+az functionapp config appsettings set \
+  --name func-sqleditionopt \
+  --resource-group rg-sqleditionopt \
+  --settings "DCE_ENDPOINT=$DCE_URI" "DCR_IMMUTABLE_ID=$DCR_ID"
 ```
 
 ### Step 4: Assign RBAC Roles
