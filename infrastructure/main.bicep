@@ -140,7 +140,7 @@ resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2022-06-01' 
           { name: 'CompatibilityLevel', type: 'int' }
           { name: 'EnterpriseFeatures', type: 'string' }
           { name: 'FeatureCount', type: 'int' }
-          { name: 'HasBlockingFeatures', type: 'string' }
+          { name: 'HasBlockingFeatures', type: 'boolean' }
           { name: 'DowngradeEligibility', type: 'string' }
           { name: 'ResourceGroup', type: 'string' }
           { name: 'SubscriptionId', type: 'string' }
