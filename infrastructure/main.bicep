@@ -185,18 +185,18 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
     siteConfig: {
       powerShellVersion: '7.4'
       appSettings: [
-        { name: 'AzureWebJobsStorage'; value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}' }
-        { name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING'; value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}' }
-        { name: 'WEBSITE_CONTENTSHARE'; value: toLower(functionAppName) }
-        { name: 'FUNCTIONS_EXTENSION_VERSION'; value: '~4' }
-        { name: 'FUNCTIONS_WORKER_RUNTIME'; value: 'powershell' }
-        { name: 'FUNCTIONS_WORKER_RUNTIME_VERSION'; value: '7.4' }
-        { name: 'APPINSIGHTS_INSTRUMENTATIONKEY'; value: appInsights.properties.InstrumentationKey }
-        { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'; value: appInsights.properties.ConnectionString }
-        { name: 'DCE_ENDPOINT'; value: dataCollectionEndpoint.properties.logsIngestion.endpoint }
-        { name: 'DCR_IMMUTABLE_ID'; value: dataCollectionRule.properties.immutableId }
-        { name: 'LOG_STREAM_NAME'; value: logStreamName }
-        { name: 'RESOURCE_GRAPH_QUERY'; value: resourceGraphQuery }
+        { name: 'AzureWebJobsStorage', value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}' }
+        { name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING', value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}' }
+        { name: 'WEBSITE_CONTENTSHARE', value: toLower(functionAppName) }
+        { name: 'FUNCTIONS_EXTENSION_VERSION', value: '~4' }
+        { name: 'FUNCTIONS_WORKER_RUNTIME', value: 'powershell' }
+        { name: 'FUNCTIONS_WORKER_RUNTIME_VERSION', value: '7.4' }
+        { name: 'APPINSIGHTS_INSTRUMENTATIONKEY', value: appInsights.properties.InstrumentationKey }
+        { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsights.properties.ConnectionString }
+        { name: 'DCE_ENDPOINT', value: dataCollectionEndpoint.properties.logsIngestion.endpoint }
+        { name: 'DCR_IMMUTABLE_ID', value: dataCollectionRule.properties.immutableId }
+        { name: 'LOG_STREAM_NAME', value: logStreamName }
+        { name: 'RESOURCE_GRAPH_QUERY', value: resourceGraphQuery }
       ]
     }
   }
