@@ -1,6 +1,6 @@
 // Bicep template for deploying the SQL Edition Optimisation solution
-// Single deployment creates: Function App, custom table, DCE, DCR, and all dependencies
-// Deploy with: az deployment group create -g <rg-name> -f main.bicep -p functionAppName=<name> logAnalyticsWorkspaceId=<id>
+// Single deployment creates EVERYTHING: workspace, Function App, custom table, DCE, DCR
+// Deploy with: az deployment group create -g <rg-name> -f main.bicep -p functionAppName=<name>
 
 @description('Name of the Function App')
 param functionAppName string
@@ -8,8 +8,11 @@ param functionAppName string
 @description('Azure region for all resources')
 param location string = resourceGroup().location
 
-@description('Full resource ID of the existing Log Analytics Workspace')
-param logAnalyticsWorkspaceId string
+@description('Name for the Log Analytics Workspace (created by this template)')
+param logAnalyticsWorkspaceName string = '${functionAppName}-law'
+
+@description('Log Analytics data retention in days')
+param retentionInDays int = 90
 
 @description('Custom log stream name')
 param logStreamName string = 'Custom-SQLEditionOptimisation_CL'
@@ -50,20 +53,27 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   }
 }
 
-// Application Insights
+// Log Analytics Workspace (created by this template)
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
+  name: logAnalyticsWorkspaceName
+  location: location
+  properties: {
+    sku: {
+      name: 'PerGB2018'
+    }
+    retentionInDays: retentionInDays
+  }
+}
+
+// Application Insights (backed by the workspace)
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: appInsightsName
   location: location
   kind: 'web'
   properties: {
     Application_Type: 'web'
-    WorkspaceResourceId: logAnalyticsWorkspaceId
+    WorkspaceResourceId: logAnalyticsWorkspace.id
   }
-}
-
-// Reference the existing Log Analytics Workspace
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' existing = {
-  name: last(split(logAnalyticsWorkspaceId, '/'))
 }
 
 // Custom Table in Log Analytics
@@ -141,7 +151,7 @@ resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2022-06-01' 
     destinations: {
       logAnalytics: [
         {
-          workspaceResourceId: logAnalyticsWorkspaceId
+          workspaceResourceId: logAnalyticsWorkspace.id
           name: 'logAnalyticsDestination'
         }
       ]
@@ -200,3 +210,5 @@ output dceEndpoint string = dataCollectionEndpoint.properties.logsIngestion.endp
 output dcrImmutableId string = dataCollectionRule.properties.immutableId
 output dcrResourceId string = dataCollectionRule.id
 output customTableName string = customTable.name
+output logAnalyticsWorkspaceId string = logAnalyticsWorkspace.id
+output logAnalyticsWorkspaceName string = logAnalyticsWorkspace.name

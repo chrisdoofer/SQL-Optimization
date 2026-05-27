@@ -31,8 +31,9 @@
     Subscription ID where the Function App infrastructure is deployed.
     This should be a dedicated subscription for the tooling.
 
-.PARAMETER LogAnalyticsWorkspaceId
-    Full resource ID of an existing Log Analytics Workspace.
+.PARAMETER LogAnalyticsWorkspaceName
+    Name for the Log Analytics Workspace. Created by the deployment if it doesn't exist.
+    Defaults to '<FunctionAppName>-law'.
 
 .PARAMETER ManagementGroupId
     Management Group ID to assign RBAC roles on. The Function App's Managed Identity
@@ -46,7 +47,6 @@
         -DeploymentSubscriptionId "xxxx-xxxx-xxxx" `
         -ResourceGroupName "rg-sqleditionopt" `
         -FunctionAppName "func-sqleditionopt-contoso" `
-        -LogAnalyticsWorkspaceId "/subscriptions/xxxx/resourceGroups/rg-monitoring/providers/Microsoft.OperationalInsights/workspaces/law-contoso" `
         -ManagementGroupId "mg-production"
 
 .EXAMPLE
@@ -54,8 +54,7 @@
     .\Deploy.ps1 `
         -DeploymentSubscriptionId "xxxx-xxxx-xxxx" `
         -ResourceGroupName "rg-sqleditionopt" `
-        -FunctionAppName "func-sqleditionopt-contoso" `
-        -LogAnalyticsWorkspaceId "/subscriptions/xxxx/resourceGroups/rg-monitoring/providers/Microsoft.OperationalInsights/workspaces/law-contoso"
+        -FunctionAppName "func-sqleditionopt-contoso"
 
 .NOTES
     Prerequisites:
@@ -79,8 +78,8 @@ param(
     [Parameter(Mandatory)]
     [string]$FunctionAppName,
 
-    [Parameter(Mandatory)]
-    [string]$LogAnalyticsWorkspaceId,
+    [Parameter()]
+    [string]$LogAnalyticsWorkspaceName,
 
     [Parameter()]
     [string]$ManagementGroupId
@@ -151,12 +150,6 @@ if (-not $ManagementGroupId) {
 
 $mgScope = "/providers/Microsoft.Management/managementGroups/$ManagementGroupId"
 Write-Success "RBAC scope: $mgScope"
-
-# Validate workspace exists
-Write-Info "Validating Log Analytics Workspace..."
-$wsCheck = az resource show --ids $LogAnalyticsWorkspaceId 2>$null
-if (-not $wsCheck) { throw "Log Analytics Workspace not found: $LogAnalyticsWorkspaceId" }
-Write-Success "Workspace validated"
 #endregion
 
 #region Step 1: Resource Group
@@ -184,11 +177,15 @@ if (-not (Test-Path $bicepPath)) {
 
 Write-Info "Deploying Bicep template (this may take 2-3 minutes)..."
 
+$bicepParams = "functionAppName=$FunctionAppName"
+if ($LogAnalyticsWorkspaceName) {
+    $bicepParams += " logAnalyticsWorkspaceName=$LogAnalyticsWorkspaceName"
+}
+
 $deployOutput = az deployment group create `
     --resource-group $ResourceGroupName `
     --template-file $bicepPath `
-    --parameters functionAppName=$FunctionAppName `
-    --parameters logAnalyticsWorkspaceId=$LogAnalyticsWorkspaceId `
+    --parameters $bicepParams `
     --query "properties.outputs" `
     --output json 2>&1
 
@@ -275,6 +272,7 @@ Write-Host "  Resource Group:      $ResourceGroupName" -ForegroundColor White
 Write-Host "  Function App:        $FunctionAppName" -ForegroundColor White
 Write-Host "  Location:            $Location" -ForegroundColor White
 Write-Host "  Deployment Sub:      $DeploymentSubscriptionId" -ForegroundColor White
+Write-Host "  Log Analytics:       $($outputs.logAnalyticsWorkspaceName.value)" -ForegroundColor White
 Write-Host "  Management Group:    $ManagementGroupId" -ForegroundColor White
 Write-Host "  RBAC Scope:          $mgScope" -ForegroundColor White
 Write-Host ""

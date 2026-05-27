@@ -87,8 +87,9 @@ A scalable Azure Functions (PowerShell) solution that identifies SQL Server Ente
 
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) v2.50+ (`az login` completed)
 - [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) v4.x
-- An existing **Log Analytics Workspace** (any region)
-- **Contributor** on the resource group + **User Access Administrator** on target subscriptions
+- **Contributor** on the deployment subscription + **User Access Administrator** at the Management Group scope
+
+> **No existing Log Analytics Workspace required** — the deployment creates everything from scratch.
 
 ### One-Command Deployment (Recommended)
 
@@ -103,7 +104,6 @@ cd SQL-Optimization
     -ResourceGroupName "rg-sqleditionopt" `
     -Location "uksouth" `
     -FunctionAppName "func-sqleditionopt-<yourorg>" `
-    -LogAnalyticsWorkspaceId "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.OperationalInsights/workspaces/<workspace>" `
     -ManagementGroupId "mg-production"
 ```
 
