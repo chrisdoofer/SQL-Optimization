@@ -32,6 +32,9 @@ let InstanceCosts = DatabaseDetail
 DatabaseDetail
 | extend Cores = toint(VisibleCPUs)
 | join kind=leftouter (InstanceCosts) on MachineName, InstanceName
+| order by MachineName asc, InstanceName asc, DatabaseName asc
+| serialize
+| extend IsFirstRow = iif(prev(MachineName) != MachineName or prev(InstanceName) != InstanceName or isnull(prev(MachineName)), true, false)
 | project
     TimeGenerated,
     MachineName,
@@ -39,17 +42,17 @@ DatabaseDetail
     Edition,
     ProductVersion,
     ProductLevel,
-    VisibleCPUs = Cores,
-    LicensedCores,
+    VisibleCPUs = iif(IsFirstRow, Cores, int(null)),
+    LicensedCores = iif(IsFirstRow, LicensedCores, int(null)),
     DatabaseName,
     CompatibilityLevel = toint(CompatibilityLevel),
     EnterpriseFeatures,
     FeatureCount = toint(FeatureCount),
     HasBlockingFeatures = iff(tobool(HasBlockingFeatures), 'Yes', 'No'),
     DowngradeEligibility,
-    CurrentCostPerYear,
-    ProjectedCostPerYear,
-    PotentialSavingPerYear,
+    CurrentCostPerYear = iif(IsFirstRow, CurrentCostPerYear, real(null)),
+    ProjectedCostPerYear = iif(IsFirstRow, ProjectedCostPerYear, real(null)),
+    PotentialSavingPerYear = iif(IsFirstRow, PotentialSavingPerYear, real(null)),
     ResourceGroup,
     SubscriptionId,
     Location
