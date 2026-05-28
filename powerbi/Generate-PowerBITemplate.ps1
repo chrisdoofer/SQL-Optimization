@@ -34,6 +34,19 @@ param(
     [string]$WorkspaceName
 )
 
+# Retrieve the Workspace ID (GUID) — required as the Database parameter
+Write-Host "Retrieving Workspace ID..." -ForegroundColor Gray
+$workspaceId = az monitor log-analytics workspace show `
+    --resource-group $ResourceGroupName `
+    --workspace-name $WorkspaceName `
+    --subscription $SubscriptionId `
+    --query "customerId" -o tsv
+
+if (-not $workspaceId) {
+    Write-Warning "Could not retrieve Workspace ID automatically. Find it in Azure Portal → Log Analytics → Properties → Workspace ID"
+    $workspaceId = "<WORKSPACE-ID-GUID>"
+}
+
 $clusterUrl = "https://ade.loganalytics.io/subscriptions/$SubscriptionId/resourcegroups/$ResourceGroupName/providers/microsoft.operationalinsights/workspaces/$WorkspaceName"
 
 Write-Host ""
@@ -43,7 +56,8 @@ Write-Host "================================================================" -F
 Write-Host ""
 Write-Host "Connector: Azure Data Explorer (Kusto)" -ForegroundColor Yellow
 Write-Host "Cluster:   $clusterUrl" -ForegroundColor White
-Write-Host "Database:  $WorkspaceName" -ForegroundColor White
+Write-Host "Database:  $workspaceId" -ForegroundColor White
+Write-Host "           (This is the Workspace ID GUID, NOT the workspace name)" -ForegroundColor DarkGray
 Write-Host ""
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host " QUERY 1: SQLEditionData (Main Data)" -ForegroundColor Cyan
@@ -122,7 +136,7 @@ Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
 
 Connector: Azure Data Explorer (Kusto)
 Cluster URL: $clusterUrl
-Database: $WorkspaceName
+Database: $workspaceId  (Workspace ID GUID — find in Azure Portal → Log Analytics → Properties)
 Authentication: Entra ID (Azure AD)
 
 KQL Query (main data):

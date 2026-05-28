@@ -8,11 +8,11 @@
 2. Click **Get Data** → **Azure** → **Azure Data Explorer (Kusto)**
 3. In the connection dialog, enter:
    - **Cluster**: `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
-   - **Database**: `<workspace-name>` (same as the last segment of the cluster URL)
+   - **Database**: `<workspace-id>` — this is the **Workspace ID (GUID)**, NOT the workspace name
    
-   > **Tip:** Run `powerbi\Generate-PowerBITemplate.ps1` to get your exact cluster URL and queries pre-formatted.
+   > **⚠️ Important:** The Database field requires the Log Analytics **Workspace ID** (a GUID like `a1b2c3d4-e5f6-7890-abcd-ef1234567890`), not the workspace resource name. Find it in: **Azure Portal → Log Analytics workspace → Properties → Workspace ID**
    
-   > **Finding your values:** Azure Portal → Log Analytics workspace → Overview → Properties
+   > **Tip:** Run `powerbi\Generate-PowerBITemplate.ps1` to get your exact cluster URL, workspace ID, and queries pre-formatted.
 
 4. Authenticate with your **Entra ID (Azure AD)** credentials
 5. For the **Query**, paste the following KQL:
