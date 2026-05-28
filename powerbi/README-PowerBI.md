@@ -2,6 +2,14 @@
 
 ## Quick Start (5 minutes)
 
+### Option A: Use the Pre-Built Template Definition (Fastest)
+
+1. Open **Power BI Desktop**
+2. Run `powerbi/Generate-PowerBITemplate.ps1` — this creates a `template-definition.json` with all queries pre-configured
+3. Follow the steps below to create your data connections using the provided M queries
+
+### Option B: Connect Manually
+
 ### Step 1: Open Power BI Desktop
 
 1. Open **Power BI Desktop** (free download from Microsoft Store)
@@ -14,12 +22,11 @@
 1. In the connection dialog, enter:
    - **Cluster**: `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
    - **Database**: leave blank (auto-detected)
-   - **Query**: paste the KQL below
    
-   > **Finding your cluster URL:** In Azure Portal → Log Analytics workspace → Overview. Replace `<subscription-id>`, `<resource-group>`, and `<workspace-name>` with your values.
+   > **Finding your cluster URL:** In Azure Portal → Log Analytics workspace → Overview → Properties. Replace `<subscription-id>`, `<resource-group>`, and `<workspace-name>` with your values.
 
 2. Authenticate with your **Entra ID (Azure AD)** credentials
-3. Paste the following KQL query:
+3. For the **Query**, paste the following KQL:
 
 ```kusto
 SQLEditionOptimisation_CL

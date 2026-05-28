@@ -1,46 +1,61 @@
 <#
 .SYNOPSIS
-    Generates a Power BI Template (.pbit) file for SQL Edition Optimisation.
+    Generates Power Query M scripts for the SQL Edition Optimisation Power BI report.
 
 .DESCRIPTION
-    Run this script to generate the .pbit file. The template connects to your
-    Log Analytics workspace using Entra ID authentication and includes:
-    - Edition breakdown dashboard
-    - Enterprise feature usage analysis
-    - Downgrade eligibility summary
-    - Cost savings estimation (SQL Server 2022 pricing)
+    Run this script to generate ready-to-paste M (Power Query) expressions for Power BI.
+    The output uses the Azure Data Explorer (Kusto) connector to query Log Analytics.
 
-.PARAMETER WorkspaceId
-    Log Analytics Workspace ID (GUID). Leave blank to be prompted on first use.
+    After running, open Power BI Desktop → Get Data → Blank Query → Advanced Editor
+    and paste the generated M expressions.
+
+.PARAMETER SubscriptionId
+    Azure subscription ID containing the Log Analytics workspace.
+
+.PARAMETER ResourceGroupName
+    Resource group name containing the Log Analytics workspace.
+
+.PARAMETER WorkspaceName
+    Log Analytics workspace name.
 
 .EXAMPLE
-    .\Generate-PowerBITemplate.ps1
+    .\Generate-PowerBITemplate.ps1 -SubscriptionId "xxxx" -ResourceGroupName "rg-sqleditionopt" -WorkspaceName "func-sqleditionopt-doofer-law"
 #>
 
-# Power BI template uses M (Power Query) expressions that connect to Log Analytics
-# The template will prompt for WorkspaceId on first open
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory)]
+    [string]$SubscriptionId,
 
-$templateDefinition = @{
-    Version = "1.0"
-    Description = "SQL Server Edition Optimisation - Downgrade Eligibility Analysis"
-    Parameters = @(
-        @{
-            Name = "WorkspaceId"
-            Type = "Text"
-            Description = "Your Log Analytics Workspace ID (GUID)"
-            Required = $true
-        }
-    )
-    Queries = @(
-        @{
-            Name = "SQLEditionData"
-            Description = "Raw edition optimisation data from Log Analytics"
-            MExpression = @'
-let
-    WorkspaceId = #"WorkspaceId",
-    Source = AzureDataExplorer.Contents("https://api.loganalytics.io/v1/workspaces/" & WorkspaceId & "/query", null, null),
-    Query = "SQLEditionOptimisation_CL
+    [Parameter(Mandatory)]
+    [string]$ResourceGroupName,
+
+    [Parameter(Mandatory)]
+    [string]$WorkspaceName
+)
+
+$clusterUrl = "https://ade.loganalytics.io/subscriptions/$SubscriptionId/resourcegroups/$ResourceGroupName/providers/microsoft.operationalinsights/workspaces/$WorkspaceName"
+
+Write-Host ""
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host " Power BI Setup - SQL Server Edition Optimisation" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "Connector: Azure Data Explorer (Kusto)" -ForegroundColor Yellow
+Write-Host "Cluster:   $clusterUrl" -ForegroundColor White
+Write-Host ""
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host " QUERY 1: SQLEditionData (Main Data)" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host " Get Data → Azure Data Explorer (Kusto)" -ForegroundColor Gray
+Write-Host " Paste the Cluster URL above, leave Database blank" -ForegroundColor Gray
+Write-Host " Paste this KQL in the Query box:" -ForegroundColor Gray
+Write-Host ""
+
+$mainQuery = @"
+SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
+| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
 | project
     TimeGenerated,
     MachineName,
@@ -58,32 +73,63 @@ let
     ResourceGroup,
     SubscriptionId,
     Location
-| order by TimeGenerated desc",
-    Result = Json.Document(Web.Contents("https://api.loganalytics.io/v1/workspaces/" & WorkspaceId & "/query", [Content=Text.ToBinary("{""query"":""" & Query & """}"), Headers=[#"Content-Type"="application/json"]]))
-in
-    Result
-'@
-        }
-        @{
-            Name = "CostModel"
-            Description = "SQL Server 2022 licensing cost model"
-            MExpression = @'
+"@
+
+Write-Host $mainQuery -ForegroundColor Green
+Write-Host ""
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host " QUERY 2: CostModel (Blank Query → Advanced Editor)" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host ""
+
+$costModelQuery = @"
 let
     Source = Table.FromRecords({
-        [Edition = "Enterprise", PricePerTwoCorePack = 15123, PricePerCore = 7561.50, MinCores = 4],
-        [Edition = "Standard", PricePerTwoCorePack = 3945, PricePerCore = 1972.50, MinCores = 4]
+        [Edition = "Enterprise", PricePerTwoCorePack = 15123, PricePerCore = 7561.50, MinCores = 4, SAPercentage = 0.25],
+        [Edition = "Standard", PricePerTwoCorePack = 3945, PricePerCore = 1972.50, MinCores = 4, SAPercentage = 0.25]
     }),
     Types = Table.TransformColumnTypes(Source, {
         {"PricePerTwoCorePack", type number},
         {"PricePerCore", type number},
-        {"MinCores", Int64.Type}
+        {"MinCores", Int64.Type},
+        {"SAPercentage", type number}
     })
 in
     Types
-'@
-        }
-    )
-}
+"@
 
-$templateDefinition | ConvertTo-Json -Depth 10 | Out-File -FilePath "$PSScriptRoot\template-definition.json" -Encoding UTF8
-Write-Host "Template definition saved. See README for Power BI setup instructions."
+Write-Host $costModelQuery -ForegroundColor Green
+Write-Host ""
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host " Next Steps" -ForegroundColor Cyan
+Write-Host "================================================================" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "  1. Create both queries above in Power BI Desktop" -ForegroundColor White
+Write-Host "  2. Add DAX measures from powerbi/DAX-Measures.dax" -ForegroundColor White
+Write-Host "  3. Build visuals (see README-PowerBI.md for layout guide)" -ForegroundColor White
+Write-Host "  4. Save as template: File → Export → Power BI Template (.pbit)" -ForegroundColor White
+Write-Host "     Share the .pbit with consumers — they just re-enter the cluster URL" -ForegroundColor White
+Write-Host ""
+
+# Save to file for easy reference
+$outputPath = Join-Path $PSScriptRoot "PowerBI-Connection-Details.txt"
+@"
+SQL Server Edition Optimisation - Power BI Connection Details
+=============================================================
+
+Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+
+Connector: Azure Data Explorer (Kusto)
+Cluster URL: $clusterUrl
+Database: (leave blank)
+Authentication: Entra ID (Azure AD)
+
+KQL Query (main data):
+$mainQuery
+
+Cost Model (Blank Query → Advanced Editor):
+$costModelQuery
+"@ | Out-File -FilePath $outputPath -Encoding UTF8
+
+Write-Host "  Connection details saved to: $outputPath" -ForegroundColor Gray
+Write-Host ""
