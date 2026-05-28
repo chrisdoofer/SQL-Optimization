@@ -70,7 +70,7 @@ Write-Host ""
 $mainQuery = @"
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
-| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
+| summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
 | project
     TimeGenerated,
     MachineName,
