@@ -1,12 +1,23 @@
 # Power BI Setup Guide - SQL Server Edition Optimisation
 
-## Quick Start (5 minutes)
+## Quick Start (2 minutes)
 
-### Option A: Use the Pre-Built Template Definition (Fastest)
+### Option A: Open the Pre-Built Template (Recommended)
 
-1. Open **Power BI Desktop**
-2. Run `powerbi/Generate-PowerBITemplate.ps1` — this creates a `template-definition.json` with all queries pre-configured
-3. Follow the steps below to create your data connections using the provided M queries
+1. Open **`powerbi/SQL-Edition-Optimisation.pbit`** in Power BI Desktop
+2. When prompted for **ClusterURL**, enter:
+   ```
+   https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group>/providers/microsoft.operationalinsights/workspaces/<workspace-name>
+   ```
+   > Replace `<subscription-id>`, `<resource-group>`, and `<workspace-name>` with your values (found in Azure Portal → Log Analytics workspace → Overview → Properties)
+3. Authenticate with **Entra ID** when prompted
+4. Data loads automatically — the template includes pre-built tables, measures, and report pages
+
+The template includes:
+- **SQLEditionData** table (connected via Azure Data Explorer/Kusto connector)
+- **CostModel** table (SQL Server 2022 pricing embedded)
+- **8 DAX measures** (savings calculations, eligibility rates, core counts)
+- **4 report pages** (Executive Summary, Instance Detail, Cost Analysis, Feature Usage)
 
 ### Option B: Connect Manually
 
