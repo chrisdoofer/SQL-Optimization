@@ -19,8 +19,8 @@ SQLEditionOptimisation_CL
 | extend LicensedCores = max_of(Cores, 4)
 | extend
     CurrentCostPerYear = iff(Edition has "Enterprise", LicensedCores * EnterpriseCostPerCore, LicensedCores * StandardCostPerCore),
-    ProjectedCostPerYear = iff(DowngradeEligibility == "Eligible", LicensedCores * StandardCostPerCore, iff(Edition has "Enterprise", LicensedCores * EnterpriseCostPerCore, LicensedCores * StandardCostPerCore)),
-    PotentialSavingPerYear = iff(Edition has "Enterprise" and DowngradeEligibility == "Eligible", LicensedCores * SavingPerCore, 0.0)
+    ProjectedCostPerYear = iff(DowngradeEligibility in ("Eligible", "ReviewRequired"), LicensedCores * StandardCostPerCore, iff(Edition has "Enterprise", LicensedCores * EnterpriseCostPerCore, LicensedCores * StandardCostPerCore)),
+    PotentialSavingPerYear = iff(Edition has "Enterprise" and DowngradeEligibility in ("Eligible", "ReviewRequired"), LicensedCores * SavingPerCore, 0.0)
 | project
     TimeGenerated,
     MachineName,
