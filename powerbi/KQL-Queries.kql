@@ -4,10 +4,23 @@
 // ============================================================
 // QUERY 1: Main Dataset - All edition optimisation results
 // ============================================================
+// Pricing: SQL Server 2022 per-core (2-core pack basis)
+// Enterprise: $15,123 per 2-core pack = $7,561.50 per core
+// Standard:   $3,945  per 2-core pack = $1,972.50 per core
+// Minimum 4 cores licensed per instance
+let EnterpriseCostPerCore = 7561.50;
+let StandardCostPerCore = 1972.50;
+let SavingPerCore = EnterpriseCostPerCore - StandardCostPerCore;
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
 | where isnotempty(DatabaseName)
 | summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
+| extend Cores = toint(VisibleCPUs)
+| extend LicensedCores = max_of(Cores, 4)
+| extend
+    CurrentCostPerYear = iff(Edition has "Enterprise", LicensedCores * EnterpriseCostPerCore, LicensedCores * StandardCostPerCore),
+    ProjectedCostPerYear = iff(DowngradeEligibility == "Eligible", LicensedCores * StandardCostPerCore, iff(Edition has "Enterprise", LicensedCores * EnterpriseCostPerCore, LicensedCores * StandardCostPerCore)),
+    PotentialSavingPerYear = iff(Edition has "Enterprise" and DowngradeEligibility == "Eligible", LicensedCores * SavingPerCore, 0.0)
 | project
     TimeGenerated,
     MachineName,
@@ -15,13 +28,17 @@ SQLEditionOptimisation_CL
     Edition,
     ProductVersion,
     ProductLevel,
-    VisibleCPUs = toint(VisibleCPUs),
+    VisibleCPUs = Cores,
+    LicensedCores,
     DatabaseName,
     CompatibilityLevel = toint(CompatibilityLevel),
     EnterpriseFeatures,
     FeatureCount = toint(FeatureCount),
     HasBlockingFeatures = tobool(HasBlockingFeatures),
     DowngradeEligibility,
+    CurrentCostPerYear,
+    ProjectedCostPerYear,
+    PotentialSavingPerYear,
     ResourceGroup,
     SubscriptionId,
     Location
