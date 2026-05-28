@@ -7,6 +7,6 @@
     "DCE_ENDPOINT": "https://<your-dce>.ingest.monitor.azure.com",
     "DCR_IMMUTABLE_ID": "dcr-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "LOG_STREAM_NAME": "Custom-SQLEditionOptimisation_CL",
-    "RESOURCE_GRAPH_QUERY": "resources | where type == 'microsoft.azurearcdata/sqlserverinstances' | extend machineId = tolower(tostring(properties.containerResourceId)) | project machineId | distinct machineId | join kind=inner (resources | where type == 'microsoft.hybridcompute/machines' | where properties.status == 'Connected' | project id=tolower(id), name, resourceGroup, subscriptionId, location, tags) on $left.machineId == $right.id | project name, resourceGroup, subscriptionId, location, tags"
+    "RESOURCE_GRAPH_QUERY": "resources | where type == 'microsoft.azurearcdata/sqlserverinstances' | extend machineId = tolower(tostring(properties.containerResourceId)) | project machineId | distinct machineId | join kind=inner (resources | where type == 'microsoft.hybridcompute/machines' | where properties.status == 'Connected' | extend machineId = tolower(id) | project machineId, name, resourceGroup, subscriptionId, location, tags) on machineId | project name, resourceGroup, subscriptionId, location, tags"
   }
 }
