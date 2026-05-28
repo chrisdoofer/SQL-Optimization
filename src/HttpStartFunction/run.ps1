@@ -10,8 +10,8 @@ param($Request, $TriggerMetadata)
 
 $body = $Request.Body | ConvertTo-Json -Depth 10
 
-$instanceId = Start-DurableOrchestration -FunctionName 'DurableOrchestrator' -Input $body
+$instanceId = Start-NewOrchestration -FunctionName 'DurableOrchestrator' -InputObject $body
 Write-Host "Started orchestration with ID = '$instanceId'"
 
-$response = New-DurableOrchestrationCheckStatusResponse -Request $Request -InstanceId $instanceId
+$response = New-OrchestrationCheckStatusResponse -Request $Request -InstanceId $instanceId
 Push-OutputBinding -Name Response -Value $response

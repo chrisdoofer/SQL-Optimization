@@ -15,7 +15,7 @@ param($Context)
 $input = $Context.Input | ConvertFrom-Json
 
 # Step 1: Discover machines via Resource Graph
-$machines = Invoke-DurableActivity -FunctionName 'ActivityDiscoverMachines' -Input $input
+$machines = Invoke-ActivityFunction -FunctionName 'ActivityDiscoverMachines' -Input $input
 
 Write-Host "Orchestrator: Discovered $($machines.Count) machines. Fanning out..."
 
@@ -31,11 +31,11 @@ foreach ($machine in $machines) {
         scriptContent = $input.scriptContent
     } | ConvertTo-Json -Depth 5
 
-    $parallelTasks += Invoke-DurableActivity -FunctionName 'ActivityRunCommand' -Input $taskInput -NoWait
+    $parallelTasks += Invoke-ActivityFunction -FunctionName 'ActivityRunCommand' -Input $taskInput -NoWait
 }
 
 # Wait for all parallel activities to complete
-$results = Wait-DurableTask -Task $parallelTasks
+$results = Wait-ActivityFunction -Task $parallelTasks
 
 Write-Host "Orchestrator: All $($results.Count) Run Command activities completed. Ingesting logs..."
 
@@ -44,7 +44,7 @@ $ingestionInput = @{
     results = $results
 } | ConvertTo-Json -Depth 10
 
-$ingestionResult = Invoke-DurableActivity -FunctionName 'ActivityIngestLogs' -Input $ingestionInput
+$ingestionResult = Invoke-ActivityFunction -FunctionName 'ActivityIngestLogs' -Input $ingestionInput
 
 # Summary
 $successful = ($results | Where-Object { $_.ExecutionState -ne 'Failed' }).Count
