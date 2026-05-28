@@ -2,42 +2,20 @@
 
 ## Quick Start (2 minutes)
 
-### Option A: Open the Pre-Built Template (Recommended)
-
-1. Open **`powerbi/SQL-Edition-Optimisation.pbit`** in Power BI Desktop
-2. When prompted for **ClusterURL**, enter:
-   ```
-   https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group>/providers/microsoft.operationalinsights/workspaces/<workspace-name>
-   ```
-   > Replace `<subscription-id>`, `<resource-group>`, and `<workspace-name>` with your values (found in Azure Portal → Log Analytics workspace → Overview → Properties)
-3. Authenticate with **Entra ID** when prompted
-4. Data loads automatically — the template includes pre-built tables, measures, and report pages
-
-The template includes:
-- **SQLEditionData** table (connected via Azure Data Explorer/Kusto connector)
-- **CostModel** table (SQL Server 2022 pricing embedded)
-- **8 DAX measures** (savings calculations, eligibility rates, core counts)
-- **4 report pages** (Executive Summary, Instance Detail, Cost Analysis, Feature Usage)
-
-### Option B: Connect Manually
-
-### Step 1: Open Power BI Desktop
+### Step 1: Open Power BI Desktop and Connect
 
 1. Open **Power BI Desktop** (free download from Microsoft Store)
 2. Click **Get Data** → **Azure** → **Azure Data Explorer (Kusto)**
-
-> **Note:** There is no dedicated "Log Analytics" connector. Use the **Azure Data Explorer (Kusto)** connector — Log Analytics uses the same Kusto query engine.
-
-### Step 2: Connect to Log Analytics
-
-1. In the connection dialog, enter:
+3. In the connection dialog, enter:
    - **Cluster**: `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
    - **Database**: leave blank (auto-detected)
    
-   > **Finding your cluster URL:** In Azure Portal → Log Analytics workspace → Overview → Properties. Replace `<subscription-id>`, `<resource-group>`, and `<workspace-name>` with your values.
+   > **Tip:** Run `powerbi\Generate-PowerBITemplate.ps1` to get your exact cluster URL and queries pre-formatted.
+   
+   > **Finding your values:** Azure Portal → Log Analytics workspace → Overview → Properties
 
-2. Authenticate with your **Entra ID (Azure AD)** credentials
-3. For the **Query**, paste the following KQL:
+4. Authenticate with your **Entra ID (Azure AD)** credentials
+5. For the **Query**, paste the following KQL:
 
 ```kusto
 SQLEditionOptimisation_CL
@@ -125,10 +103,13 @@ The key measures are:
    - Line chart: Machines scanned over time
    - Line chart: Eligibility trend
 
-### Step 6: Save as Template
+### Step 6: Save and Share as Template
 
 1. **File** → **Export** → **Power BI Template (.pbit)**
-2. Share the `.pbit` file — recipients just need to enter their Workspace ID
+2. When prompted, add a description: *"SQL Server Edition Optimisation — Enter your Log Analytics cluster URL"*
+3. Share the `.pbit` file — recipients open it, enter their cluster URL, authenticate, and the report loads immediately
+
+> **Note:** A `.pbit` template can only be created from within Power BI Desktop — it cannot be generated programmatically. Once you've built your report, export it as a template to share with other consumers.
 
 ---
 
