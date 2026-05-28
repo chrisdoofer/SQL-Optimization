@@ -210,8 +210,7 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
       appSettings: [
         { name: 'AzureWebJobsStorage__accountName', value: storageAccount.name }
         { name: 'AzureWebJobsStorage__credential', value: 'managedidentity' }
-        { name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING__accountName', value: storageAccount.name }
-        { name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING__credential', value: 'managedidentity' }
+        { name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING', value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}' }
         { name: 'WEBSITE_CONTENTSHARE', value: toLower(functionAppName) }
         { name: 'WEBSITE_SKIP_CONTENTSHARE_VALIDATION', value: '1' }
         { name: 'FUNCTIONS_EXTENSION_VERSION', value: '~4' }
