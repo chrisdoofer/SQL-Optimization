@@ -8,19 +8,30 @@
 // Enterprise: $15,123 per 2-core pack = $7,561.50 per core
 // Standard:   $3,945  per 2-core pack = $1,972.50 per core
 // Minimum 4 cores licensed per instance
+// NOTE: Cost is per-INSTANCE (not per-database) — calculated at instance level
 let EnterpriseCostPerCore = 7561.50;
 let StandardCostPerCore = 1972.50;
 let SavingPerCore = EnterpriseCostPerCore - StandardCostPerCore;
-SQLEditionOptimisation_CL
+let DatabaseDetail = SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
 | where isnotempty(DatabaseName)
-| summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
-| extend Cores = toint(VisibleCPUs)
+| summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName;
+let InstanceCosts = DatabaseDetail
+| summarize
+    Cores = max(toint(VisibleCPUs)),
+    HasAnyBlocked = countif(DowngradeEligibility == "Blocked"),
+    Edition = take_any(Edition)
+  by MachineName, InstanceName
 | extend LicensedCores = max_of(Cores, 4)
+| extend InstanceEligibility = iff(HasAnyBlocked > 0, "Blocked", "ReviewRequired")
 | extend
     CurrentCostPerYear = iff(Edition has "Enterprise", LicensedCores * EnterpriseCostPerCore, LicensedCores * StandardCostPerCore),
-    ProjectedCostPerYear = iff(DowngradeEligibility in ("Eligible", "ReviewRequired"), LicensedCores * StandardCostPerCore, iff(Edition has "Enterprise", LicensedCores * EnterpriseCostPerCore, LicensedCores * StandardCostPerCore)),
-    PotentialSavingPerYear = iff(Edition has "Enterprise" and DowngradeEligibility in ("Eligible", "ReviewRequired"), LicensedCores * SavingPerCore, 0.0)
+    ProjectedCostPerYear = iff(InstanceEligibility in ("Eligible", "ReviewRequired"), LicensedCores * StandardCostPerCore, iff(Edition has "Enterprise", LicensedCores * EnterpriseCostPerCore, LicensedCores * StandardCostPerCore)),
+    PotentialSavingPerYear = iff(Edition has "Enterprise" and InstanceEligibility in ("Eligible", "ReviewRequired"), LicensedCores * SavingPerCore, 0.0)
+| project MachineName, InstanceName, LicensedCores, CurrentCostPerYear, ProjectedCostPerYear, PotentialSavingPerYear;
+DatabaseDetail
+| extend Cores = toint(VisibleCPUs)
+| join kind=leftouter (InstanceCosts) on MachineName, InstanceName
 | project
     TimeGenerated,
     MachineName,
