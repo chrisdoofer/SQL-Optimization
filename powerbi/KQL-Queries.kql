@@ -34,7 +34,7 @@ SQLEditionOptimisation_CL
     CompatibilityLevel = toint(CompatibilityLevel),
     EnterpriseFeatures,
     FeatureCount = toint(FeatureCount),
-    HasBlockingFeatures = tobool(HasBlockingFeatures),
+    HasBlockingFeatures = iff(tobool(HasBlockingFeatures), 'Yes', 'No'),
     DowngradeEligibility,
     CurrentCostPerYear,
     ProjectedCostPerYear,
