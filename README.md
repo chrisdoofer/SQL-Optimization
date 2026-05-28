@@ -108,11 +108,12 @@ cd SQL-Optimization
 ```
 
 **That's it.** The script:
-1. ✅ Validates prerequisites (Azure CLI, func tools, login state, workspace)
+1. ✅ Validates prerequisites (Azure CLI, func tools, login state)
 2. ✅ Creates the resource group in the dedicated deployment subscription
-3. ✅ Deploys all infrastructure via Bicep (Function App, custom table, DCE, DCR)
+3. ✅ Deploys all infrastructure via Bicep (Function App, Log Analytics, custom table, DCE, DCR)
 4. ✅ Assigns RBAC at **Management Group** level (one assignment covers all child subscriptions)
 5. ✅ Deploys the function code
+6. ✅ Automatically triggers the first scan
 
 **Why Management Group scope?**
 - No need to list individual subscriptions — one RBAC assignment covers the entire hierarchy
@@ -189,32 +190,54 @@ A GitHub Actions workflow is included at `.github/workflows/deploy.yml` for team
 
 ## Execution
 
+### Automatic (Post-Deployment)
+
+The deployment script automatically triggers the first scan after publishing the function code. No manual action is required — results will begin appearing in Log Analytics within minutes (depending on estate size).
+
 ### On-Demand (HTTP)
 
-```bash
-FUNC_URL=$(az functionapp function show \
-  --name func-sqleditionopt \
-  --resource-group rg-sqleditionopt \
-  --function-name HttpStartFunction \
-  --query invokeUrlTemplate -o tsv)
+The function requires a **function key** for authentication. Retrieve it and trigger a scan:
 
-FUNC_KEY=$(az functionapp function keys list \
-  --name func-sqleditionopt \
-  --resource-group rg-sqleditionopt \
-  --function-name HttpStartFunction \
-  --query default -o tsv)
+**PowerShell:**
+```powershell
+$funcName = "func-sqleditionopt-<yourorg>"
+$rgName = "rg-sqleditionopt"
+
+$key = az functionapp function keys list `
+    --name $funcName `
+    --resource-group $rgName `
+    --function-name HttpStartFunction `
+    --query "default" -o tsv
 
 # Start orchestration — scans ALL Arc-enabled SQL Servers in the Management Group
-curl -X POST "${FUNC_URL}?code=${FUNC_KEY}" \
+$response = Invoke-RestMethod `
+    -Uri "https://$funcName.azurewebsites.net/api/orchestrate?code=$key" `
+    -Method Post -ContentType 'application/json' -Body '{}'
+
+# Monitor progress
+$response.statusQueryGetUri
+```
+
+**Bash/curl:**
+```bash
+FUNC_NAME="func-sqleditionopt-<yourorg>"
+RG_NAME="rg-sqleditionopt"
+
+FUNC_KEY=$(az functionapp function keys list \
+  --name $FUNC_NAME \
+  --resource-group $RG_NAME \
+  --function-name HttpStartFunction \
+  --query "default" -o tsv)
+
+# Start orchestration
+curl -X POST "https://${FUNC_NAME}.azurewebsites.net/api/orchestrate?code=${FUNC_KEY}" \
   -H "Content-Type: application/json" \
   -d '{}'
 
 # Optionally filter by tag (e.g. scan only Production machines)
-curl -X POST "${FUNC_URL}?code=${FUNC_KEY}" \
+curl -X POST "https://${FUNC_NAME}.azurewebsites.net/api/orchestrate?code=${FUNC_KEY}" \
   -H "Content-Type: application/json" \
-  -d '{
-    "tagFilter": { "Environment": "Production" }
-  }'
+  -d '{ "tagFilter": { "Environment": "Production" } }'
 ```
 
 The function discovers all Arc-enabled SQL Servers across the entire Management Group scope (configured at deployment). No subscription list is needed — Resource Graph queries tenant-wide using the Managed Identity's Reader role.
