@@ -47,7 +47,7 @@ if (-not $workspaceId) {
     $workspaceId = "<WORKSPACE-ID-GUID>"
 }
 
-$clusterUrl = "https://ade.loganalytics.io/subscriptions/$SubscriptionId/resourcegroups/$ResourceGroupName/providers/microsoft.operationalinsights/workspaces/$WorkspaceName"
+$clusterUrl = "https://ade.loganalytics.io/subscriptions/$SubscriptionId/resourcegroups/$ResourceGroupName/providers/microsoft.operationalinsights/workspaces"
 
 Write-Host ""
 Write-Host "================================================================" -ForegroundColor Cyan

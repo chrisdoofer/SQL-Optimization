@@ -7,10 +7,10 @@
 1. Open **Power BI Desktop** (free download from Microsoft Store)
 2. Click **Get Data** → **Azure** → **Azure Data Explorer (Kusto)**
 3. In the connection dialog, enter:
-   - **Cluster**: `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
+   - **Cluster**: `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group>/providers/microsoft.operationalinsights/workspaces`
    - **Database**: `<workspace-id>` — this is the **Workspace ID (GUID)**, NOT the workspace name
    
-   > **⚠️ Important:** The Database field requires the Log Analytics **Workspace ID** (a GUID like `a1b2c3d4-e5f6-7890-abcd-ef1234567890`), not the workspace resource name. Find it in: **Azure Portal → Log Analytics workspace → Properties → Workspace ID**
+   > **⚠️ Important:** Do NOT include the workspace name in the Cluster URL. The Database field requires the Log Analytics **Workspace ID** (a GUID like `a1b2c3d4-e5f6-7890-abcd-ef1234567890`). Find it in: **Azure Portal → Log Analytics workspace → Properties → Workspace ID**
    
    > **Tip:** Run `powerbi\Generate-PowerBITemplate.ps1` to get your exact cluster URL, workspace ID, and queries pre-formatted.
 
