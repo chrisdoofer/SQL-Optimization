@@ -43,6 +43,7 @@ Write-Host "================================================================" -F
 Write-Host ""
 Write-Host "Connector: Azure Data Explorer (Kusto)" -ForegroundColor Yellow
 Write-Host "Cluster:   $clusterUrl" -ForegroundColor White
+Write-Host "Database:  $WorkspaceName" -ForegroundColor White
 Write-Host ""
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host " QUERY 1: SQLEditionData (Main Data)" -ForegroundColor Cyan
@@ -121,7 +122,7 @@ Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
 
 Connector: Azure Data Explorer (Kusto)
 Cluster URL: $clusterUrl
-Database: (leave blank)
+Database: $WorkspaceName
 Authentication: Entra ID (Azure AD)
 
 KQL Query (main data):

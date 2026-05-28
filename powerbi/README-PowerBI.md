@@ -8,7 +8,7 @@
 2. Click **Get Data** → **Azure** → **Azure Data Explorer (Kusto)**
 3. In the connection dialog, enter:
    - **Cluster**: `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
-   - **Database**: leave blank (auto-detected)
+   - **Database**: `<workspace-name>` (same as the last segment of the cluster URL)
    
    > **Tip:** Run `powerbi\Generate-PowerBITemplate.ps1` to get your exact cluster URL and queries pre-formatted.
    
