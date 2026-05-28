@@ -62,7 +62,7 @@ A scalable Azure Functions (PowerShell) solution that identifies SQL Server Ente
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) (v2.50+)
 - [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) (v4.x)
 - [Bicep CLI](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install) (included with Azure CLI)
-- PowerShell 7.4+
+- PowerShell 7.6+
 
 ### Target Machine Requirements
 
