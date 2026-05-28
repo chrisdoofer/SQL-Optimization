@@ -205,7 +205,6 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
         { name: 'DCR_IMMUTABLE_ID', value: dataCollectionRule.properties.immutableId }
         { name: 'LOG_STREAM_NAME', value: logStreamName }
         { name: 'RESOURCE_GRAPH_QUERY', value: resourceGraphQuery }
-        { name: 'ExternalDurablePowerShellSDK', value: 'true' }
       ]
     }
   }
