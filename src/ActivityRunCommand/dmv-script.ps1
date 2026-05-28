@@ -1,36 +1,93 @@
 $ErrorActionPreference = 'Continue'
 $results = @()
+
+# Use sqlcmd (installed with SQL Server by default) instead of SqlServer PS module
 try {
-    Import-Module SqlServer -ErrorAction Stop
     $instances = Get-Service -Name 'MSSQL*' | Where-Object { $_.Status -eq 'Running' }
     foreach ($svc in $instances) {
-        $instanceName = if ($svc.Name -eq 'MSSQLSERVER') { 'localhost' } else { "localhost\$($svc.Name -replace 'MSSQL\$','')" }
-        $instanceInfo = Invoke-Sqlcmd -ServerInstance $instanceName -Query "
-            SELECT SERVERPROPERTY('MachineName') AS MachineName, SERVERPROPERTY('ServerName') AS ServerName,
-                   SERVERPROPERTY('Edition') AS Edition, SERVERPROPERTY('ProductVersion') AS ProductVersion,
-                   SERVERPROPERTY('ProductLevel') AS ProductLevel,
-                   (SELECT COUNT(*) FROM sys.dm_os_schedulers WHERE status = 'VISIBLE ONLINE') AS VisibleCPUs"
-        $databases = Invoke-Sqlcmd -ServerInstance $instanceName -Query "
-            SELECT name, compatibility_level FROM sys.databases
-            WHERE state_desc = 'ONLINE' AND name NOT IN ('master','tempdb','model','msdb')"
-        foreach ($db in $databases) {
-            $enterpriseFeatures = Invoke-Sqlcmd -ServerInstance $instanceName -Database $db.name -Query "
-                SELECT feature_name AS FeatureName FROM sys.dm_db_persisted_sku_features" -ErrorAction SilentlyContinue
-            $compression = Invoke-Sqlcmd -ServerInstance $instanceName -Database $db.name -Query "
-                SELECT COUNT(*) AS Cnt FROM sys.partitions WHERE data_compression > 0" -ErrorAction SilentlyContinue
-            $partitioning = Invoke-Sqlcmd -ServerInstance $instanceName -Database $db.name -Query "
-                SELECT COUNT(DISTINCT object_id) AS Cnt FROM sys.partitions WHERE partition_number > 1" -ErrorAction SilentlyContinue
-            $featureList = @()
-            if ($enterpriseFeatures) { $featureList += $enterpriseFeatures.FeatureName }
-            if ($compression.Cnt -gt 0) { $featureList += "DataCompression" }
-            if ($partitioning.Cnt -gt 0) { $featureList += "TablePartitioning" }
-            $hasBlocking = ($enterpriseFeatures | Measure-Object).Count -gt 0
-            $eligibility = if ($hasBlocking) { 'Blocked' } elseif ($featureList.Count -gt 0) { 'ReviewRequired' } else { 'Eligible' }
+        $serverInstance = if ($svc.Name -eq 'MSSQLSERVER') { '.' } else { ".\$($svc.Name -replace 'MSSQL\$','')" }
+
+        # Get instance info
+        $infoQuery = @"
+SET NOCOUNT ON
+SELECT SERVERPROPERTY('MachineName') AS MachineName,
+       SERVERPROPERTY('ServerName') AS ServerName,
+       SERVERPROPERTY('Edition') AS Edition,
+       SERVERPROPERTY('ProductVersion') AS ProductVersion,
+       SERVERPROPERTY('ProductLevel') AS ProductLevel,
+       (SELECT COUNT(*) FROM sys.dm_os_schedulers WHERE status = 'VISIBLE ONLINE') AS VisibleCPUs
+"@
+        $infoRaw = sqlcmd -S $serverInstance -Q $infoQuery -h -1 -W -s "|" 2>&1
+        if ($LASTEXITCODE -ne 0) { throw "sqlcmd failed for instance info: $infoRaw" }
+
+        $infoParts = ($infoRaw | Where-Object { $_ -match '\|' } | Select-Object -First 1) -split '\|'
+        $machineName = $infoParts[0].Trim()
+        $serverName = $infoParts[1].Trim()
+        $edition = $infoParts[2].Trim()
+        $productVersion = $infoParts[3].Trim()
+        $productLevel = $infoParts[4].Trim()
+        $visibleCPUs = [int]$infoParts[5].Trim()
+
+        # Get user databases
+        $dbQuery = @"
+SET NOCOUNT ON
+SELECT name, compatibility_level FROM sys.databases
+WHERE state_desc = 'ONLINE' AND name NOT IN ('master','tempdb','model','msdb')
+"@
+        $dbRaw = sqlcmd -S $serverInstance -Q $dbQuery -h -1 -W -s "|" 2>&1
+        $dbLines = $dbRaw | Where-Object { $_ -match '\|' }
+
+        if (-not $dbLines -or $dbLines.Count -eq 0) {
+            # No user databases — report instance as eligible
             $results += [PSCustomObject]@{
-                MachineName = $instanceInfo.MachineName; InstanceName = $instanceInfo.ServerName
-                Edition = $instanceInfo.Edition; ProductVersion = $instanceInfo.ProductVersion
-                ProductLevel = $instanceInfo.ProductLevel; VisibleCPUs = $instanceInfo.VisibleCPUs
-                DatabaseName = $db.name; CompatibilityLevel = $db.compatibility_level
+                MachineName = $machineName; InstanceName = $serverName
+                Edition = $edition; ProductVersion = $productVersion
+                ProductLevel = $productLevel; VisibleCPUs = $visibleCPUs
+                DatabaseName = '(No user databases)'; CompatibilityLevel = 0
+                EnterpriseFeatures = ''; FeatureCount = 0
+                HasBlockingFeatures = $false; DowngradeEligibility = 'Eligible'
+                Timestamp = (Get-Date -Format 'o')
+            }
+            continue
+        }
+
+        foreach ($dbLine in $dbLines) {
+            $dbParts = $dbLine -split '\|'
+            $dbName = $dbParts[0].Trim()
+            $compatLevel = [int]$dbParts[1].Trim()
+
+            $featureList = @()
+
+            # Check enterprise-only features (sys.dm_db_persisted_sku_features)
+            $featQuery = "SET NOCOUNT ON; SELECT feature_name FROM [$dbName].sys.dm_db_persisted_sku_features"
+            $featRaw = sqlcmd -S $serverInstance -Q $featQuery -h -1 -W 2>&1
+            if ($LASTEXITCODE -eq 0 -and $featRaw) {
+                $featLines = $featRaw | Where-Object { $_.Trim() -ne '' -and $_ -notmatch '^\(' }
+                foreach ($f in $featLines) { if ($f.Trim()) { $featureList += $f.Trim() } }
+            }
+
+            # Check data compression
+            $compQuery = "SET NOCOUNT ON; SELECT COUNT(*) FROM [$dbName].sys.partitions WHERE data_compression > 0"
+            $compRaw = sqlcmd -S $serverInstance -Q $compQuery -h -1 -W 2>&1
+            if ($LASTEXITCODE -eq 0 -and [int]($compRaw | Select-Object -First 1).Trim() -gt 0) {
+                $featureList += 'DataCompression'
+            }
+
+            # Check table partitioning
+            $partQuery = "SET NOCOUNT ON; SELECT COUNT(DISTINCT object_id) FROM [$dbName].sys.partitions WHERE partition_number > 1"
+            $partRaw = sqlcmd -S $serverInstance -Q $partQuery -h -1 -W 2>&1
+            if ($LASTEXITCODE -eq 0 -and [int]($partRaw | Select-Object -First 1).Trim() -gt 0) {
+                $featureList += 'TablePartitioning'
+            }
+
+            $hasBlocking = ($featRaw | Where-Object { $_.Trim() -ne '' -and $_ -notmatch '^\(' }).Count -gt 0
+            $eligibility = if ($hasBlocking) { 'Blocked' } elseif ($featureList.Count -gt 0) { 'ReviewRequired' } else { 'Eligible' }
+
+            $results += [PSCustomObject]@{
+                MachineName = $machineName; InstanceName = $serverName
+                Edition = $edition; ProductVersion = $productVersion
+                ProductLevel = $productLevel; VisibleCPUs = $visibleCPUs
+                DatabaseName = $dbName; CompatibilityLevel = $compatLevel
                 EnterpriseFeatures = ($featureList -join ';'); FeatureCount = $featureList.Count
                 HasBlockingFeatures = $hasBlocking; DowngradeEligibility = $eligibility
                 Timestamp = (Get-Date -Format 'o')
