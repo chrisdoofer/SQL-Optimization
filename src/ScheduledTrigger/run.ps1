@@ -15,5 +15,5 @@ if ($Timer.IsPastDue) {
 # Start the durable orchestration with no filters (process all machines)
 $input = @{} | ConvertTo-Json
 
-$instanceId = Start-NewOrchestration -FunctionName 'DurableOrchestrator' -InputObject $input
+$instanceId = Start-DurableOrchestration -FunctionName 'DurableOrchestrator' -InputObject $input
 Write-Host "Started scheduled orchestration with ID = '$instanceId'"

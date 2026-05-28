@@ -8,10 +8,10 @@ param($Request, $TriggerMetadata)
     Returns a management payload with status/termination URLs.
 #>
 
-$body = $Request.Body | ConvertTo-Json -Depth 10
+$body = if ($Request.Body) { $Request.Body | ConvertTo-Json -Depth 10 } else { '{}' }
 
-$instanceId = Start-NewOrchestration -FunctionName 'DurableOrchestrator' -InputObject $body
+$instanceId = Start-DurableOrchestration -FunctionName 'DurableOrchestrator' -InputObject $body
 Write-Host "Started orchestration with ID = '$instanceId'"
 
-$response = New-OrchestrationCheckStatusResponse -Request $Request -InstanceId $instanceId
+$response = New-DurableOrchestrationCheckStatusResponse -Request $Request -InstanceId $instanceId
 Push-OutputBinding -Name Response -Value $response
