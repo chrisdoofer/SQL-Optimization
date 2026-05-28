@@ -14,7 +14,8 @@ let StandardCostPerCore = 1972.50;
 let SavingPerCore = EnterpriseCostPerCore - StandardCostPerCore;
 let DatabaseDetail = SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
-| where isnotempty(DatabaseName)
+| where isnotempty(DatabaseName) and DatabaseName != "N/A"
+| where DowngradeEligibility != "Error"
 | summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName;
 let InstanceCosts = DatabaseDetail
 | summarize
