@@ -153,7 +153,7 @@ Write-Success "RBAC scope: $mgScope"
 #endregion
 
 #region Step 1: Resource Group
-Write-Step "Step 1/4: Resource Group"
+Write-Step "Step 1/5: Resource Group"
 
 $rgExists = az group exists --name $ResourceGroupName 2>$null
 if ($rgExists -eq 'true') {
@@ -166,7 +166,7 @@ Write-Success "Resource group ready: $ResourceGroupName"
 #endregion
 
 #region Step 2: Deploy Infrastructure
-Write-Step "Step 2/4: Deploy Infrastructure (Bicep)"
+Write-Step "Step 2/5: Deploy Infrastructure (Bicep)"
 
 $scriptRoot = $PSScriptRoot
 $bicepPath = Join-Path $scriptRoot "infrastructure" "main.bicep"
@@ -211,7 +211,7 @@ Write-Success "DCR: $dcrResourceId"
 #endregion
 
 #region Step 3: RBAC Assignments
-Write-Step "Step 3/4: RBAC Role Assignments (Management Group scope)"
+Write-Step "Step 3/5: RBAC Role Assignments (Management Group scope)"
 
 Write-Info "Assigning roles at: $mgScope"
 Write-Info "This gives the Function App access to ALL Arc machines in child subscriptions"
@@ -248,7 +248,7 @@ Write-Success "Monitoring Metrics Publisher assigned on DCR"
 #endregion
 
 #region Step 4: Deploy Function Code
-Write-Step "Step 4/4: Deploy Function Code"
+Write-Step "Step 4/5: Deploy Function Code"
 
 $srcPath = Join-Path $scriptRoot "src"
 
@@ -270,6 +270,42 @@ try {
 }
 #endregion
 
+#region Step 5: Trigger Initial Scan
+Write-Step "Step 5/5: Triggering Initial Scan"
+
+Write-Info "Waiting 30 seconds for Function App to warm up..."
+Start-Sleep -Seconds 30
+
+$triggerUrl = "https://$FunctionAppName.azurewebsites.net/api/orchestrate"
+Write-Info "Triggering scan: POST $triggerUrl"
+
+$maxRetries = 3
+$retryCount = 0
+$triggered = $false
+
+while (-not $triggered -and $retryCount -lt $maxRetries) {
+    try {
+        $response = Invoke-RestMethod -Uri $triggerUrl -Method Post -ContentType 'application/json' -Body '{}' -ErrorAction Stop
+        $triggered = $true
+        Write-Success "Initial scan triggered successfully"
+        if ($response.id) {
+            Write-Info "Orchestration ID: $($response.id)"
+            Write-Info "Status URL: $($response.statusQueryGetUri)"
+        }
+    } catch {
+        $retryCount++
+        if ($retryCount -lt $maxRetries) {
+            Write-Info "Function App not ready yet, retrying in 15 seconds... (attempt $retryCount/$maxRetries)"
+            Start-Sleep -Seconds 15
+        } else {
+            Write-Host "  [WARN] Could not trigger initial scan automatically." -ForegroundColor Yellow
+            Write-Host "         The Function App may still be starting. Trigger manually:" -ForegroundColor Yellow
+            Write-Host "         POST $triggerUrl" -ForegroundColor Yellow
+        }
+    }
+}
+#endregion
+
 #region Summary
 Write-Step "Deployment Complete!"
 
@@ -286,8 +322,11 @@ Write-Host "  The Function App can now discover and scan Arc-enabled SQL Servers
 Write-Host "  across ALL subscriptions under: $ManagementGroupId" -ForegroundColor Green
 Write-Host ""
 Write-Host "  Next steps:" -ForegroundColor Yellow
-Write-Host "    1. Ensure 'SqlServer' module is installed on target machines" -ForegroundColor Yellow
-Write-Host "    2. Trigger a scan: POST to https://$FunctionAppName.azurewebsites.net/api/orchestrate" -ForegroundColor Yellow
-Write-Host "    3. Set up Power BI (see powerbi/README-PowerBI.md)" -ForegroundColor Yellow
+Write-Host "    1. Monitor scan progress in Azure Portal (Function App > Monitor)" -ForegroundColor Yellow
+Write-Host "    2. Set up Power BI (see powerbi/README-PowerBI.md)" -ForegroundColor Yellow
+Write-Host ""
+Write-Host "  On-demand trigger (future scans):" -ForegroundColor Cyan
+Write-Host "    POST https://$FunctionAppName.azurewebsites.net/api/orchestrate" -ForegroundColor Cyan
+Write-Host "  Scheduled: Automatic weekly scan every Sunday at 02:00 UTC" -ForegroundColor Cyan
 Write-Host ""
 #endregion
