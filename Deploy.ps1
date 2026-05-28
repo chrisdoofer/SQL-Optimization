@@ -273,19 +273,19 @@ try {
 #region Step 5: Trigger Initial Scan
 Write-Step "Step 5/5: Triggering Initial Scan"
 
-Write-Info "Waiting 30 seconds for Function App to warm up..."
-Start-Sleep -Seconds 30
+Write-Info "Waiting 60 seconds for Function App to warm up (first cold start)..."
+Start-Sleep -Seconds 60
 
 $triggerUrl = "https://$FunctionAppName.azurewebsites.net/api/orchestrate"
 Write-Info "Triggering scan: POST $triggerUrl"
 
-$maxRetries = 3
+$maxRetries = 6
 $retryCount = 0
 $triggered = $false
 
 while (-not $triggered -and $retryCount -lt $maxRetries) {
     try {
-        $response = Invoke-RestMethod -Uri $triggerUrl -Method Post -ContentType 'application/json' -Body '{}' -ErrorAction Stop
+        $response = Invoke-RestMethod -Uri $triggerUrl -Method Post -ContentType 'application/json' -Body '{}' -TimeoutSec 60 -ErrorAction Stop
         $triggered = $true
         Write-Success "Initial scan triggered successfully"
         if ($response.id) {
@@ -295,10 +295,10 @@ while (-not $triggered -and $retryCount -lt $maxRetries) {
     } catch {
         $retryCount++
         if ($retryCount -lt $maxRetries) {
-            Write-Info "Function App not ready yet, retrying in 15 seconds... (attempt $retryCount/$maxRetries)"
-            Start-Sleep -Seconds 15
+            Write-Info "Function App not ready yet (attempt $retryCount/$maxRetries), retrying in 30 seconds..."
+            Start-Sleep -Seconds 30
         } else {
-            Write-Host "  [WARN] Could not trigger initial scan automatically." -ForegroundColor Yellow
+            Write-Host "  [WARN] Could not trigger initial scan automatically after $maxRetries attempts." -ForegroundColor Yellow
             Write-Host "         The Function App may still be starting. Trigger manually:" -ForegroundColor Yellow
             Write-Host "         POST $triggerUrl" -ForegroundColor Yellow
         }
