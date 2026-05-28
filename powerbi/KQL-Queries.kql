@@ -6,6 +6,7 @@
 // ============================================================
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
+| where isnotempty(DatabaseName)
 | summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
 | project
     TimeGenerated,
@@ -30,6 +31,7 @@ SQLEditionOptimisation_CL
 // ============================================================
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
+| where isnotempty(DatabaseName)
 | summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
 | summarize
     Databases = dcount(DatabaseName),
@@ -51,6 +53,7 @@ let StandardCostPerCore = 1972.50;
 let SavingPerCore = EnterpriseCostPerCore - StandardCostPerCore;
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
+| where isnotempty(DatabaseName)
 | where Edition has "Enterprise"
 | summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
 | summarize
@@ -72,6 +75,7 @@ SQLEditionOptimisation_CL
 // ============================================================
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
+| where isnotempty(DatabaseName)
 | where EnterpriseFeatures != ""
 | summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
 | mv-expand Feature = split(EnterpriseFeatures, ";")
