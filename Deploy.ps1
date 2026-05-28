@@ -187,10 +187,16 @@ $deployOutput = az deployment group create `
     --template-file $bicepPath `
     --parameters $bicepParams `
     --query "properties.outputs" `
-    --output json 2>&1
+    --output json 2>$null
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Host $deployOutput -ForegroundColor Red
+    # Re-run to capture error message
+    $errorOutput = az deployment group create `
+        --resource-group $ResourceGroupName `
+        --template-file $bicepPath `
+        --parameters $bicepParams `
+        --output json 2>&1
+    Write-Host ($errorOutput -join "`n") -ForegroundColor Red
     throw "Bicep deployment failed"
 }
 
