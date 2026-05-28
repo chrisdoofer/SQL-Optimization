@@ -77,31 +77,139 @@ The key measures are:
 | `Eligible for Downgrade` | Count of instances with no blocking features |
 | `Eligibility Rate` | % of Enterprise instances eligible |
 
-### Step 5: Build Report Pages
+### Step 5: Build Report Visuals
 
-**Recommended pages:**
+Below are detailed instructions for building each visual. All fields referenced come from your main dataset query loaded in Step 1.
 
-1. **Executive Summary**
-   - Card: Total Instances, Enterprise Instances, Eligible for Downgrade
-   - Card: Estimated Annual Saving
-   - Donut: Eligibility breakdown (Eligible / Blocked / Review Required)
+---
 
-2. **Instance Detail**
-   - Table: Instance, Edition, Cores, Databases, Eligibility, Features
-   - Slicer: Edition, Location, ResourceGroup
+#### 5a. Card Visuals — KPI Summary Row (top of page)
 
-3. **Cost Analysis**
-   - Bar chart: Current Cost vs Projected Cost by Instance
-   - Card: Total Potential Saving
-   - Waterfall: Savings breakdown by instance
+Create **5 card visuals** arranged horizontally across the top:
 
-4. **Feature Usage**
-   - Bar chart: Feature frequency across estate
-   - Matrix: Instance × Feature usage
+**Card 1: Machines Scanned**
+1. Click a blank area of the canvas
+2. In the **Visualizations** pane, click the **Card** icon (looks like a single number)
+3. From the **Fields** pane, drag `MachineName` into the **Fields** well
+4. In the **Fields** well dropdown, change from "Count" to **"Count (Distinct)"**
+5. In the **Format** pane (paint roller icon):
+   - Data label → Font size: **28**
+   - Category label → Text: `Machines Scanned`
+6. Resize to approximately 1/5 of page width
 
-5. **Scan History**
-   - Line chart: Machines scanned over time
-   - Line chart: Eligibility trend
+**Card 2: Databases Assessed**
+1. Add another **Card** visual
+2. Drag `DatabaseName` into the **Fields** well
+3. Change aggregation to **"Count (Distinct)"**
+4. Category label: `Databases Assessed`
+
+**Card 3: Eligible to Downgrade**
+1. Add another **Card** visual
+2. Drag `DatabaseName` into the **Fields** well
+3. Change aggregation to **"Count (Distinct)"**
+4. Now add a **Visual level filter**: In the **Filters** pane (for this visual), drag `DowngradeEligibility` → set filter to **"Eligible"** only
+5. Category label: `Eligible`
+6. Format → Data label → Font color: **Green**
+
+**Card 4: Review Required**
+1. Add another **Card** visual
+2. Drag `DatabaseName` into **Fields**, set to **"Count (Distinct)"**
+3. Visual level filter: `DowngradeEligibility` = **"ReviewRequired"**
+4. Category label: `Review Required`
+5. Format → Data label → Font color: **Amber/Orange**
+
+**Card 5: Total Potential Saving**
+1. Add another **Card** visual
+2. Drag `PotentialSavingPerYear` into the **Fields** well (it will auto-sum)
+3. Format → Data label:
+   - Display units: **None** (to show full number)
+   - Value decimal places: **0**
+   - Font size: **28**
+4. Format → Category label: `Potential Annual Saving`
+5. Format → Data label → Font color: **Green**
+
+> **Tip:** Select all 5 cards → **Format** tab in ribbon → **Align** → **Distribute Horizontally** to space them evenly.
+
+---
+
+#### 5b. Donut Chart — Eligibility Breakdown
+
+1. Click a blank area below the cards
+2. In **Visualizations**, click the **Donut chart** icon
+3. Drag `DowngradeEligibility` into the **Legend** well
+4. Drag `DatabaseName` into the **Values** well → set aggregation to **"Count (Distinct)"**
+5. Resize to about 1/3 page width, positioned bottom-left below the cards
+6. Format colours (click the donut → Format → Data colors):
+   - Eligible: **#2ECC71** (green)
+   - ReviewRequired: **#F39C12** (amber)
+   - Blocked: **#E74C3C** (red)
+7. Format → Title → Text: `Downgrade Eligibility`
+8. Format → Detail labels → Label style: **"Category, percent of total"**
+
+---
+
+#### 5c. Bar Chart — Enterprise Features Usage
+
+1. Click a blank area to the right of the donut
+2. In **Visualizations**, click the **Clustered bar chart** icon (horizontal bars)
+3. Drag `EnterpriseFeatures` into the **Y-axis** well
+4. Drag `DatabaseName` into the **X-axis** well → set to **"Count (Distinct)"**
+5. Add a **Visual level filter**: `EnterpriseFeatures` → is not blank (tick all values except blank/empty)
+6. Format → Title → Text: `Enterprise Features in Use`
+7. Format → Data colors: all bars **#3498DB** (blue)
+8. Format → X-axis title: `Number of Databases`
+9. Resize to fill remaining space next to donut
+
+---
+
+#### 5d. Detail Table (you already have this)
+
+1. Below the charts, add a **Table** visual
+2. Drag columns in this order:
+   - `MachineName`
+   - `VisibleCPUs`
+   - `Edition`
+   - `DatabaseName`
+   - `EnterpriseFeatures`
+   - `HasBlockingFeatures`
+   - `DowngradeEligibility`
+   - `LicensedCores`
+   - `PotentialSavingPerYear`
+3. Format → Style: **Alternating rows**
+4. Format → Conditional formatting on `DowngradeEligibility`:
+   - Click the column dropdown → **Conditional formatting** → **Background color**
+   - Format by: **Rules**
+   - If value **contains** `Eligible` then **green** (#D5F5E3)
+   - If value **contains** `ReviewRequired` then **amber** (#FEF9E7)
+   - If value **contains** `Blocked` then **red** (#FADBD8)
+
+---
+
+#### 5e. (Optional) Slicer — Filter by Location/Resource Group
+
+1. Add a **Slicer** visual in the top-right corner
+2. Drag `ResourceGroup` into the **Field** well
+3. Format → Slicer settings → Style: **Dropdown**
+4. This lets users filter the entire page by resource group
+
+---
+
+#### Final Page Layout
+
+```
+┌──────────┬──────────┬──────────┬──────────┬──────────────┐
+│ Machines │   DBs    │ Eligible │  Review  │ 💰 Saving/yr │  ← Cards
+│    1     │    4     │    0     │    4     │   $0.00      │
+└──────────┴──────────┴──────────┴──────────┴──────────────┘
+┌─────────────────┬──────────────────────────────────────────┐
+│   🍩 Donut      │   📊 Enterprise Features Bar Chart       │  ← Charts
+│  Eligibility    │   DataCompression ████████ 4             │
+└─────────────────┴──────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────┐
+│ MachineName │ CPUs │ Edition │ Database │ Features │ ... │  ← Table
+│ ArcBox-SQL  │  8   │ Ent...  │ Adven..  │ DataCom. │ ... │
+└────────────────────────────────────────────────────────────┘
+```
 
 ### Step 6: Save and Share as Template
 
