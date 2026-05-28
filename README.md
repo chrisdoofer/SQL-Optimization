@@ -1,6 +1,6 @@
 ﻿# SQL Server Edition Optimisation - Azure Arc Reference Implementation
 
-A scalable Azure Functions (PowerShell) solution that identifies SQL Server Enterprise-to-Standard downgrade opportunities across large Arc-enabled estates. Uses Durable Functions fan-out/fan-in to process hundreds of servers in parallel, Azure Resource Graph for discovery, Arc Run Command for agentless DMV extraction, and the Logs Ingestion API for centralised reporting.
+A scalable Azure Functions (PowerShell) solution that identifies SQL Server Enterprise-to-Standard downgrade opportunities across large Arc-enabled estates. Uses Azure Resource Graph for discovery, Arc Run Command for agentless DMV extraction, and the Logs Ingestion API for centralised reporting via Power BI.
 
 ## Architecture Overview
 
@@ -10,38 +10,29 @@ A scalable Azure Functions (PowerShell) solution that identifies SQL Server Ente
                               +------------+--------------+
                                            |
                               +------------v--------------+
-                              |    Durable Orchestrator   |
-                              |    (fan-out / fan-in)     |
+                              |   Direct Workflow Engine  |
+                              |   (sequential processing)|
                               +---+----+----+----+---+---+
                                   |    |    |    |   |
-                    +-------------+    |    |    |   +-----------+
-                    |                  |    |    |               |
-              +-----v-----+    +------v-+  | +--v------+  +-----v-----+
-              | Activity:  |   |Activity:|  | |Activity:|  | Activity:  |
-              |RunCommand  |   |RunCmd   |  | |RunCmd   |  | RunCommand |
-              | Server 1   |   |Server 2 |  | |Server N |  | Server N+1 |
-              +-----+------+   +----+----+  | +----+----+  +-----+------+
-                    |               |       |      |              |
-                    +-------+-------+-------+------+--------------+
-                            |
-                  +---------v-----------+
-                  |  Activity:          |
-                  |  Ingest to Log      |
-                  |  Analytics (batched)|
-                  +---------+-----------+
-                            |
+                    Step 1: Resource Graph Discovery (paginated, 1000/page)
+                                  |
+                    Step 2: Arc Run Command per machine (with retry)
+                                  |
+                    Step 3: Logs Ingestion API (batched)
+                                  |
                   +---------v-----------+       +------------------+
                   |  Log Analytics      |------>|  Power BI        |
                   |  Custom Table       |       |  Dashboard       |
                   +---------------------+       +------------------+
 ```
 
-**Key design for scale:**
-- Durable Functions fan-out/fan-in processes machines in parallel (default: 50 concurrent)
+**Key design decisions:**
+- Direct execution model — no Durable Functions SDK dependency issues
 - Resource Graph pagination handles estates with 1000+ servers
 - Exponential backoff retry (3 attempts) on Run Command failures
 - Batched Logs Ingestion (500 entries/batch, splits at 1MB)
-- Elastic Premium plan scales workers automatically
+- 30-minute function timeout supports estates up to ~50 machines per invocation
+- Timer trigger for weekly scheduled scans
 
 ---
 
@@ -55,7 +46,7 @@ A scalable Azure Functions (PowerShell) solution that identifies SQL Server Ente
 | Log Analytics Workspace | Stores edition optimisation results |
 | Data Collection Endpoint (DCE) | Ingestion endpoint for custom logs |
 | Data Collection Rule (DCR) | Maps ingested data to the custom table |
-| Function App (Elastic Premium EP1+) | Hosts Durable Functions orchestration |
+| Function App (Elastic Premium EP1+) | Hosts the optimisation workflow |
 
 ### Software & Tools (for deployment)
 
@@ -209,13 +200,13 @@ $key = az functionapp function keys list `
     --function-name HttpStartFunction `
     --query "default" -o tsv
 
-# Start orchestration — scans ALL Arc-enabled SQL Servers in the Management Group
+# Start workflow — scans ALL Arc-enabled SQL Servers in the Management Group
 $response = Invoke-RestMethod `
     -Uri "https://$funcName.azurewebsites.net/api/orchestrate?code=$key" `
     -Method Post -ContentType 'application/json' -Body '{}'
 
-# Monitor progress
-$response.statusQueryGetUri
+# View results
+$response | ConvertTo-Json -Depth 5
 ```
 
 **Bash/curl:**
@@ -229,7 +220,7 @@ FUNC_KEY=$(az functionapp function keys list \
   --function-name HttpStartFunction \
   --query "default" -o tsv)
 
-# Start orchestration
+# Start scan
 curl -X POST "https://${FUNC_NAME}.azurewebsites.net/api/orchestrate?code=${FUNC_KEY}" \
   -H "Content-Type: application/json" \
   -d '{}'
@@ -242,7 +233,7 @@ curl -X POST "https://${FUNC_NAME}.azurewebsites.net/api/orchestrate?code=${FUNC
 
 The function discovers all Arc-enabled SQL Servers across the entire Management Group scope (configured at deployment). No subscription list is needed — Resource Graph queries tenant-wide using the Managed Identity's Reader role.
 
-The HTTP response includes a `statusQueryGetUri` — poll it to track progress.
+The HTTP response returns a JSON summary with machine counts, success/failure stats, and ingestion status.
 
 ### Scheduled (Timer)
 
@@ -258,25 +249,19 @@ curl -X POST http://localhost:7071/api/orchestrate -H "Content-Type: application
 
 ---
 
-## Scaling Configuration
+## Configuration
 
 In `host.json`:
 
 ```json
 {
-  "extensions": {
-    "durableTask": {
-      "maxConcurrentActivityFunctions": 50,
-      "maxConcurrentOrchestratorFunctions": 10
-    }
-  }
+  "functionTimeout": "00:30:00"
 }
 ```
 
-- **50 concurrent activities** = 50 Arc machines processed simultaneously
-- Adjust based on Azure subscription throttling limits
-- The Elastic Premium EP1 plan auto-scales workers; upgrade to EP2/EP3 for larger estates
-- For 500+ machines, consider increasing to EP2 and `maxConcurrentActivityFunctions: 100`
+- **30-minute timeout** supports sequential processing of ~50 machines (each Run Command takes ~30-60s)
+- For larger estates (100+ machines), upgrade to Elastic Premium EP2 and consider splitting into batches
+- The Elastic Premium plan auto-scales workers for timer triggers
 
 ---
 
@@ -321,18 +306,18 @@ SQL-Optimization/
 |   +-- main.bicep                    # All infra: Function App, table, DCE, DCR
 |   +-- role-assignments.bicep        # RBAC reference (used by Deploy.ps1)
 +-- src/
-|   +-- host.json                     # Durable Functions config (concurrency settings)
+|   +-- host.json                     # Function App config (timeout settings)
 |   +-- local.settings.json           # Local dev settings
 |   +-- profile.ps1                   # Managed Identity auth on startup
 |   +-- requirements.psd1             # Az module dependencies
 |   +-- modules/
 |   |   +-- LogsIngestion.ps1         # Shared: Logs Ingestion API client (batched)
-|   +-- HttpStartFunction/            # HTTP trigger -> starts orchestration
-|   +-- ScheduledTrigger/             # Timer trigger -> starts orchestration
-|   +-- DurableOrchestrator/          # Fan-out/fan-in orchestrator
-|   +-- ActivityDiscoverMachines/     # Queries Resource Graph (paginated)
-|   +-- ActivityRunCommand/           # Executes DMV script on one machine (with retry)
-|   +-- ActivityIngestLogs/           # Batches results to Logs Ingestion API
+|   +-- HttpStartFunction/            # HTTP trigger -> runs full workflow
+|   +-- ScheduledTrigger/             # Timer trigger -> runs full workflow
+|   +-- DurableOrchestrator/          # (Disabled) Fan-out/fan-in for future use
+|   +-- ActivityDiscoverMachines/     # (Disabled) Resource Graph query
+|   +-- ActivityRunCommand/           # (Disabled) Run Command activity
+|   +-- ActivityIngestLogs/           # (Disabled) Logs Ingestion activity
 +-- powerbi/
 |   +-- README-PowerBI.md             # Power BI setup guide
 |   +-- KQL-Queries.kql              # Ready-to-use KQL for Power BI connector
@@ -353,6 +338,5 @@ SQL-Optimization/
 | 403 on Logs Ingestion | Assign **Monitoring Metrics Publisher** on the **DCR** (not DCE or workspace). |
 | SqlServer module not found on targets | Run `Install-Module SqlServer -Force` on each target machine. |
 | `sys.dm_db_persisted_sku_features` empty | Expected for Standard Edition or no Enterprise features — means eligible. |
-| Orchestration timeout | Increase `functionTimeout` in host.json. EP plan supports up to 60 min. |
-| Throttling at scale | Reduce `maxConcurrentActivityFunctions` in host.json. |
-| Durable status shows "Running" for long time | Normal for large estates. Poll the statusQueryGetUri. |
+| Function timeout | Increase `functionTimeout` in host.json. EP plan supports up to 60 min. |
+| Throttling at scale | Reduce the number of machines per invocation by filtering with tags. |
