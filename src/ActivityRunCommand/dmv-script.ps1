@@ -3,9 +3,11 @@ $results = @()
 
 # Use sqlcmd (installed with SQL Server by default) instead of SqlServer PS module
 try {
-    $instances = Get-Service -Name 'MSSQL*' | Where-Object { $_.Status -eq 'Running' }
+    # Only get SQL Server engine services (exclude Agent, SSRS, SSIS, etc.)
+    $instances = Get-Service -Name 'MSSQL$*', 'MSSQLSERVER' -ErrorAction SilentlyContinue | Where-Object { $_.Status -eq 'Running' }
     foreach ($svc in $instances) {
-        $serverInstance = if ($svc.Name -eq 'MSSQLSERVER') { '.' } else { ".\$($svc.Name -replace 'MSSQL\$','')" }
+        # Build connection string using localhost (more reliable than '.' which needs SQL Browser)
+        $serverInstance = if ($svc.Name -eq 'MSSQLSERVER') { 'localhost' } else { "localhost\$($svc.Name -replace 'MSSQL\$','')" }
 
         # Get instance info
         $infoQuery = @"
@@ -17,7 +19,7 @@ SELECT SERVERPROPERTY('MachineName') AS MachineName,
        SERVERPROPERTY('ProductLevel') AS ProductLevel,
        (SELECT COUNT(*) FROM sys.dm_os_schedulers WHERE status = 'VISIBLE ONLINE') AS VisibleCPUs
 "@
-        $infoRaw = sqlcmd -S $serverInstance -Q $infoQuery -h -1 -W -s "|" 2>&1
+        $infoRaw = sqlcmd -S $serverInstance -E -Q $infoQuery -h -1 -W -s "|" 2>&1
         if ($LASTEXITCODE -ne 0) { throw "sqlcmd failed for instance info: $infoRaw" }
 
         $infoParts = ($infoRaw | Where-Object { $_ -match '\|' } | Select-Object -First 1) -split '\|'
@@ -34,7 +36,7 @@ SET NOCOUNT ON
 SELECT name, compatibility_level FROM sys.databases
 WHERE state_desc = 'ONLINE' AND name NOT IN ('master','tempdb','model','msdb')
 "@
-        $dbRaw = sqlcmd -S $serverInstance -Q $dbQuery -h -1 -W -s "|" 2>&1
+        $dbRaw = sqlcmd -S $serverInstance -E -Q $dbQuery -h -1 -W -s "|" 2>&1
         $dbLines = $dbRaw | Where-Object { $_ -match '\|' }
 
         if (-not $dbLines -or $dbLines.Count -eq 0) {
@@ -60,7 +62,7 @@ WHERE state_desc = 'ONLINE' AND name NOT IN ('master','tempdb','model','msdb')
 
             # Check enterprise-only features (sys.dm_db_persisted_sku_features)
             $featQuery = "SET NOCOUNT ON; SELECT feature_name FROM [$dbName].sys.dm_db_persisted_sku_features"
-            $featRaw = sqlcmd -S $serverInstance -Q $featQuery -h -1 -W 2>&1
+            $featRaw = sqlcmd -S $serverInstance -E -Q $featQuery -h -1 -W 2>&1
             if ($LASTEXITCODE -eq 0 -and $featRaw) {
                 $featLines = $featRaw | Where-Object { $_.Trim() -ne '' -and $_ -notmatch '^\(' }
                 foreach ($f in $featLines) { if ($f.Trim()) { $featureList += $f.Trim() } }
@@ -68,14 +70,14 @@ WHERE state_desc = 'ONLINE' AND name NOT IN ('master','tempdb','model','msdb')
 
             # Check data compression
             $compQuery = "SET NOCOUNT ON; SELECT COUNT(*) FROM [$dbName].sys.partitions WHERE data_compression > 0"
-            $compRaw = sqlcmd -S $serverInstance -Q $compQuery -h -1 -W 2>&1
+            $compRaw = sqlcmd -S $serverInstance -E -Q $compQuery -h -1 -W 2>&1
             if ($LASTEXITCODE -eq 0 -and [int]($compRaw | Select-Object -First 1).Trim() -gt 0) {
                 $featureList += 'DataCompression'
             }
 
             # Check table partitioning
             $partQuery = "SET NOCOUNT ON; SELECT COUNT(DISTINCT object_id) FROM [$dbName].sys.partitions WHERE partition_number > 1"
-            $partRaw = sqlcmd -S $serverInstance -Q $partQuery -h -1 -W 2>&1
+            $partRaw = sqlcmd -S $serverInstance -E -Q $partQuery -h -1 -W 2>&1
             if ($LASTEXITCODE -eq 0 -and [int]($partRaw | Select-Object -First 1).Trim() -gt 0) {
                 $featureList += 'TablePartitioning'
             }
