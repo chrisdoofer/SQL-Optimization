@@ -204,19 +204,20 @@ FUNC_KEY=$(az functionapp function keys list \
   --function-name HttpStartFunction \
   --query default -o tsv)
 
-# Start orchestration (returns status URLs for monitoring)
+# Start orchestration — scans ALL Arc-enabled SQL Servers in the Management Group
 curl -X POST "${FUNC_URL}?code=${FUNC_KEY}" \
   -H "Content-Type: application/json" \
   -d '{}'
 
-# With subscription/tag filters
+# Optionally filter by tag (e.g. scan only Production machines)
 curl -X POST "${FUNC_URL}?code=${FUNC_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "subscriptionIds": ["<sub-id-1>", "<sub-id-2>"],
     "tagFilter": { "Environment": "Production" }
   }'
 ```
+
+The function discovers all Arc-enabled SQL Servers across the entire Management Group scope (configured at deployment). No subscription list is needed — Resource Graph queries tenant-wide using the Managed Identity's Reader role.
 
 The HTTP response includes a `statusQueryGetUri` — poll it to track progress.
 
