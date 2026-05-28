@@ -18,7 +18,7 @@ param retentionInDays int = 90
 param logStreamName string = 'Custom-SQLEditionOptimisation_CL'
 
 @description('Resource Graph query to discover Arc machines')
-param resourceGraphQuery string = 'resources | where type == \'microsoft.hybridcompute/machines\' | where properties.status == \'Connected\' | project id, name, resourceGroup, subscriptionId, location, tags'
+param resourceGraphQuery string = 'resources | where type == \'microsoft.hybridcompute/machines\' | where properties.status == \'Connected\' | where properties.osType == \'Windows\' | where isnotnull(properties.detectedProperties.mssqldiscovered) or isnotnull(tags[\'sql-server\']) | project id, name, resourceGroup, subscriptionId, location, tags'
 
 var storageAccountName = toLower('st${take(replace(functionAppName, '-', ''), 20)}')
 var appInsightsName = '${functionAppName}-ai'

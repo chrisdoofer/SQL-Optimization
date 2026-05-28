@@ -85,8 +85,7 @@ try {
                     MachineName       = $machineName
                     RunCommandName    = $runCommandName
                     Location          = $location
-                    TimeoutInSeconds  = 600
-                    AsyncExecution    = $false
+                    TimeoutInSecond   = 600
                 }
                 if ($scriptContent) { $cmdParams.SourceScript = $scriptContent }
                 else {

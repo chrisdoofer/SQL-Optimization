@@ -1,0 +1,2393 @@
+Connected!
+2026-05-28T12:22:57   [Information]   Request [00def8c1-86ab-4dac-9e09-1cbb86ed924c] GET https://stfuncsqleditionoptdoo.blob.core.windows.net/?comp=list&maxresults=1
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:00def8c1-86ab-4dac-9e09-1cbb86ed924c
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:22:57   [Information]   Response [00def8c1-86ab-4dac-9e09-1cbb86ed924c] 200 OK (00.0s)
+Transfer-Encoding:chunked
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233b5fe-801e-0094-449c-ee2fb1000000
+x-ms-client-request-id:00def8c1-86ab-4dac-9e09-1cbb86ed924c
+x-ms-version:2024-11-04
+Date:Thu, 28 May 2026 12:22:56 GMT
+Content-Type:application/xml
+2026-05-28T12:22:57   [Information]   Request [1ff41773-3cad-410e-8cf7-5e848f560925] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:1ff41773-3cad-410e-8cf7-5e848f560925
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:22:57   [Information]   Response [1ff41773-3cad-410e-8cf7-5e848f560925] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:a8fca90c-7003-0009-4c9c-ee55f1000000
+x-ms-client-request-id:1ff41773-3cad-410e-8cf7-5e848f560925
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:22:55 GMT
+Content-Type:application/xml
+2026-05-28T12:22:57   [Information]   Request [19fc0768-a891-4b90-8807-c6ff5d02cbf7] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:19fc0768-a891-4b90-8807-c6ff5d02cbf7
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:22:57   [Information]   Response [19fc0768-a891-4b90-8807-c6ff5d02cbf7] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233b57c-801e-0094-4f9c-ee2fb1000000
+x-ms-client-request-id:19fc0768-a891-4b90-8807-c6ff5d02cbf7
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:22:56 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:22:59   [Information]   Request [4584f6aa-fd61-433d-87dd-c8590764acb8] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host?comp=lease
+x-ms-lease-action:renew
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:4584f6aa-fd61-433d-87dd-c8590764acb8
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:22:59   [Information]   Response [4584f6aa-fd61-433d-87dd-c8590764acb8] 200 OK (00.0s)
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233b9ec-801e-0094-4b9c-ee2fb1000000
+x-ms-client-request-id:4584f6aa-fd61-433d-87dd-c8590764acb8
+x-ms-version:2024-11-04
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+Date:Thu, 28 May 2026 12:22:58 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:22:59   [Information]   Request [b91bff8e-7585-462f-b6b6-7d09db48627b] GET https://stfuncsqleditionoptdoo.blob.core.windows.net/?comp=list&maxresults=1
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:b91bff8e-7585-462f-b6b6-7d09db48627b
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:22:59   [Information]   Response [b91bff8e-7585-462f-b6b6-7d09db48627b] 200 OK (00.0s)
+Transfer-Encoding:chunked
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233ba1b-801e-0094-799c-ee2fb1000000
+x-ms-client-request-id:b91bff8e-7585-462f-b6b6-7d09db48627b
+x-ms-version:2024-11-04
+Date:Thu, 28 May 2026 12:22:58 GMT
+Content-Type:application/xml
+2026-05-28T12:23:00   [Verbose]   funcsqleditionoptdoofer-applease: Starting app lease renewal with token abacf297-0000-0000-0000-000000000000
+2026-05-28T12:23:00   [Information]   Request [06864771-1b8f-4ad0-9fc6-76c1c903362a] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/funcsqleditionoptdoofer-applease?comp=lease&restype=container
+x-ms-lease-action:renew
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:06864771-1b8f-4ad0-9fc6-76c1c903362a
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.26.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:00   [Information]   Response [06864771-1b8f-4ad0-9fc6-76c1c903362a] 200 OK (00.0s)
+ETag:"0x8DEBC8E520A1822"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:70afece3-b01e-0072-229c-ee3e41000000
+x-ms-client-request-id:06864771-1b8f-4ad0-9fc6-76c1c903362a
+x-ms-version:2025-11-05
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+Date:Thu, 28 May 2026 12:22:59 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 07:54:18 GMT
+2026-05-28T12:23:00   [Verbose]   funcsqleditionoptdoofer-applease: app lease renewal with token abacf297-0000-0000-0000-000000000000 succeeded
+2026-05-28T12:23:02   [Information]   Request [ba0a7808-c3e5-4d76-aef5-7ff857824354] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:ba0a7808-c3e5-4d76-aef5-7ff857824354
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:02   [Information]   Response [ba0a7808-c3e5-4d76-aef5-7ff857824354] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233bdb9-801e-0094-189c-ee2fb1000000
+x-ms-client-request-id:ba0a7808-c3e5-4d76-aef5-7ff857824354
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:01 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:04   [Verbose]   Request successfully matched the route with name 'HttpStartFunction' and template 'api/orchestrate'
+2026-05-28T12:23:04   [Information]   Request [6e308aae-b21e-4820-8fdc-d536d9c7d151] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-secrets/func-sqleditionopt-doofer/httpstartfunction.json
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:6e308aae-b21e-4820-8fdc-d536d9c7d151
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:04   [Information]   Response [6e308aae-b21e-4820-8fdc-d536d9c7d151] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBC8E5FAFF40A"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233bed1-801e-0094-4f9c-ee2fb1000000
+x-ms-client-request-id:6e308aae-b21e-4820-8fdc-d536d9c7d151
+x-ms-version:2024-11-04
+x-ms-tag-count:2
+x-ms-creation-time:Thu, 28 May 2026 07:54:40 GMT
+x-ms-lease-status:unlocked
+x-ms-lease-state:available
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:02 GMT
+Content-Length:540
+Content-Type:application/octet-stream
+Content-MD5:N2CUjltVAsPxkj4shRbU4w==
+Last-Modified:Thu, 28 May 2026 07:54:40 GMT
+2026-05-28T12:23:04   [Information]   Request [6bb68a5a-5a01-4215-ba4f-8baadbd10865] GET https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-secrets/func-sqleditionopt-doofer/httpstartfunction.json
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:6bb68a5a-5a01-4215-ba4f-8baadbd10865
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:04   [Information]   Response [6bb68a5a-5a01-4215-ba4f-8baadbd10865] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBC8E5FAFF40A"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233bed3-801e-0094-509c-ee2fb1000000
+x-ms-client-request-id:6bb68a5a-5a01-4215-ba4f-8baadbd10865
+x-ms-version:2024-11-04
+x-ms-tag-count:2
+x-ms-creation-time:Thu, 28 May 2026 07:54:40 GMT
+x-ms-lease-status:unlocked
+x-ms-lease-state:available
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:02 GMT
+Content-Length:540
+Content-Type:application/octet-stream
+Content-MD5:N2CUjltVAsPxkj4shRbU4w==
+Last-Modified:Thu, 28 May 2026 07:54:40 GMT
+2026-05-28T12:23:04   [Verbose]   AuthenticationScheme: WebJobsAuthLevel was successfully authenticated.
+2026-05-28T12:23:04   [Verbose]   Authorization was successful.
+2026-05-28T12:23:04   [Information]   Executing 'Functions.HttpStartFunction' (Reason='This function was programmatically called via the host APIs.', Id=2ede677f-aa35-417f-af30-d9ae856c4c01)
+2026-05-28T12:23:04   [Verbose]   Sending invocation id: '2ede677f-aa35-417f-af30-d9ae856c4c01
+2026-05-28T12:23:04   [Verbose]   Posting invocation id:2ede677f-aa35-417f-af30-d9ae856c4c01 on workerId:3eafa1ef-6127-4233-bc1e-8f82e3a0fdad
+2026-05-28T12:23:05   [Information]   Request [2f3c3365-69b5-469f-ac5e-4d375a185131] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:2f3c3365-69b5-469f-ac5e-4d375a185131
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:05   [Information]   Response [2f3c3365-69b5-469f-ac5e-4d375a185131] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9478-d002-0004-729c-eebafd000000
+x-ms-client-request-id:2f3c3365-69b5-469f-ac5e-4d375a185131
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:04 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:05   [Information]   Request [3e1bed38-1e1f-47af-a220-d8321b8aeb0c] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-02')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A22%3A55.3492329Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:3e1bed38-1e1f-47af-a220-d8321b8aeb0c
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:05   [Information]   Response [3e1bed38-1e1f-47af-a220-d8321b8aeb0c] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A05.3750225Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d947b-d002-0004-739c-eebafd000000
+x-ms-client-request-id:3e1bed38-1e1f-47af-a220-d8321b8aeb0c
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:04 GMT
+Content-Length:0
+2026-05-28T12:23:05   [Verbose]   funcsqleditionoptdoofer-control-02:  lease renewal with token  succeeded
+2026-05-28T12:23:05   [Information]   Request [f99bdc10-0ffe-4f91-acd2-675b2e5a83ac] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-03')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A22%3A55.357228Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:f99bdc10-0ffe-4f91-acd2-675b2e5a83ac
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:05   [Information]   Response [f99bdc10-0ffe-4f91-acd2-675b2e5a83ac] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A05.3830181Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d947c-d002-0004-749c-eebafd000000
+x-ms-client-request-id:f99bdc10-0ffe-4f91-acd2-675b2e5a83ac
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:04 GMT
+Content-Length:0
+2026-05-28T12:23:05   [Verbose]   funcsqleditionoptdoofer-control-03:  lease renewal with token  succeeded
+2026-05-28T12:23:05   [Information]   Request [0ed7eaf5-b0ea-4f65-b8e7-c3c2811fd1b9] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:0ed7eaf5-b0ea-4f65-b8e7-c3c2811fd1b9
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:05   [Information]   Response [0ed7eaf5-b0ea-4f65-b8e7-c3c2811fd1b9] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5faf0-5002-003c-649c-eefba4000000
+x-ms-client-request-id:0ed7eaf5-b0ea-4f65-b8e7-c3c2811fd1b9
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:04 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:05   [Information]   Request [0f98d28c-f11e-4e4a-a3aa-5e672d91200d] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-00')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A22%3A55.1543459Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:0f98d28c-f11e-4e4a-a3aa-5e672d91200d
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:05   [Information]   Response [0f98d28c-f11e-4e4a-a3aa-5e672d91200d] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A05.1751374Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5faf1-5002-003c-659c-eefba4000000
+x-ms-client-request-id:0f98d28c-f11e-4e4a-a3aa-5e672d91200d
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:04 GMT
+Content-Length:0
+2026-05-28T12:23:05   [Verbose]   funcsqleditionoptdoofer-control-00:  lease renewal with token  succeeded
+2026-05-28T12:23:05   [Information]   Request [f165afac-37c3-473d-b7ea-8272f325d2da] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-01')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A22%3A55.1613407Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:f165afac-37c3-473d-b7ea-8272f325d2da
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:05   [Information]   Response [f165afac-37c3-473d-b7ea-8272f325d2da] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A05.1821334Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5faf3-5002-003c-679c-eefba4000000
+x-ms-client-request-id:f165afac-37c3-473d-b7ea-8272f325d2da
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:04 GMT
+Content-Length:0
+2026-05-28T12:23:05   [Verbose]   funcsqleditionoptdoofer-control-01:  lease renewal with token  succeeded
+2026-05-28T12:23:06   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:23:06   [Verbose]   [HostMonitor] Worker status: ID=2c1408ea-5c6a-4e8f-a5f7-06417e9c8d8b, Latency=1ms
+2026-05-28T12:23:06   [Verbose]   [HostMonitor] Host process CPU stats (PID 2372): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:06   [Verbose]   [HostMonitor] Host process CPU stats (PID 7116): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:06   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:23:06   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:23:06   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:23:07   [Warning]   WARNING: INITIALIZATION: Fallback context save mode to process because of error during checking token cache persistence: Persistence check fails due to unknown error.
+2026-05-28T12:23:07   [Information]   Request [942a64dd-2e88-414c-a010-09fc450ce1d2] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:942a64dd-2e88-414c-a010-09fc450ce1d2
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:07   [Information]   Response [942a64dd-2e88-414c-a010-09fc450ce1d2] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233c1b9-801e-0094-7f9c-ee2fb1000000
+x-ms-client-request-id:942a64dd-2e88-414c-a010-09fc450ce1d2
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:06 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:11   [Information]   Request [5a9f7614-6af0-4b8e-9a0a-7adca14c5c94] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host?comp=lease
+x-ms-lease-action:renew
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:5a9f7614-6af0-4b8e-9a0a-7adca14c5c94
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:11   [Information]   Response [5a9f7614-6af0-4b8e-9a0a-7adca14c5c94] 200 OK (00.0s)
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233c9cd-801e-0094-399c-ee2fb1000000
+x-ms-client-request-id:5a9f7614-6af0-4b8e-9a0a-7adca14c5c94
+x-ms-version:2024-11-04
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+Date:Thu, 28 May 2026 12:23:10 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:12   [Information]   INFORMATION: Connected to Azure using Managed Identity
+2026-05-28T12:23:12   [Verbose]   [HostMonitor] Worker status: ID=3eafa1ef-6127-4233-bc1e-8f82e3a0fdad, Latency=6039ms
+2026-05-28T12:23:12   [Verbose]   [HostMonitor] Host process CPU stats (PID 3828): History=(53,49,59,69,47), AvgCpuLoad=55.4, MaxCpuLoad=69
+2026-05-28T12:23:12   [Verbose]   [HostMonitor] Host process CPU stats (PID 6920): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:12   [Verbose]   [HostMonitor] Host aggregate CPU load 55
+2026-05-28T12:23:12   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:23:12   [Information]   Request [632b0b74-3225-472a-a57c-2fb2351d66a8] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:632b0b74-3225-472a-a57c-2fb2351d66a8
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:12   [Information]   Response [632b0b74-3225-472a-a57c-2fb2351d66a8] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233cb30-801e-0094-6d9c-ee2fb1000000
+x-ms-client-request-id:632b0b74-3225-472a-a57c-2fb2351d66a8
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:11 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:12   [Error]   Executed 'Functions.HttpStartFunction' (Failed, Id=2ede677f-aa35-417f-af30-d9ae856c4c01, Duration=8226ms)
+2026-05-28T12:23:13   [Information]   Request [3d93b5f5-1adf-4f8e-bb08-b7b5abaa9481] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-02/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:3d93b5f5-1adf-4f8e-bb08-b7b5abaa9481
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:13   [Information]   Response [3d93b5f5-1adf-4f8e-bb08-b7b5abaa9481] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed6730a-a003-0022-6c9c-ee2149000000
+x-ms-client-request-id:3d93b5f5-1adf-4f8e-bb08-b7b5abaa9481
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:12 GMT
+Content-Type:application/xml
+2026-05-28T12:23:15   [Information]   Request [70390b06-709f-45b4-8798-84a67543b70b] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:70390b06-709f-45b4-8798-84a67543b70b
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:15   [Information]   Response [70390b06-709f-45b4-8798-84a67543b70b] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9549-d002-0004-229c-eebafd000000
+x-ms-client-request-id:70390b06-709f-45b4-8798-84a67543b70b
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:14 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:15   [Information]   Request [9e8b8abb-8154-43e7-999f-c95b71ec8e77] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-02')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A05.3750225Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:9e8b8abb-8154-43e7-999f-c95b71ec8e77
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:15   [Information]   Response [9e8b8abb-8154-43e7-999f-c95b71ec8e77] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A15.3994813Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d954b-d002-0004-249c-eebafd000000
+x-ms-client-request-id:9e8b8abb-8154-43e7-999f-c95b71ec8e77
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:14 GMT
+Content-Length:0
+2026-05-28T12:23:15   [Verbose]   funcsqleditionoptdoofer-control-02:  lease renewal with token  succeeded
+2026-05-28T12:23:15   [Information]   Request [76ece4fc-aacf-4e24-a1ca-dd8789d0c10f] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-03')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A05.3830181Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:76ece4fc-aacf-4e24-a1ca-dd8789d0c10f
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:15   [Information]   Response [76ece4fc-aacf-4e24-a1ca-dd8789d0c10f] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A15.4064768Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d954d-d002-0004-269c-eebafd000000
+x-ms-client-request-id:76ece4fc-aacf-4e24-a1ca-dd8789d0c10f
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:14 GMT
+Content-Length:0
+2026-05-28T12:23:15   [Verbose]   funcsqleditionoptdoofer-control-03:  lease renewal with token  succeeded
+2026-05-28T12:23:15   [Information]   Request [d5e2bcef-7250-4a6f-a9ca-3fcfcaf55d34] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:d5e2bcef-7250-4a6f-a9ca-3fcfcaf55d34
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:15   [Information]   Response [d5e2bcef-7250-4a6f-a9ca-3fcfcaf55d34] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fc89-5002-003c-119c-eefba4000000
+x-ms-client-request-id:d5e2bcef-7250-4a6f-a9ca-3fcfcaf55d34
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:14 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:15   [Information]   Request [5808faba-65c2-4139-8c4d-e8439accf3f8] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-00')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A05.1751374Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:5808faba-65c2-4139-8c4d-e8439accf3f8
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:15   [Information]   Response [5808faba-65c2-4139-8c4d-e8439accf3f8] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A15.2045949Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fc8c-5002-003c-129c-eefba4000000
+x-ms-client-request-id:5808faba-65c2-4139-8c4d-e8439accf3f8
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:14 GMT
+Content-Length:0
+2026-05-28T12:23:15   [Verbose]   funcsqleditionoptdoofer-control-00:  lease renewal with token  succeeded
+2026-05-28T12:23:15   [Information]   Request [44975811-93c9-4e10-b14c-0c173021425c] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-01')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A05.1821334Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:44975811-93c9-4e10-b14c-0c173021425c
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:15   [Information]   Response [44975811-93c9-4e10-b14c-0c173021425c] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A15.2105904Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fc8d-5002-003c-139c-eefba4000000
+x-ms-client-request-id:44975811-93c9-4e10-b14c-0c173021425c
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:14 GMT
+Content-Length:0
+2026-05-28T12:23:15   [Verbose]   funcsqleditionoptdoofer-control-01:  lease renewal with token  succeeded
+2026-05-28T12:23:16   [Information]   Request [e7482434-4563-4572-a460-df33fb782eb4] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-03/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:e7482434-4563-4572-a460-df33fb782eb4
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:16   [Information]   Response [e7482434-4563-4572-a460-df33fb782eb4] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed67548-a003-0022-729c-ee2149000000
+x-ms-client-request-id:e7482434-4563-4572-a460-df33fb782eb4
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:15 GMT
+Content-Type:application/xml
+2026-05-28T12:23:17   [Information]   Request [7622e138-5d80-45c5-8056-68d8b21d4f04] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:7622e138-5d80-45c5-8056-68d8b21d4f04
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:17   [Information]   Response [7622e138-5d80-45c5-8056-68d8b21d4f04] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233d2c9-801e-0094-2c9c-ee2fb1000000
+x-ms-client-request-id:7622e138-5d80-45c5-8056-68d8b21d4f04
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:16 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:18   [Verbose]   funcsqleditionoptdoofer-applease: Starting app lease renewal with token abacf297-0000-0000-0000-000000000000
+2026-05-28T12:23:18   [Information]   Request [a0e35118-6705-4523-a506-3d4990b21b9f] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/funcsqleditionoptdoofer-applease?comp=lease&restype=container
+x-ms-lease-action:renew
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:a0e35118-6705-4523-a506-3d4990b21b9f
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.26.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:18   [Information]   Response [a0e35118-6705-4523-a506-3d4990b21b9f] 200 OK (00.0s)
+ETag:"0x8DEBC8E520A1822"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:76b6429b-301e-00af-4d9c-ee6def000000
+x-ms-client-request-id:a0e35118-6705-4523-a506-3d4990b21b9f
+x-ms-version:2025-11-05
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+Date:Thu, 28 May 2026 12:23:17 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 07:54:18 GMT
+2026-05-28T12:23:18   [Verbose]   funcsqleditionoptdoofer-applease: app lease renewal with token abacf297-0000-0000-0000-000000000000 succeeded
+2026-05-28T12:23:18   [Information]   Request [e883bc94-0313-4ce9-bcba-7e9631f0e2f7] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/Host.Functions.ScheduledTrigger.Listener?comp=lease
+x-ms-lease-action:renew
+x-ms-lease-id:09768e7c-d0d8-4e8a-83db-5a7fabdf4de7
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:e883bc94-0313-4ce9-bcba-7e9631f0e2f7
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:18   [Information]   Response [e883bc94-0313-4ce9-bcba-7e9631f0e2f7] 200 OK (00.0s)
+ETag:"0x8DEBC8E51E3174F"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233d467-801e-0094-719c-ee2fb1000000
+x-ms-client-request-id:e883bc94-0313-4ce9-bcba-7e9631f0e2f7
+x-ms-version:2024-11-04
+x-ms-lease-id:09768e7c-d0d8-4e8a-83db-5a7fabdf4de7
+Date:Thu, 28 May 2026 12:23:17 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 07:54:17 GMT
+2026-05-28T12:23:19   [Information]   Request [263db29c-3458-4aa3-bda8-520b74785654] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-workitems/messages?numofmessages=1&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:263db29c-3458-4aa3-bda8-520b74785654
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:19   [Information]   Response [263db29c-3458-4aa3-bda8-520b74785654] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed6771d-a003-0022-299c-ee2149000000
+x-ms-client-request-id:263db29c-3458-4aa3-bda8-520b74785654
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:18 GMT
+Content-Type:application/xml
+2026-05-28T12:23:21   [Information]   Request [ec72f8ec-4cc4-4d70-ae57-1a1e605cb085] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-workitems/messages?numofmessages=1&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:ec72f8ec-4cc4-4d70-ae57-1a1e605cb085
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:21   [Information]   Response [ec72f8ec-4cc4-4d70-ae57-1a1e605cb085] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:a8fcb7a5-7003-0009-089c-ee55f1000000
+x-ms-client-request-id:ec72f8ec-4cc4-4d70-ae57-1a1e605cb085
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:20 GMT
+Content-Type:application/xml
+2026-05-28T12:23:22   [Information]   Request [bb99accd-e70a-492b-864d-58e0e8502d97] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:bb99accd-e70a-492b-864d-58e0e8502d97
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:22   [Information]   Response [bb99accd-e70a-492b-864d-58e0e8502d97] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:a8fcb82a-7003-0009-7c9c-ee55f1000000
+x-ms-client-request-id:bb99accd-e70a-492b-864d-58e0e8502d97
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:21 GMT
+Content-Type:application/xml
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Worker status: ID=3eafa1ef-6127-4233-bc1e-8f82e3a0fdad, Latency=1ms
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Host process CPU stats (PID 3828): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Host process CPU stats (PID 6920): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:23:22   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:23:22   [Information]   Request [cc6ce2b6-004c-4c67-8fcb-13fdf6db6156] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:cc6ce2b6-004c-4c67-8fcb-13fdf6db6156
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:22   [Information]   Response [cc6ce2b6-004c-4c67-8fcb-13fdf6db6156] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233da55-801e-0094-219c-ee2fb1000000
+x-ms-client-request-id:cc6ce2b6-004c-4c67-8fcb-13fdf6db6156
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:21 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Worker status: ID=2c1408ea-5c6a-4e8f-a5f7-06417e9c8d8b, Latency=1ms
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Host process CPU stats (PID 2372): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Host process CPU stats (PID 7116): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:22   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:23:22   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:23:22   [Verbose]   There are currently 0 orchestration(s) and 0 activities loaded into memory on this worker
+2026-05-28T12:23:23   [Information]   Request [23e5e9d9-766c-4ca5-9c2c-87e83a380ff0] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host?comp=lease
+x-ms-lease-action:renew
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:23e5e9d9-766c-4ca5-9c2c-87e83a380ff0
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:23   [Information]   Response [23e5e9d9-766c-4ca5-9c2c-87e83a380ff0] 200 OK (00.0s)
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233dc90-801e-0094-1e9c-ee2fb1000000
+x-ms-client-request-id:23e5e9d9-766c-4ca5-9c2c-87e83a380ff0
+x-ms-version:2024-11-04
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+Date:Thu, 28 May 2026 12:23:22 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:25   [Information]   Request [96cb84f8-33bb-4b7c-aa03-a0f959d33971] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:96cb84f8-33bb-4b7c-aa03-a0f959d33971
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:25   [Information]   Response [96cb84f8-33bb-4b7c-aa03-a0f959d33971] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9695-d002-0004-409c-eebafd000000
+x-ms-client-request-id:96cb84f8-33bb-4b7c-aa03-a0f959d33971
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:24 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:25   [Information]   Request [185b399c-61fe-4b45-8430-604bc60ace34] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-02')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A15.3994813Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:185b399c-61fe-4b45-8430-604bc60ace34
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:25   [Information]   Response [185b399c-61fe-4b45-8430-604bc60ace34] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A25.4262985Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9699-d002-0004-429c-eebafd000000
+x-ms-client-request-id:185b399c-61fe-4b45-8430-604bc60ace34
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:24 GMT
+Content-Length:0
+2026-05-28T12:23:25   [Verbose]   funcsqleditionoptdoofer-control-02:  lease renewal with token  succeeded
+2026-05-28T12:23:25   [Information]   Request [8cef05d9-b335-45b1-87f2-85cb0deee36d] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-03')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A15.4064768Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:8cef05d9-b335-45b1-87f2-85cb0deee36d
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:25   [Information]   Response [8cef05d9-b335-45b1-87f2-85cb0deee36d] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A25.4342938Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d969a-d002-0004-439c-eebafd000000
+x-ms-client-request-id:8cef05d9-b335-45b1-87f2-85cb0deee36d
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:24 GMT
+Content-Length:0
+2026-05-28T12:23:25   [Verbose]   funcsqleditionoptdoofer-control-03:  lease renewal with token  succeeded
+2026-05-28T12:23:25   [Verbose]   funcsqleditionoptdoofer-applease: Starting app lease renewal with token abacf297-0000-0000-0000-000000000000
+2026-05-28T12:23:25   [Information]   Request [cbaaacd4-b80e-4830-b243-2a4f1690adf2] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/funcsqleditionoptdoofer-applease?comp=lease&restype=container
+x-ms-lease-action:renew
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:cbaaacd4-b80e-4830-b243-2a4f1690adf2
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.26.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:25   [Information]   Response [cbaaacd4-b80e-4830-b243-2a4f1690adf2] 200 OK (00.0s)
+ETag:"0x8DEBC8E520A1822"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:70b010cb-b01e-0072-5d9c-ee3e41000000
+x-ms-client-request-id:cbaaacd4-b80e-4830-b243-2a4f1690adf2
+x-ms-version:2025-11-05
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+Date:Thu, 28 May 2026 12:23:24 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 07:54:18 GMT
+2026-05-28T12:23:25   [Verbose]   funcsqleditionoptdoofer-applease: app lease renewal with token abacf297-0000-0000-0000-000000000000 succeeded
+2026-05-28T12:23:25   [Information]   Request [a482271c-5afb-44a9-a432-238b40770cf5] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:a482271c-5afb-44a9-a432-238b40770cf5
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:25   [Information]   Response [a482271c-5afb-44a9-a432-238b40770cf5] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fd71-5002-003c-2a9c-eefba4000000
+x-ms-client-request-id:a482271c-5afb-44a9-a432-238b40770cf5
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:24 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:25   [Information]   Request [56044035-5f40-4d28-bb95-bb4723e2647b] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-00')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A15.2045949Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:56044035-5f40-4d28-bb95-bb4723e2647b
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:25   [Information]   Response [56044035-5f40-4d28-bb95-bb4723e2647b] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A25.2294118Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fd72-5002-003c-2b9c-eefba4000000
+x-ms-client-request-id:56044035-5f40-4d28-bb95-bb4723e2647b
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:24 GMT
+Content-Length:0
+2026-05-28T12:23:25   [Verbose]   funcsqleditionoptdoofer-control-00:  lease renewal with token  succeeded
+2026-05-28T12:23:25   [Information]   Request [c4cca27f-aa68-4db1-96a2-252a2ff14a8b] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-01')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A15.2105904Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:c4cca27f-aa68-4db1-96a2-252a2ff14a8b
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:25   [Information]   Response [c4cca27f-aa68-4db1-96a2-252a2ff14a8b] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A25.236408Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fd75-5002-003c-2d9c-eefba4000000
+x-ms-client-request-id:c4cca27f-aa68-4db1-96a2-252a2ff14a8b
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:24 GMT
+Content-Length:0
+2026-05-28T12:23:25   [Verbose]   funcsqleditionoptdoofer-control-01:  lease renewal with token  succeeded
+2026-05-28T12:23:27   [Information]   Request [862db1b3-b04e-428a-88fe-ed75d6657299] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:862db1b3-b04e-428a-88fe-ed75d6657299
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:27   [Information]   Response [862db1b3-b04e-428a-88fe-ed75d6657299] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:a8fcbb56-7003-0009-399c-ee55f1000000
+x-ms-client-request-id:862db1b3-b04e-428a-88fe-ed75d6657299
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:26 GMT
+Content-Type:application/xml
+2026-05-28T12:23:27   [Information]   Request [e88cb8db-848b-465a-b3a5-f01f77c40f64] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:e88cb8db-848b-465a-b3a5-f01f77c40f64
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:27   [Information]   Response [e88cb8db-848b-465a-b3a5-f01f77c40f64] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233e388-801e-0094-3e9c-ee2fb1000000
+x-ms-client-request-id:e88cb8db-848b-465a-b3a5-f01f77c40f64
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:26 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:27   [Information]   Request [4c1a7e03-d7eb-496f-b4f5-9574d0a46304] GET https://stfuncsqleditionoptdoo.blob.core.windows.net/?comp=list&maxresults=1
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:4c1a7e03-d7eb-496f-b4f5-9574d0a46304
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:27   [Information]   Response [4c1a7e03-d7eb-496f-b4f5-9574d0a46304] 200 OK (00.0s)
+Transfer-Encoding:chunked
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233e402-801e-0094-279c-ee2fb1000000
+x-ms-client-request-id:4c1a7e03-d7eb-496f-b4f5-9574d0a46304
+x-ms-version:2024-11-04
+Date:Thu, 28 May 2026 12:23:26 GMT
+Content-Type:application/xml
+2026-05-28T12:23:29   [Information]   Request [3c987c3f-d8c5-4695-977f-8c07dc32162e] GET https://stfuncsqleditionoptdoo.blob.core.windows.net/?comp=list&maxresults=1
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:3c987c3f-d8c5-4695-977f-8c07dc32162e
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:29   [Information]   Response [3c987c3f-d8c5-4695-977f-8c07dc32162e] 200 OK (00.0s)
+Transfer-Encoding:chunked
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233e8d4-801e-0094-099c-ee2fb1000000
+x-ms-client-request-id:3c987c3f-d8c5-4695-977f-8c07dc32162e
+x-ms-version:2024-11-04
+Date:Thu, 28 May 2026 12:23:28 GMT
+Content-Type:application/xml
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Worker status: ID=3eafa1ef-6127-4233-bc1e-8f82e3a0fdad, Latency=1ms
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Host process CPU stats (PID 3828): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Host process CPU stats (PID 6920): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:23:32   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:23:32   [Information]   Request [4ef484fe-757d-4b37-b7e4-752ed21d617d] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:4ef484fe-757d-4b37-b7e4-752ed21d617d
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:32   [Information]   Response [4ef484fe-757d-4b37-b7e4-752ed21d617d] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233eb8b-801e-0094-389c-ee2fb1000000
+x-ms-client-request-id:4ef484fe-757d-4b37-b7e4-752ed21d617d
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:31 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Worker status: ID=2c1408ea-5c6a-4e8f-a5f7-06417e9c8d8b, Latency=1ms
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Host process CPU stats (PID 2372): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Host process CPU stats (PID 7116): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:32   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:23:32   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:23:35   [Information]   Request [0856095b-a7f4-4724-8b1e-35a4a70f5c34] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:0856095b-a7f4-4724-8b1e-35a4a70f5c34
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:35   [Information]   Response [0856095b-a7f4-4724-8b1e-35a4a70f5c34] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fe42-5002-003c-549c-eefba4000000
+x-ms-client-request-id:0856095b-a7f4-4724-8b1e-35a4a70f5c34
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:34 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:35   [Information]   Request [780a83ce-cb0c-4d14-9cbe-bc3e1c649a77] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-00')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A25.2294118Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:780a83ce-cb0c-4d14-9cbe-bc3e1c649a77
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:35   [Information]   Response [780a83ce-cb0c-4d14-9cbe-bc3e1c649a77] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A35.2485989Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fe46-5002-003c-559c-eefba4000000
+x-ms-client-request-id:780a83ce-cb0c-4d14-9cbe-bc3e1c649a77
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:34 GMT
+Content-Length:0
+2026-05-28T12:23:35   [Verbose]   funcsqleditionoptdoofer-control-00:  lease renewal with token  succeeded
+2026-05-28T12:23:35   [Information]   Request [9a0c771a-09a8-4c4a-943b-647ae9848cc2] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-01')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A25.236408Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:9a0c771a-09a8-4c4a-943b-647ae9848cc2
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:35   [Information]   Response [9a0c771a-09a8-4c4a-943b-647ae9848cc2] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A35.2545957Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fe47-5002-003c-569c-eefba4000000
+x-ms-client-request-id:9a0c771a-09a8-4c4a-943b-647ae9848cc2
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:34 GMT
+Content-Length:0
+2026-05-28T12:23:35   [Verbose]   funcsqleditionoptdoofer-control-01:  lease renewal with token  succeeded
+2026-05-28T12:23:35   [Information]   Request [0472e3ab-6672-4065-a963-2882242feb60] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host?comp=lease
+x-ms-lease-action:renew
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:0472e3ab-6672-4065-a963-2882242feb60
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:35   [Information]   Response [0472e3ab-6672-4065-a963-2882242feb60] 200 OK (00.0s)
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233ef04-801e-0094-0a9c-ee2fb1000000
+x-ms-client-request-id:0472e3ab-6672-4065-a963-2882242feb60
+x-ms-version:2024-11-04
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+Date:Thu, 28 May 2026 12:23:34 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:35   [Information]   Request [05b573b4-85a1-4666-b147-27e4ea4eca9f] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:05b573b4-85a1-4666-b147-27e4ea4eca9f
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:35   [Information]   Response [05b573b4-85a1-4666-b147-27e4ea4eca9f] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d979a-d002-0004-219c-eebafd000000
+x-ms-client-request-id:05b573b4-85a1-4666-b147-27e4ea4eca9f
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:34 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:35   [Information]   Request [4c2926be-a0e3-462d-9bc8-b215e1fd5dd9] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-02')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A25.4262985Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:4c2926be-a0e3-462d-9bc8-b215e1fd5dd9
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:35   [Information]   Response [4c2926be-a0e3-462d-9bc8-b215e1fd5dd9] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A35.4434873Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d979b-d002-0004-229c-eebafd000000
+x-ms-client-request-id:4c2926be-a0e3-462d-9bc8-b215e1fd5dd9
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:34 GMT
+Content-Length:0
+2026-05-28T12:23:35   [Verbose]   funcsqleditionoptdoofer-control-02:  lease renewal with token  succeeded
+2026-05-28T12:23:35   [Information]   Request [33c55194-89b0-46a1-9e3a-36a810793408] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-03')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A25.4342938Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:33c55194-89b0-46a1-9e3a-36a810793408
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:35   [Information]   Response [33c55194-89b0-46a1-9e3a-36a810793408] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A35.4504838Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d979c-d002-0004-239c-eebafd000000
+x-ms-client-request-id:33c55194-89b0-46a1-9e3a-36a810793408
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:34 GMT
+Content-Length:0
+2026-05-28T12:23:35   [Verbose]   funcsqleditionoptdoofer-control-03:  lease renewal with token  succeeded
+2026-05-28T12:23:37   [Information]   Request [26d363d0-2fa6-49ad-96d8-3607a307a53e] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:26d363d0-2fa6-49ad-96d8-3607a307a53e
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:37   [Information]   Response [26d363d0-2fa6-49ad-96d8-3607a307a53e] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233f216-801e-0094-4a9c-ee2fb1000000
+x-ms-client-request-id:26d363d0-2fa6-49ad-96d8-3607a307a53e
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:36 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:42   [Information]   Request [0f543644-a204-406e-ae2b-a78afe7e02b4] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:0f543644-a204-406e-ae2b-a78afe7e02b4
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:42   [Information]   Response [0f543644-a204-406e-ae2b-a78afe7e02b4] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b233fb6a-801e-0094-779c-ee2fb1000000
+x-ms-client-request-id:0f543644-a204-406e-ae2b-a78afe7e02b4
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:41 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Worker status: ID=3eafa1ef-6127-4233-bc1e-8f82e3a0fdad, Latency=1ms
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Host process CPU stats (PID 3828): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Host process CPU stats (PID 6920): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:23:42   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Worker status: ID=2c1408ea-5c6a-4e8f-a5f7-06417e9c8d8b, Latency=1ms
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Host process CPU stats (PID 2372): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Host process CPU stats (PID 7116): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:42   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:23:42   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:23:43   [Verbose]   funcsqleditionoptdoofer-applease: Starting app lease renewal with token abacf297-0000-0000-0000-000000000000
+2026-05-28T12:23:43   [Information]   Request [35689284-823d-475c-b795-cd5426a7564b] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/funcsqleditionoptdoofer-applease?comp=lease&restype=container
+x-ms-lease-action:renew
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:35689284-823d-475c-b795-cd5426a7564b
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.26.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:43   [Information]   Response [35689284-823d-475c-b795-cd5426a7564b] 200 OK (00.0s)
+ETag:"0x8DEBC8E520A1822"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:76b65dd0-301e-00af-6f9c-ee6def000000
+x-ms-client-request-id:35689284-823d-475c-b795-cd5426a7564b
+x-ms-version:2025-11-05
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+Date:Thu, 28 May 2026 12:23:42 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 07:54:18 GMT
+2026-05-28T12:23:43   [Verbose]   funcsqleditionoptdoofer-applease: app lease renewal with token abacf297-0000-0000-0000-000000000000 succeeded
+2026-05-28T12:23:43   [Information]   Request [5d7be887-c7a7-4417-9fae-a293d132ca82] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-02/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:5d7be887-c7a7-4417-9fae-a293d132ca82
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:43   [Information]   Response [5d7be887-c7a7-4417-9fae-a293d132ca82] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed686e8-a003-0022-129c-ee2149000000
+x-ms-client-request-id:5d7be887-c7a7-4417-9fae-a293d132ca82
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:42 GMT
+Content-Type:application/xml
+2026-05-28T12:23:45   [Information]   Request [6c1067c7-cac8-41bc-b4c6-6477057bbed9] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:6c1067c7-cac8-41bc-b4c6-6477057bbed9
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:45   [Information]   Response [6c1067c7-cac8-41bc-b4c6-6477057bbed9] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fef2-5002-003c-639c-eefba4000000
+x-ms-client-request-id:6c1067c7-cac8-41bc-b4c6-6477057bbed9
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:44 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:45   [Information]   Request [d6b88fbd-0773-4c56-9ca3-082ac570174f] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-00')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A35.2485989Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:d6b88fbd-0773-4c56-9ca3-082ac570174f
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:45   [Information]   Response [d6b88fbd-0773-4c56-9ca3-082ac570174f] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A45.2670455Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fef3-5002-003c-649c-eefba4000000
+x-ms-client-request-id:d6b88fbd-0773-4c56-9ca3-082ac570174f
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:44 GMT
+Content-Length:0
+2026-05-28T12:23:45   [Verbose]   funcsqleditionoptdoofer-control-00:  lease renewal with token  succeeded
+2026-05-28T12:23:45   [Information]   Request [f5dd9c73-06ce-4f26-9e78-9a52b2ef8c6e] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-01')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A35.2545957Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:f5dd9c73-06ce-4f26-9e78-9a52b2ef8c6e
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:45   [Information]   Response [f5dd9c73-06ce-4f26-9e78-9a52b2ef8c6e] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A45.2730415Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fef4-5002-003c-659c-eefba4000000
+x-ms-client-request-id:f5dd9c73-06ce-4f26-9e78-9a52b2ef8c6e
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:44 GMT
+Content-Length:0
+2026-05-28T12:23:45   [Verbose]   funcsqleditionoptdoofer-control-01:  lease renewal with token  succeeded
+2026-05-28T12:23:45   [Information]   Request [fbe29ccf-2a53-418c-a4cb-387b560fd65a] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:fbe29ccf-2a53-418c-a4cb-387b560fd65a
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:45   [Information]   Response [fbe29ccf-2a53-418c-a4cb-387b560fd65a] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9891-d002-0004-429c-eebafd000000
+x-ms-client-request-id:fbe29ccf-2a53-418c-a4cb-387b560fd65a
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:44 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:45   [Information]   Request [f99fc231-f4de-464e-95c8-dbfca02fba25] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-02')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A35.4434873Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:f99fc231-f4de-464e-95c8-dbfca02fba25
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:45   [Information]   Response [f99fc231-f4de-464e-95c8-dbfca02fba25] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A45.4619329Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9894-d002-0004-439c-eebafd000000
+x-ms-client-request-id:f99fc231-f4de-464e-95c8-dbfca02fba25
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:44 GMT
+Content-Length:0
+2026-05-28T12:23:45   [Verbose]   funcsqleditionoptdoofer-control-02:  lease renewal with token  succeeded
+2026-05-28T12:23:45   [Information]   Request [6b677e5e-170c-4c87-9faf-397375336568] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-03')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A35.4504838Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:6b677e5e-170c-4c87-9faf-397375336568
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:45   [Information]   Response [6b677e5e-170c-4c87-9faf-397375336568] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A45.4689291Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9895-d002-0004-449c-eebafd000000
+x-ms-client-request-id:6b677e5e-170c-4c87-9faf-397375336568
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:44 GMT
+Content-Length:0
+2026-05-28T12:23:45   [Verbose]   funcsqleditionoptdoofer-control-03:  lease renewal with token  succeeded
+2026-05-28T12:23:46   [Information]   Request [95360d4b-2e77-4c39-9670-83b4dadfd0d7] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-03/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:95360d4b-2e77-4c39-9670-83b4dadfd0d7
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:46   [Information]   Response [95360d4b-2e77-4c39-9670-83b4dadfd0d7] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed688b6-a003-0022-3f9c-ee2149000000
+x-ms-client-request-id:95360d4b-2e77-4c39-9670-83b4dadfd0d7
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:45 GMT
+Content-Type:application/xml
+2026-05-28T12:23:47   [Information]   Request [59e9504b-b4d6-4dfb-aded-dabcf64f6b4d] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:59e9504b-b4d6-4dfb-aded-dabcf64f6b4d
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:47   [Information]   Response [59e9504b-b4d6-4dfb-aded-dabcf64f6b4d] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b2340003-801e-0094-639c-ee2fb1000000
+x-ms-client-request-id:59e9504b-b4d6-4dfb-aded-dabcf64f6b4d
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:46 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:47   [Information]   Request [21d3f15a-7ad6-4d10-8896-eeb69ee45284] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host?comp=lease
+x-ms-lease-action:renew
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:21d3f15a-7ad6-4d10-8896-eeb69ee45284
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:47   [Information]   Response [21d3f15a-7ad6-4d10-8896-eeb69ee45284] 200 OK (00.0s)
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b234004b-801e-0094-129c-ee2fb1000000
+x-ms-client-request-id:21d3f15a-7ad6-4d10-8896-eeb69ee45284
+x-ms-version:2024-11-04
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+Date:Thu, 28 May 2026 12:23:46 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:48   [Information]   Request [75f5b0ff-a12a-4394-b7af-d2ae5a7c5474] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/Host.Functions.ScheduledTrigger.Listener?comp=lease
+x-ms-lease-action:renew
+x-ms-lease-id:09768e7c-d0d8-4e8a-83db-5a7fabdf4de7
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:75f5b0ff-a12a-4394-b7af-d2ae5a7c5474
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:48   [Information]   Response [75f5b0ff-a12a-4394-b7af-d2ae5a7c5474] 200 OK (00.0s)
+ETag:"0x8DEBC8E51E3174F"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b2340214-801e-0094-059c-ee2fb1000000
+x-ms-client-request-id:75f5b0ff-a12a-4394-b7af-d2ae5a7c5474
+x-ms-version:2024-11-04
+x-ms-lease-id:09768e7c-d0d8-4e8a-83db-5a7fabdf4de7
+Date:Thu, 28 May 2026 12:23:47 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 07:54:17 GMT
+2026-05-28T12:23:49   [Information]   Request [7174d300-eb3c-40c2-8eee-b956e5350200] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-workitems/messages?numofmessages=1&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:7174d300-eb3c-40c2-8eee-b956e5350200
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:49   [Information]   Response [7174d300-eb3c-40c2-8eee-b956e5350200] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68aab-a003-0022-0f9c-ee2149000000
+x-ms-client-request-id:7174d300-eb3c-40c2-8eee-b956e5350200
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:48 GMT
+Content-Type:application/xml
+2026-05-28T12:23:50   [Verbose]   funcsqleditionoptdoofer-applease: Starting app lease renewal with token abacf297-0000-0000-0000-000000000000
+2026-05-28T12:23:50   [Information]   Request [7f1ccec4-8a0c-46bb-85eb-3c03a3c36142] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/funcsqleditionoptdoofer-applease?comp=lease&restype=container
+x-ms-lease-action:renew
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:7f1ccec4-8a0c-46bb-85eb-3c03a3c36142
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.26.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:50   [Information]   Response [7f1ccec4-8a0c-46bb-85eb-3c03a3c36142] 200 OK (00.0s)
+ETag:"0x8DEBC8E520A1822"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:70b03377-b01e-0072-2b9c-ee3e41000000
+x-ms-client-request-id:7f1ccec4-8a0c-46bb-85eb-3c03a3c36142
+x-ms-version:2025-11-05
+x-ms-lease-id:abacf297-0000-0000-0000-000000000000
+Date:Thu, 28 May 2026 12:23:49 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 07:54:18 GMT
+2026-05-28T12:23:50   [Verbose]   funcsqleditionoptdoofer-applease: app lease renewal with token abacf297-0000-0000-0000-000000000000 succeeded
+2026-05-28T12:23:51   [Information]   Request [fef79e98-d3ee-4096-a79a-ecf4f7e76c7d] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-workitems/messages?numofmessages=1&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:fef79e98-d3ee-4096-a79a-ecf4f7e76c7d
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:51   [Information]   Response [fef79e98-d3ee-4096-a79a-ecf4f7e76c7d] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:a8fcca2a-7003-0009-159c-ee55f1000000
+x-ms-client-request-id:fef79e98-d3ee-4096-a79a-ecf4f7e76c7d
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:50 GMT
+Content-Type:application/xml
+2026-05-28T12:23:52   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:23:52   [Verbose]   [HostMonitor] Worker status: ID=2c1408ea-5c6a-4e8f-a5f7-06417e9c8d8b, Latency=1ms
+2026-05-28T12:23:52   [Verbose]   [HostMonitor] Host process CPU stats (PID 2372): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:52   [Verbose]   [HostMonitor] Host process CPU stats (PID 7116): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:23:52   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:23:52   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:23:53   [Information]   Request [860314d2-3ee5-4c89-8e5f-58a89c80490a] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:860314d2-3ee5-4c89-8e5f-58a89c80490a
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:53   [Information]   Response [860314d2-3ee5-4c89-8e5f-58a89c80490a] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fff3-5002-003c-479c-eefba4000000
+x-ms-client-request-id:860314d2-3ee5-4c89-8e5f-58a89c80490a
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:52 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-00: Successfully drained partition. Lease will be released.
+2026-05-28T12:23:53   [Information]   Request [b60805d4-42f1-4464-9e7c-e6341f16972b] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-00')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A52.0392209Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:b60805d4-42f1-4464-9e7c-e6341f16972b
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:53   [Information]   Response [b60805d4-42f1-4464-9e7c-e6341f16972b] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A53.0625124Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fff4-5002-003c-489c-eefba4000000
+x-ms-client-request-id:b60805d4-42f1-4464-9e7c-e6341f16972b
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:52 GMT
+Content-Length:0
+2026-05-28T12:23:53   [Information]   Request [e03561a7-98f3-466c-89e8-1f85d040f9c7] PUT https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:e03561a7-98f3-466c-89e8-1f85d040f9c7
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:53   [Information]   Response [e03561a7-98f3-466c-89e8-1f85d040f9c7] 204 No Content (00.0s)
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:a8fccb8c-7003-0009-5a9c-ee55f1000000
+x-ms-client-request-id:e03561a7-98f3-466c-89e8-1f85d040f9c7
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:52 GMT
+Content-Length:0
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-00: waws-prod-ln1-037:pd1SmallDedicatedWebWorkerRole_45255 has released its  lease
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-01: Successfully drained partition. Lease will be released.
+2026-05-28T12:23:53   [Information]   Request [3b857765-c6f5-4d65-b0fc-b3a7a5009191] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-01')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A52.0462169Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:3b857765-c6f5-4d65-b0fc-b3a7a5009191
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-00: Started listening for messages on queue funcsqleditionoptdoofer-control-00.
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-00: ControlQueue GetMessagesAsync cancelled by:  shutdown token cancelled is releasing partition funcsqleditionoptdoofer-control-00 for reason: Shutdown
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-00: Stopped listening for messages on queue funcsqleditionoptdoofer-control-00.
+2026-05-28T12:23:53   [Information]   Response [3b857765-c6f5-4d65-b0fc-b3a7a5009191] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A53.078503Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:9ed5fff5-5002-003c-499c-eefba4000000
+x-ms-client-request-id:3b857765-c6f5-4d65-b0fc-b3a7a5009191
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:52 GMT
+Content-Length:0
+2026-05-28T12:23:53   [Information]   Request [ccbc3fad-e3cf-4e40-964d-707cd30e58ff] PUT https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:ccbc3fad-e3cf-4e40-964d-707cd30e58ff
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:53   [Information]   Response [ccbc3fad-e3cf-4e40-964d-707cd30e58ff] 204 No Content (00.0s)
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:a8fccb92-7003-0009-5e9c-ee55f1000000
+x-ms-client-request-id:ccbc3fad-e3cf-4e40-964d-707cd30e58ff
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:52 GMT
+Content-Length:0
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-01: waws-prod-ln1-037:pd1SmallDedicatedWebWorkerRole_45255 has released its  lease
+2026-05-28T12:23:53   [Information]   Successfully released all ownership leases for shutdown.
+2026-05-28T12:23:53   [Information]   Stopped background table partition manager loop.
+2026-05-28T12:23:53   [Information]   Table partition manager stopped successfully.
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-applease: Background app lease renewer task completed.
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-applease: Lease renewer task completing. Stopping AppLeaseManager.
+2026-05-28T12:23:53   [Information]   Durable task hub worker stopped successfully after 1099ms
+2026-05-28T12:23:53   [Information]   Task hub worker stopped. IsGracefulStop: False. Latency: 00:00:01.1063505. Extension GUID 58d6230e-c1cd-4024-b7f1-3a58797c91cd. InstanceId: . Function: . HubName: funcsqleditionoptdoofer. AppName: func-sqleditionopt-doofer. SlotName: Production. ExtensionVersion: 3.8.0. SequenceNumber: 4.
+2026-05-28T12:23:53   [Information]   Stopped the listener 'Microsoft.Azure.WebJobs.Extensions.DurableTask.DurableTaskListener' for function 'DurableOrchestrator'
+2026-05-28T12:23:53   [Information]   Call to StopAsync complete, registered listeners are now stopped
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-01: Started listening for messages on queue funcsqleditionoptdoofer-control-01.
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-01: ControlQueue GetMessagesAsync cancelled by:  shutdown token cancelled is releasing partition funcsqleditionoptdoofer-control-01 for reason: Shutdown
+2026-05-28T12:23:53   [Information]   funcsqleditionoptdoofer-control-01: Stopped listening for messages on queue funcsqleditionoptdoofer-control-01.
+2026-05-28T12:23:55   [Information]   Request [d9620338-4037-4967-9ace-a33963c1c1cf] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:d9620338-4037-4967-9ace-a33963c1c1cf
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:55   [Information]   Response [d9620338-4037-4967-9ace-a33963c1c1cf] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9962-d002-0004-339c-eebafd000000
+x-ms-client-request-id:d9620338-4037-4967-9ace-a33963c1c1cf
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:23:55   [Information]   Request [1a3eaf5c-96c7-4aea-9673-534559d6b35c] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-00')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A53.0625124Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:1a3eaf5c-96c7-4aea-9673-534559d6b35c
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:55   [Information]   Response [1a3eaf5c-96c7-4aea-9673-534559d6b35c] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A55.4809198Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9963-d002-0004-349c-eebafd000000
+x-ms-client-request-id:1a3eaf5c-96c7-4aea-9673-534559d6b35c
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Length:0
+2026-05-28T12:23:55   [Information]   Request [3fd8ce8b-d9c2-477b-8d54-caccebd34222] PUT https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:3fd8ce8b-d9c2-477b-8d54-caccebd34222
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:55   [Information]   Response [3fd8ce8b-d9c2-477b-8d54-caccebd34222] 204 No Content (00.0s)
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68ec7-a003-0022-659c-ee2149000000
+x-ms-client-request-id:3fd8ce8b-d9c2-477b-8d54-caccebd34222
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Length:0
+2026-05-28T12:23:55   [Information]   funcsqleditionoptdoofer-control-00: Successfully acquired  lease
+2026-05-28T12:23:55   [Verbose]   funcsqleditionoptdoofer-control-00:  lease renewal with token  succeeded
+2026-05-28T12:23:55   [Information]   Request [37d3dba3-ef60-45cd-98a0-0ff97a301dc9] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-01')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A53.078503Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:37d3dba3-ef60-45cd-98a0-0ff97a301dc9
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:55   [Information]   funcsqleditionoptdoofer-control-00: Started listening for messages on queue funcsqleditionoptdoofer-control-00.
+2026-05-28T12:23:55   [Information]   Request [9a2da39b-6050-4eef-af9d-1e8be416e984] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:9a2da39b-6050-4eef-af9d-1e8be416e984
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:55   [Information]   Response [9a2da39b-6050-4eef-af9d-1e8be416e984] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68ec9-a003-0022-669c-ee2149000000
+x-ms-client-request-id:9a2da39b-6050-4eef-af9d-1e8be416e984
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Type:application/xml
+2026-05-28T12:23:55   [Information]   funcsqleditionoptdoofer-control-00: No new messages were found - backing off
+2026-05-28T12:23:55   [Information]   Request [04ea7e76-1033-4960-9771-af940f41b71f] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:04ea7e76-1033-4960-9771-af940f41b71f
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:55   [Information]   Response [37d3dba3-ef60-45cd-98a0-0ff97a301dc9] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A55.4936016Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9964-d002-0004-359c-eebafd000000
+x-ms-client-request-id:37d3dba3-ef60-45cd-98a0-0ff97a301dc9
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Length:0
+2026-05-28T12:23:55   [Information]   Request [78319df7-d294-4142-94da-c760fad8542f] PUT https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:78319df7-d294-4142-94da-c760fad8542f
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [04ea7e76-1033-4960-9771-af940f41b71f] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68eca-a003-0022-679c-ee2149000000
+x-ms-client-request-id:04ea7e76-1033-4960-9771-af940f41b71f
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   Response [78319df7-d294-4142-94da-c760fad8542f] 204 No Content (00.0s)
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68ecd-a003-0022-6a9c-ee2149000000
+x-ms-client-request-id:78319df7-d294-4142-94da-c760fad8542f
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Length:0
+2026-05-28T12:23:56   [Information]   funcsqleditionoptdoofer-control-01: Successfully acquired  lease
+2026-05-28T12:23:56   [Verbose]   funcsqleditionoptdoofer-control-01:  lease renewal with token  succeeded
+2026-05-28T12:23:56   [Information]   Request [e9b089a2-ac40-4de9-9bf8-b4bff14b1929] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-02')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A45.4619329Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:e9b089a2-ac40-4de9-9bf8-b4bff14b1929
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:56   [Information]   funcsqleditionoptdoofer-control-01: Started listening for messages on queue funcsqleditionoptdoofer-control-01.
+2026-05-28T12:23:56   [Information]   Request [27d7792b-ccfb-4be3-ae0a-cf9c5eb2954f] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:27d7792b-ccfb-4be3-ae0a-cf9c5eb2954f
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [27d7792b-ccfb-4be3-ae0a-cf9c5eb2954f] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68ecf-a003-0022-6b9c-ee2149000000
+x-ms-client-request-id:27d7792b-ccfb-4be3-ae0a-cf9c5eb2954f
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   funcsqleditionoptdoofer-control-01: No new messages were found - backing off
+2026-05-28T12:23:56   [Information]   Request [b952224b-e54b-4e7c-be7a-44034858b87c] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:b952224b-e54b-4e7c-be7a-44034858b87c
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [e9b089a2-ac40-4de9-9bf8-b4bff14b1929] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A55.5145874Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9965-d002-0004-369c-eebafd000000
+x-ms-client-request-id:e9b089a2-ac40-4de9-9bf8-b4bff14b1929
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Length:0
+2026-05-28T12:23:56   [Verbose]   funcsqleditionoptdoofer-control-02:  lease renewal with token  succeeded
+2026-05-28T12:23:56   [Information]   Request [e6e02d98-45ca-46ec-b2f7-61f80e12ac89] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-03')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A45.4689291Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:e6e02d98-45ca-46ec-b2f7-61f80e12ac89
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:23:56   [Information]   Response [b952224b-e54b-4e7c-be7a-44034858b87c] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68ed2-a003-0022-6e9c-ee2149000000
+x-ms-client-request-id:b952224b-e54b-4e7c-be7a-44034858b87c
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   Response [e6e02d98-45ca-46ec-b2f7-61f80e12ac89] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A23%3A55.5235829Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9968-d002-0004-379c-eebafd000000
+x-ms-client-request-id:e6e02d98-45ca-46ec-b2f7-61f80e12ac89
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Length:0
+2026-05-28T12:23:56   [Verbose]   funcsqleditionoptdoofer-control-03:  lease renewal with token  succeeded
+2026-05-28T12:23:56   [Information]   Request [0e99beb6-0e44-405d-8d1e-3f09a61fd3f6] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:0e99beb6-0e44-405d-8d1e-3f09a61fd3f6
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [0e99beb6-0e44-405d-8d1e-3f09a61fd3f6] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68edb-a003-0022-769c-ee2149000000
+x-ms-client-request-id:0e99beb6-0e44-405d-8d1e-3f09a61fd3f6
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   Request [6983bd58-4243-4bac-bd1a-a0d1ff0f1db3] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:6983bd58-4243-4bac-bd1a-a0d1ff0f1db3
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [6983bd58-4243-4bac-bd1a-a0d1ff0f1db3] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68edd-a003-0022-789c-ee2149000000
+x-ms-client-request-id:6983bd58-4243-4bac-bd1a-a0d1ff0f1db3
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   Request [f813aac3-5199-4379-8e7d-13c07187329c] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:f813aac3-5199-4379-8e7d-13c07187329c
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [f813aac3-5199-4379-8e7d-13c07187329c] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68eed-a003-0022-079c-ee2149000000
+x-ms-client-request-id:f813aac3-5199-4379-8e7d-13c07187329c
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   Request [c8afead5-dede-4bd7-8e17-b62836937437] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:c8afead5-dede-4bd7-8e17-b62836937437
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [c8afead5-dede-4bd7-8e17-b62836937437] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68ef3-a003-0022-0d9c-ee2149000000
+x-ms-client-request-id:c8afead5-dede-4bd7-8e17-b62836937437
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:54 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   Request [403680e9-7d26-48f0-9a95-14da68255f0b] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:403680e9-7d26-48f0-9a95-14da68255f0b
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [403680e9-7d26-48f0-9a95-14da68255f0b] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68f05-a003-0022-1e9c-ee2149000000
+x-ms-client-request-id:403680e9-7d26-48f0-9a95-14da68255f0b
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:55 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   Request [6ed62d85-98cc-499a-85c5-129ba1535546] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:6ed62d85-98cc-499a-85c5-129ba1535546
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [6ed62d85-98cc-499a-85c5-129ba1535546] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68f0b-a003-0022-229c-ee2149000000
+x-ms-client-request-id:6ed62d85-98cc-499a-85c5-129ba1535546
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:55 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   Request [370e3102-f2fa-43c1-bb9d-56bb862f3d50] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:370e3102-f2fa-43c1-bb9d-56bb862f3d50
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [370e3102-f2fa-43c1-bb9d-56bb862f3d50] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68f34-a003-0022-479c-ee2149000000
+x-ms-client-request-id:370e3102-f2fa-43c1-bb9d-56bb862f3d50
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:55 GMT
+Content-Type:application/xml
+2026-05-28T12:23:56   [Information]   Request [8f6be9b8-9880-4847-ab25-f250db889275] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:8f6be9b8-9880-4847-ab25-f250db889275
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:56   [Information]   Response [8f6be9b8-9880-4847-ab25-f250db889275] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68f39-a003-0022-4c9c-ee2149000000
+x-ms-client-request-id:8f6be9b8-9880-4847-ab25-f250db889275
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:55 GMT
+Content-Type:application/xml
+2026-05-28T12:23:57   [Information]   Request [58d7c1ed-f514-42c0-a48b-f46aba96a973] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:58d7c1ed-f514-42c0-a48b-f46aba96a973
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:57   [Information]   Response [58d7c1ed-f514-42c0-a48b-f46aba96a973] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b2341455-801e-0094-229c-ee2fb1000000
+x-ms-client-request-id:58d7c1ed-f514-42c0-a48b-f46aba96a973
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:23:56 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:23:57   [Information]   Request [8e7c20ed-4234-472c-b372-4992d9dd3b65] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:8e7c20ed-4234-472c-b372-4992d9dd3b65
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:57   [Information]   Response [8e7c20ed-4234-472c-b372-4992d9dd3b65] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68f88-a003-0022-119c-ee2149000000
+x-ms-client-request-id:8e7c20ed-4234-472c-b372-4992d9dd3b65
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:55 GMT
+Content-Type:application/xml
+2026-05-28T12:23:57   [Information]   Request [5dbc642b-715d-40f0-bc74-7c5022b3ee8e] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:5dbc642b-715d-40f0-bc74-7c5022b3ee8e
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:57   [Information]   Response [5dbc642b-715d-40f0-bc74-7c5022b3ee8e] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68f92-a003-0022-199c-ee2149000000
+x-ms-client-request-id:5dbc642b-715d-40f0-bc74-7c5022b3ee8e
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:55 GMT
+Content-Type:application/xml
+2026-05-28T12:23:57   [Information]   Request [9cbd34e2-001d-4970-8a3c-1c38729299c6] GET https://stfuncsqleditionoptdoo.blob.core.windows.net/?comp=list&maxresults=1
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:9cbd34e2-001d-4970-8a3c-1c38729299c6
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:57   [Information]   Response [9cbd34e2-001d-4970-8a3c-1c38729299c6] 200 OK (00.0s)
+Transfer-Encoding:chunked
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b23414a0-801e-0094-5f9c-ee2fb1000000
+x-ms-client-request-id:9cbd34e2-001d-4970-8a3c-1c38729299c6
+x-ms-version:2024-11-04
+Date:Thu, 28 May 2026 12:23:56 GMT
+Content-Type:application/xml
+2026-05-28T12:23:57   [Information]   Request [5a4135e6-2746-4313-9fdd-53155f7a3824] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:5a4135e6-2746-4313-9fdd-53155f7a3824
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:57   [Information]   Response [5a4135e6-2746-4313-9fdd-53155f7a3824] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68ff2-a003-0022-749c-ee2149000000
+x-ms-client-request-id:5a4135e6-2746-4313-9fdd-53155f7a3824
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:56 GMT
+Content-Type:application/xml
+2026-05-28T12:23:57   [Information]   Request [c5998904-21ce-4614-82ec-6d48d764c373] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:c5998904-21ce-4614-82ec-6d48d764c373
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:57   [Information]   Response [c5998904-21ce-4614-82ec-6d48d764c373] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed68ffc-a003-0022-7e9c-ee2149000000
+x-ms-client-request-id:c5998904-21ce-4614-82ec-6d48d764c373
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:56 GMT
+Content-Type:application/xml
+2026-05-28T12:23:59   [Information]   Request [8764da50-3e4a-4157-8ecb-b684e61f23ed] GET https://stfuncsqleditionoptdoo.blob.core.windows.net/?comp=list&maxresults=1
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:8764da50-3e4a-4157-8ecb-b684e61f23ed
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:59   [Information]   Response [8764da50-3e4a-4157-8ecb-b684e61f23ed] 200 OK (00.0s)
+Transfer-Encoding:chunked
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b234165c-801e-0094-199c-ee2fb1000000
+x-ms-client-request-id:8764da50-3e4a-4157-8ecb-b684e61f23ed
+x-ms-version:2024-11-04
+Date:Thu, 28 May 2026 12:23:58 GMT
+Content-Type:application/xml
+2026-05-28T12:23:59   [Information]   Request [987d2de5-9e1c-4bd0-9b64-3977145a820a] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:987d2de5-9e1c-4bd0-9b64-3977145a820a
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:59   [Information]   Response [987d2de5-9e1c-4bd0-9b64-3977145a820a] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed690db-a003-0022-4b9c-ee2149000000
+x-ms-client-request-id:987d2de5-9e1c-4bd0-9b64-3977145a820a
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:57 GMT
+Content-Type:application/xml
+2026-05-28T12:23:59   [Information]   Request [2e3e1f13-2f24-4c8f-b10a-fe91580c5638] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:2e3e1f13-2f24-4c8f-b10a-fe91580c5638
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:23:59   [Information]   Response [2e3e1f13-2f24-4c8f-b10a-fe91580c5638] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed690fd-a003-0022-6b9c-ee2149000000
+x-ms-client-request-id:2e3e1f13-2f24-4c8f-b10a-fe91580c5638
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:23:58 GMT
+Content-Type:application/xml
+2026-05-28T12:23:59   [Information]   Request [93c7b9f3-082a-4c64-8a40-9dfac4ae822d] PUT https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host?comp=lease
+x-ms-lease-action:renew
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:93c7b9f3-082a-4c64-8a40-9dfac4ae822d
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:23:59   [Information]   Response [93c7b9f3-082a-4c64-8a40-9dfac4ae822d] 200 OK (00.0s)
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b2341655-801e-0094-159c-ee2fb1000000
+x-ms-client-request-id:93c7b9f3-082a-4c64-8a40-9dfac4ae822d
+x-ms-version:2024-11-04
+x-ms-lease-id:ec67fed9-8bb4-81df-2e2e-4da0e706b13d
+Date:Thu, 28 May 2026 12:23:58 GMT
+Content-Length:0
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:24:02   [Information]   Request [c4e749a7-ff7a-4103-9241-a5e4f6cc957f] HEAD https://stfuncsqleditionoptdoo.blob.core.windows.net/azure-webjobs-hosts/locks/func-sqleditionopt-doofer/host
+x-ms-version:2024-11-04
+Accept:application/xml
+x-ms-client-request-id:c4e749a7-ff7a-4103-9241-a5e4f6cc957f
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Blobs/12.22.1 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Blobs
+2026-05-28T12:24:02   [Information]   Response [c4e749a7-ff7a-4103-9241-a5e4f6cc957f] 200 OK (00.0s)
+Accept-Ranges:bytes
+ETag:"0x8DEBCB37DBD3A34"
+Server:Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:b2341855-801e-0094-089c-ee2fb1000000
+x-ms-client-request-id:c4e749a7-ff7a-4103-9241-a5e4f6cc957f
+x-ms-version:2024-11-04
+x-ms-meta-FunctionInstance:REDACTED
+x-ms-creation-time:Thu, 28 May 2026 07:49:41 GMT
+x-ms-lease-status:locked
+x-ms-lease-state:leased
+x-ms-lease-duration:fixed
+x-ms-blob-type:BlockBlob
+x-ms-server-encrypted:true
+x-ms-access-tier:Hot
+x-ms-access-tier-inferred:true
+Date:Thu, 28 May 2026 12:24:01 GMT
+Content-Length:0
+Content-Type:application/octet-stream
+Content-MD5:1B2M2Y8AsgTpgAmY7PhCfg==
+Last-Modified:Thu, 28 May 2026 12:20:22 GMT
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Worker status: ID=3eafa1ef-6127-4233-bc1e-8f82e3a0fdad, Latency=5ms
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Host process CPU stats (PID 3828): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Host process CPU stats (PID 6920): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:24:02   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Checking worker statuses (Count=1)
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Worker status: ID=2c1408ea-5c6a-4e8f-a5f7-06417e9c8d8b, Latency=1ms
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Host process CPU stats (PID 2372): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Host process CPU stats (PID 7116): History=(0,0,0,0,0), AvgCpuLoad=0, MaxCpuLoad=0
+2026-05-28T12:24:02   [Verbose]   [HostMonitor] Host aggregate CPU load 0
+2026-05-28T12:24:02   [Information]   Executing StatusCodeResult, setting HTTP status code 200
+2026-05-28T12:24:02   [Information]   Request [3c099494-9ea1-4340-9487-9897bab731c6] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-01/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:3c099494-9ea1-4340-9487-9897bab731c6
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:24:02   [Information]   Response [3c099494-9ea1-4340-9487-9897bab731c6] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed69360-a003-0022-139c-ee2149000000
+x-ms-client-request-id:3c099494-9ea1-4340-9487-9897bab731c6
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:24:01 GMT
+Content-Type:application/xml
+2026-05-28T12:24:03   [Information]   Request [a77d6bff-9e8b-4f03-b6e8-62e4ad61a172] GET https://stfuncsqleditionoptdoo.queue.core.windows.net/funcsqleditionoptdoofer-control-00/messages?numofmessages=32&visibilitytimeout=300
+x-ms-version:2025-11-05
+Accept:application/xml
+x-ms-client-request-id:a77d6bff-9e8b-4f03-b6e8-62e4ad61a172
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Storage.Queues/12.24.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Storage.Queues
+2026-05-28T12:24:03   [Information]   Response [a77d6bff-9e8b-4f03-b6e8-62e4ad61a172] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Queue/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:1ed693ab-a003-0022-579c-ee2149000000
+x-ms-client-request-id:a77d6bff-9e8b-4f03-b6e8-62e4ad61a172
+x-ms-version:2025-11-05
+Date:Thu, 28 May 2026 12:24:01 GMT
+Content-Type:application/xml
+2026-05-28T12:24:06   [Information]   Request [a07c5989-572f-49a1-9a4f-81c8633a52da] GET https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions()?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+Accept:application/json;odata=minimalmetadata
+x-ms-client-request-id:a07c5989-572f-49a1-9a4f-81c8633a52da
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:24:06   [Information]   Response [a07c5989-572f-49a1-9a4f-81c8633a52da] 200 OK (00.0s)
+Cache-Control:no-cache
+Transfer-Encoding:chunked
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9a6f-d002-0004-1b9c-eebafd000000
+x-ms-client-request-id:a07c5989-572f-49a1-9a4f-81c8633a52da
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:24:04 GMT
+Content-Type:application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+2026-05-28T12:24:06   [Information]   Request [df199314-c999-4c1a-b1e4-4318ae8b922e] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-00')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A55.4809198Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:df199314-c999-4c1a-b1e4-4318ae8b922e
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:24:06   [Information]   Response [df199314-c999-4c1a-b1e4-4318ae8b922e] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A24%3A05.5427231Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9a73-d002-0004-1d9c-eebafd000000
+x-ms-client-request-id:df199314-c999-4c1a-b1e4-4318ae8b922e
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:24:04 GMT
+Content-Length:0
+2026-05-28T12:24:06   [Verbose]   funcsqleditionoptdoofer-control-00:  lease renewal with token  succeeded
+2026-05-28T12:24:06   [Information]   Request [2b9fb8fb-1fef-4259-995a-6dd20dcdc816] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-01')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A55.4936016Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:2b9fb8fb-1fef-4259-995a-6dd20dcdc816
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:24:06   [Information]   Response [2b9fb8fb-1fef-4259-995a-6dd20dcdc816] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A24%3A05.5507176Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9a74-d002-0004-1e9c-eebafd000000
+x-ms-client-request-id:2b9fb8fb-1fef-4259-995a-6dd20dcdc816
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:24:04 GMT
+Content-Length:0
+2026-05-28T12:24:06   [Verbose]   funcsqleditionoptdoofer-control-01:  lease renewal with token  succeeded
+2026-05-28T12:24:06   [Information]   Request [e38e59cc-d258-4697-921a-d5c50db731c4] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-02')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A55.5145874Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:e38e59cc-d258-4697-921a-d5c50db731c4
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:24:06   [Information]   Response [e38e59cc-d258-4697-921a-d5c50db731c4] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A24%3A05.557714Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9a77-d002-0004-209c-eebafd000000
+x-ms-client-request-id:e38e59cc-d258-4697-921a-d5c50db731c4
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:24:04 GMT
+Content-Length:0
+2026-05-28T12:24:06   [Verbose]   funcsqleditionoptdoofer-control-02:  lease renewal with token  succeeded
+2026-05-28T12:24:06   [Information]   Request [ceeb6771-840d-4355-af88-b82e9533f372] PUT https://stfuncsqleditionoptdoo.table.core.windows.net/funcsqleditionoptdooferPartitions(PartitionKey='',RowKey='funcsqleditionoptdoofer-control-03')?$format=REDACTED
+x-ms-version:REDACTED
+DataServiceVersion:REDACTED
+If-Match:W/"datetime'2026-05-28T12%3A23%3A55.5235829Z'"
+Accept:application/json
+Content-Type:application/json
+x-ms-client-request-id:ceeb6771-840d-4355-af88-b82e9533f372
+x-ms-return-client-request-id:true
+User-Agent:azsdk-net-Data.Tables/12.11.0 (.NET 10.0.4; Microsoft Windows 10.0.20348)
+Authorization:REDACTED
+client assembly: Azure.Data.Tables
+2026-05-28T12:24:06   [Information]   Response [ceeb6771-840d-4355-af88-b82e9533f372] 204 No Content (00.0s)
+Cache-Control:no-cache
+ETag:W/"datetime'2026-05-28T12%3A24%3A05.5647095Z'"
+Server:Windows-Azure-Table/1.0 Microsoft-HTTPAPI/2.0
+x-ms-request-id:c69d9a79-d002-0004-219c-eebafd000000
+x-ms-client-request-id:ceeb6771-840d-4355-af88-b82e9533f372
+x-ms-version:REDACTED
+X-Content-Type-Options:REDACTED
+Date:Thu, 28 May 2026 12:24:04 GMT
+Content-Length:0
+2026-05-28T12:24:06   [Verbose]   funcsqleditionoptdoofer-control-03:  lease renewal with token  succeeded
