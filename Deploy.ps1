@@ -276,31 +276,51 @@ Write-Step "Step 5/5: Triggering Initial Scan"
 Write-Info "Waiting 60 seconds for Function App to warm up (first cold start)..."
 Start-Sleep -Seconds 60
 
-$triggerUrl = "https://$FunctionAppName.azurewebsites.net/api/orchestrate"
-Write-Info "Triggering scan: POST $triggerUrl"
+# Get function key for authentication
+Write-Info "Retrieving function key..."
+$funcKey = $null
+$keyRetries = 6
+for ($i = 0; $i -lt $keyRetries; $i++) {
+    $funcKey = az functionapp function keys list `
+        --name $FunctionAppName `
+        --resource-group $ResourceGroupName `
+        --function-name HttpStartFunction `
+        --query "default" -o tsv 2>$null
+    if ($funcKey -and $funcKey -ne '') { break }
+    Write-Info "Function keys not available yet (attempt $($i+1)/$keyRetries), waiting 30 seconds..."
+    Start-Sleep -Seconds 30
+}
 
-$maxRetries = 6
-$retryCount = 0
-$triggered = $false
+if (-not $funcKey -or $funcKey -eq '') {
+    Write-Host "  [WARN] Could not retrieve function key. Trigger manually after app starts:" -ForegroundColor Yellow
+    Write-Host "         POST https://$FunctionAppName.azurewebsites.net/api/orchestrate?code=<function-key>" -ForegroundColor Yellow
+} else {
+    $triggerUrl = "https://$FunctionAppName.azurewebsites.net/api/orchestrate?code=$funcKey"
+    Write-Info "Triggering scan: POST https://$FunctionAppName.azurewebsites.net/api/orchestrate"
 
-while (-not $triggered -and $retryCount -lt $maxRetries) {
-    try {
-        $response = Invoke-RestMethod -Uri $triggerUrl -Method Post -ContentType 'application/json' -Body '{}' -TimeoutSec 60 -ErrorAction Stop
-        $triggered = $true
-        Write-Success "Initial scan triggered successfully"
-        if ($response.id) {
-            Write-Info "Orchestration ID: $($response.id)"
-            Write-Info "Status URL: $($response.statusQueryGetUri)"
-        }
-    } catch {
-        $retryCount++
-        if ($retryCount -lt $maxRetries) {
-            Write-Info "Function App not ready yet (attempt $retryCount/$maxRetries), retrying in 30 seconds..."
-            Start-Sleep -Seconds 30
-        } else {
-            Write-Host "  [WARN] Could not trigger initial scan automatically after $maxRetries attempts." -ForegroundColor Yellow
-            Write-Host "         The Function App may still be starting. Trigger manually:" -ForegroundColor Yellow
-            Write-Host "         POST $triggerUrl" -ForegroundColor Yellow
+    $maxRetries = 3
+    $retryCount = 0
+    $triggered = $false
+
+    while (-not $triggered -and $retryCount -lt $maxRetries) {
+        try {
+            $response = Invoke-RestMethod -Uri $triggerUrl -Method Post -ContentType 'application/json' -Body '{}' -TimeoutSec 60 -ErrorAction Stop
+            $triggered = $true
+            Write-Success "Initial scan triggered successfully"
+            if ($response.id) {
+                Write-Info "Orchestration ID: $($response.id)"
+                Write-Info "Status URL: $($response.statusQueryGetUri)"
+            }
+        } catch {
+            $retryCount++
+            if ($retryCount -lt $maxRetries) {
+                Write-Info "Trigger failed (attempt $retryCount/$maxRetries), retrying in 15 seconds..."
+                Start-Sleep -Seconds 15
+            } else {
+                Write-Host "  [WARN] Could not trigger initial scan automatically." -ForegroundColor Yellow
+                Write-Host "         Trigger manually:" -ForegroundColor Yellow
+                Write-Host "         POST https://$FunctionAppName.azurewebsites.net/api/orchestrate?code=$funcKey" -ForegroundColor Yellow
+            }
         }
     }
 }
