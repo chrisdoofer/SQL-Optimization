@@ -6,7 +6,7 @@
 // ============================================================
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
-| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
+| summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
 | project
     TimeGenerated,
     MachineName,
@@ -30,7 +30,7 @@ SQLEditionOptimisation_CL
 // ============================================================
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
-| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
+| summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
 | summarize
     Databases = dcount(DatabaseName),
     TotalCores = max(toint(VisibleCPUs)),
@@ -52,7 +52,7 @@ let SavingPerCore = EnterpriseCostPerCore - StandardCostPerCore;
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
 | where Edition has "Enterprise"
-| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
+| summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
 | summarize
     BlockedDatabases = dcountif(DatabaseName, DowngradeEligibility == "Blocked"),
     Cores = max(toint(VisibleCPUs))
@@ -73,7 +73,7 @@ SQLEditionOptimisation_CL
 SQLEditionOptimisation_CL
 | where TimeGenerated > ago(30d)
 | where EnterpriseFeatures != ""
-| summarize arg_max(TimeGenerated, *) by InstanceName, DatabaseName
+| summarize arg_max(TimeGenerated, *) by MachineName, InstanceName, DatabaseName
 | mv-expand Feature = split(EnterpriseFeatures, ";")
 | summarize InstanceCount = dcount(InstanceName), DatabaseCount = dcount(DatabaseName) by tostring(Feature)
 | order by InstanceCount desc
